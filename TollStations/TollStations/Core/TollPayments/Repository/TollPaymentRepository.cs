@@ -12,7 +12,7 @@ using TollStations.Core.TollPayments.Model;
 
 namespace TollStations.Core.TollPayments.Repository
 {
-    class TollPaymentRepository
+    class TollPaymentRepository : ITollPaymentRepository
     {
         private String _fileName = @"..\..\..\Data\tollpayments.json";
 
