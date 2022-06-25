@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using TollStation.Core.Devices;
+using TollStations.Core.Devices;
 
 namespace TollStations.Core.Devices.Repository
 {

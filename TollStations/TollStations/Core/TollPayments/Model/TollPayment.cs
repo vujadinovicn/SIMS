@@ -16,25 +16,20 @@ namespace TollStations.Core.TollPayments.Model
 
     class TollPayment
     {
-        DateTime time;
-        Currency currency;
-        double amount;
-        Cashier cashier;
-        TollCard tollCard;
+        public DateTime Time { get; set; }
+        public Currency Currency { get; set; }
+        public double Amount { get; set; }
+        public Cashier Cashier { get; set; }
+        internal TollCard TollCard { get; set; }
+
 
         public TollPayment(DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard)
         {
-            this.time = time;
-            this.currency = currency;
-            this.amount = amount;
-            this.cashier = cashier;
-            this.tollCard = tollCard;
+            Time = time;
+            Currency = currency;
+            Amount = amount;
+            Cashier = cashier;
+            TollCard = tollCard;
         }
-
-        public DateTime Time { get => time; set => time = value; }
-        public Currency Currency { get => currency; set => currency = value; }
-        public double Amount { get => amount; set => amount = value; }
-        public Cashier Cashier { get => cashier; set => cashier = value; }
-        internal TollCard TollCard { get => tollCard; set => tollCard = value; }
     }
 }

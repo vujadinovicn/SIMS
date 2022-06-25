@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TollStations.Core.Devices.Model;
 
-namespace TollStation.Core.Devices
+namespace TollStations.Core.Devices
 {
     public class Device
     {

@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TollStations.Core.TollStations.Model;
 
 namespace TollStations.Core.TollCards.Model
 {
-    class TollCard
+    public class TollCard
     {
-        DateTime time;
-        string plate;
+        public DateTime Time { get ; set ; }
+        public string Plate { get ; set ; }
+        public TollStation EntryStation { get; set; }
 
-        public TollCard(DateTime time, string plate)
+        public TollCard(DateTime time, string plate, TollStation tollStation)
         {
-            this.time = time;
-            this.plate = plate;
+            this.Time = time;
+            this.Plate = plate;
+            this.EntryStation = tollStation;
         }
-
-        public DateTime Time { get => time; set => time = value; }
-        public string Plate { get => plate; set => plate = value; }
     }
 }

@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TollStation.Core.Locations
+namespace TollStations.Core.Locations
 {
     public class Location
     {
-        string name;
-        int pttNum;
+        public string Name { get; set; }
+        public int PttNum { get; set; }
 
         public Location(string name, int pttNum)
         {
-            this.name = name;
-            this.pttNum = pttNum;
+            Name = name;
+            PttNum = pttNum;
         }
-
-        public string Name { get => name; set => name = value; }
-        public int PttNum { get => pttNum; set => pttNum = value; }
     }
 }

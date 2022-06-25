@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TollStation.Core.Devices;
-using TollStation.Core.SystemUsers.Cashiers;
+using TollStations.Core.Devices;
+using TollStations.Core.SystemUsers.Cashiers;
+using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.TollGates.Model;
 
-namespace TollStation.Core.TollGates
+namespace TollStations.Core.TollGates
 {
     public class TollGate
     {

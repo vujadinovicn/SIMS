@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TollStation.Core.Locations;
-using TollStation.Core.SystemUsers.Cashiers;
-using TollStation.Core.SystemUsers.Chiefs;
-using TollStation.Core.TollGates;
+using TollStations.Core.Locations;
+using TollStations.Core.TollGates;
+using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.SystemUsers.Chiefs.Model;
+using TollStations.Core.TollCards.Model;
 
-namespace TollStation.Core.TollStations
+namespace TollStations.Core.TollStations.Model
 {
     public class TollStation
     {
@@ -18,13 +16,17 @@ namespace TollStation.Core.TollStations
         public List<Cashier> Cashiers { get; set; }
         public Location Location { get; set; }
 
-        public TollStation(int id, Chief chief, List<TollGate> gates, List<Cashier> cashiers, Location location)
+        public List<TollCard> Cards { get; set; }
+
+
+        public TollStation(int id, Chief chief, List<TollGate> gates, List<Cashier> cashiers, Location location, List<TollCard> cards)
         {
             Id = id;
             Chief = chief;
             Gates = gates;
             Cashiers = cashiers;
             Location = location;
+            Cards = cards;
         }
     }
 }

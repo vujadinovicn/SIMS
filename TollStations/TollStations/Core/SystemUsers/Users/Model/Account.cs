@@ -16,22 +16,17 @@ namespace TollStations.Core.SystemUsers.Users.Model
 
     public class Account
     {
-        string userName;
-        string password;
-        UserType userType;
-        User user;
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public UserType UserType { get; set; }
+        public User User { get; set; }
 
         public Account(string userName, string password, UserType userType, User user)
         {
-            this.userName = userName;
-            this.password = password;
-            this.userType = userType;
-            this.user = user;
+            UserName = userName;
+            Password = password;
+            UserType = userType;
+            User = user;
         }
-
-        public string UserName { get => userName; set => userName = value; }
-        public string Password { get => password; set => password = value; }
-        public UserType UserType { get => userType; set => userType = value; }
-        public User User { get => user; set => user = value; }
     }
 }
