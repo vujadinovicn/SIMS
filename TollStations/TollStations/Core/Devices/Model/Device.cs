@@ -31,11 +31,11 @@ namespace TollStations.Core.Devices
 
     public enum DeviceType
     {
-        Ramp,
-        TagReader,
-        PlateReader,
-        Camera,
-        Monitor,
-        TrafficLight
+        RAMP,
+        TAG_READER,
+        PLATE_READER,
+        CAMERA,
+        MONITOR,
+        TRAFFICLIGHT
     }
 }
