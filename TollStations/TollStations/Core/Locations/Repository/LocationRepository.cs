@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TollStations.Core.Locations.Repository
 {
-    public class LocationRepository
+    public class LocationRepository : ILocationRepository
     {
         private String _fileName = @"..\..\..\Data\locations.json";
 

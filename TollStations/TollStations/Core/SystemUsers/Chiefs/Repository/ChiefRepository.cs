@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Model;
 
 namespace TollStations.Core.SystemUsers.Chiefs.Repository
@@ -15,6 +16,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
     {
         private int _maxId;
         private String _fileName = @"..\..\Data\chiefs.json";
+        private ILocationRepository _locationRepository;
         public List<Chief> Chiefs { get; set; }
         public Dictionary<int, Chief> ChiefsById { get; set; }
         public Dictionary<String, Chief> ChiefsByUsername { get; set; }
@@ -25,8 +27,9 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public ChiefRepository()
+        public ChiefRepository(ILocationRepository locationRepository)
         {
+            _locationRepository = locationRepository;
             this.Chiefs = new List<Chief>();
             this.ChiefsByUsername = new Dictionary<String, Chief>();
             this.ChiefsById = new Dictionary<int, Chief>();
@@ -36,13 +39,14 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
 
         private Chief Parse(JToken? chief)
         {
+            var location = _locationRepository.GetById((int)chief["id"]);
             return new Chief((int)chief["id"],
                                       (string)chief["firstName"],
                                       (string)chief["lastName"],
                                       (int)chief["tel"],
                                       (string)chief["mail"],
                                       (string)chief["address"],
-                                      null,
+                                      location,
                                       null,
                                       null);
         }

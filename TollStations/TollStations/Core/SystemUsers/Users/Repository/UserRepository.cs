@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Users.Model;
 
 namespace TollStations.Core.SystemUsers.Users.Repository
@@ -14,7 +15,9 @@ namespace TollStations.Core.SystemUsers.Users.Repository
     public class UserRepository : IUserRepository
     {
         private int _maxId;
+
         private String _fileName = @"..\..\Data\users.json";
+        private ILocationRepository _locationRepository;
         public List<User> Users { get; set; }
         public Dictionary<int, User> UsersById { get; set; }
         public Dictionary<String, User> UsersByUsername { get; set; }
@@ -25,8 +28,9 @@ namespace TollStations.Core.SystemUsers.Users.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public UserRepository()
+        public UserRepository(ILocationRepository locationRepository)
         {
+            _locationRepository = locationRepository;
             this.Users = new List<User>();
             this.UsersByUsername = new Dictionary<String, User>();
             this.UsersById = new Dictionary<int, User>();
@@ -35,13 +39,14 @@ namespace TollStations.Core.SystemUsers.Users.Repository
 
         private User Parse(JToken? user)
         {
+            var location = _locationRepository.GetById((int)user["id"]);
             return new User((int)user["id"],
                                       (string)user["firstName"],
                                       (string)user["lastName"],
                                       (int)user["tel"],
                                       (string)user["mail"],
                                       (string)user["address"],
-                                      null,
+                                      location,
                                       null);
         }
 

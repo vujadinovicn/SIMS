@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 
 namespace TollStations.Core.SystemUsers.Cashiers.Repository
@@ -15,6 +16,7 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
     {
         private int _maxId;
         private String _fileName = @"..\..\Data\cashiers.json";
+        private ILocationRepository _locationRepository;
         public List<Cashier> Cashiers { get; set; }
         public Dictionary<int, Cashier> CashiersById { get; set; }
         public Dictionary<String, Cashier> CashiersByUsername { get; set; }
@@ -25,8 +27,9 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public CashierRepository()
+        public CashierRepository(ILocationRepository locationRepository)
         {
+            _locationRepository = locationRepository;
             this.Cashiers = new List<Cashier>();
             this.CashiersByUsername = new Dictionary<String, Cashier>();
             this.CashiersById = new Dictionary<int, Cashier>();
@@ -36,13 +39,14 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
 
         private Cashier Parse(JToken? cashier)
         {
+            var location = _locationRepository.GetById((int)cashier["id"]);
             return new Cashier((int)cashier["id"],
                                       (string)cashier["firstName"],
                                       (string)cashier["lastName"],
                                       (int)cashier["tel"],
                                       (string)cashier["mail"],
                                       (string)cashier["address"],
-                                      null,
+                                      location,
                                       null,
                                       null);
         }
