@@ -8,7 +8,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Model
     {
         public TollStation TollStation { get; set; }
 
-        public Chief(string firstName, string lastName, int tel, string mail, string address, Location location, Account account, TollStation tollStation) : base(firstName, lastName, tel, mail, address, location, account)
+        public Chief(int id, string firstName, string lastName, int tel, string mail, string address, Location location, Account account, TollStation tollStation) : base(id, firstName, lastName, tel, mail, address, location, account)
         {
             this.TollStation = tollStation;
         }

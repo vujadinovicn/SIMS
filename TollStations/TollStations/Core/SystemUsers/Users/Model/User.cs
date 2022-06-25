@@ -9,6 +9,7 @@ namespace TollStations.Core.SystemUsers.Users.Model
 {
     public class User
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Tel { get; set; }
@@ -17,8 +18,9 @@ namespace TollStations.Core.SystemUsers.Users.Model
         public Location Location { get; set; }
         public Account Account { get; set; }
 
-        public User(string firstName, string lastName, int tel, string mail, string address, Location location, Account account)
+        public User(int id, string firstName, string lastName, int tel, string mail, string address, Location location, Account account)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             Tel = tel;
