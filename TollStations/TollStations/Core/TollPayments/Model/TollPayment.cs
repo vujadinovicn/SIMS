@@ -14,7 +14,7 @@ namespace TollStations.Core.TollPayments.Model
         EUR
     }
 
-    class TollPayment
+    public class TollPayment
     {
         public int Id { get; set; }
         public DateTime Time { get; set; }
@@ -24,7 +24,7 @@ namespace TollStations.Core.TollPayments.Model
         internal TollCard TollCard { get; set; }
 
 
-        public TollPayment(int id, DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard)
+        public TollPayment(int id,DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard)
         {
             Id = id;
             Time = time;
