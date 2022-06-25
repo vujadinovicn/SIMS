@@ -16,17 +16,13 @@ namespace TollStations.Core.TollStations.Model
         public List<Cashier> Cashiers { get; set; }
         public Location Location { get; set; }
 
-        public List<TollCard> Cards { get; set; }
-
-
-        public TollStation(int id, Chief chief, List<TollGate> gates, List<Cashier> cashiers, Location location, List<TollCard> cards)
+        public TollStation(int id, Chief chief, List<TollGate> gates, List<Cashier> cashiers, Location location)
         {
             Id = id;
             Chief = chief;
             Gates = gates;
             Cashiers = cashiers;
             Location = location;
-            Cards = cards;
         }
     }
 }
