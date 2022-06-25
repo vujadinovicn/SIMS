@@ -8,7 +8,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.Locations;
+using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.TollGates;
 using TollStations.Core.TollStations.Model;
 
@@ -47,7 +49,7 @@ namespace TollStations.Core.TollStations.Repository
         {
             Dictionary<int, Location> locationsById = _locationRepository.GetAllById();
             return new TollStation((int)tollStation["id"],
-                                   null, null,
+                                   null, new List<TollGate>(),
                                    JToken2Cashiers(tollStation["cashiers"]),
                                    locationsById[(int)tollStation["location"]]);
         }

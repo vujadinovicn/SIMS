@@ -16,14 +16,16 @@ namespace TollStations.Core.SystemUsers.Users.Model
 
     public class Account
     {
-        public string UserName { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public UserType UserType { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
 
-        public Account(string userName, string password, UserType userType, User user)
+        public Account(int id, string username, string password, UserType userType, User? user)
         {
-            UserName = userName;
+            Id = id;
+            Username = username;
             Password = password;
             UserType = userType;
             User = user;

@@ -36,6 +36,6 @@ namespace TollStations.Core.Devices
         PLATE_READER,
         CAMERA,
         MONITOR,
-        TRAFFICLIGHT
+        TRAFFIC_LIGHT
     }
 }

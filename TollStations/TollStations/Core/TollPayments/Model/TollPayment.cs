@@ -33,5 +33,6 @@ namespace TollStations.Core.TollPayments.Model
             Cashier = cashier;
             TollCard = tollCard;
         }
+
     }
 }
