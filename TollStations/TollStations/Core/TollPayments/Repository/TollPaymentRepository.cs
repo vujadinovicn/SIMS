@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollPayments.Model;
 

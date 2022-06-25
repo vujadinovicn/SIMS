@@ -8,10 +8,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.RoadSections.Repository
 {
-    public class RoadSectionRepository
+    public class RoadSectionRepository : IRoadSectionRepository
     {
         private String _fileName = @"..\..\..\Data\roadSections.json";
 

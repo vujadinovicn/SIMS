@@ -9,14 +9,18 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.TollGates.Repository;
 
 namespace TollStations.Core.SystemUsers.Cashiers.Repository
 {
-    public class CashierRepository
+    public class CashierRepository : ICashierRepository
     {
         private int _maxId;
         private String _fileName = @"..\..\Data\cashiers.json";
         private ILocationRepository _locationRepository;
+        private IAccountRepository _accountRepository;
+        private ITollGateRepository _tollGateRepository;
         public List<Cashier> Cashiers { get; set; }
         public Dictionary<int, Cashier> CashiersById { get; set; }
         public Dictionary<String, Cashier> CashiersByUsername { get; set; }
@@ -27,9 +31,11 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public CashierRepository(ILocationRepository locationRepository)
+        public CashierRepository(IAccountRepository accountRepository, ITollGateRepository tollGateRepository, ILocationRepository locationRepository)
         {
+            _accountRepository = accountRepository;
             _locationRepository = locationRepository;
+            _tollGateRepository = tollGateRepository;
             this.Cashiers = new List<Cashier>();
             this.CashiersByUsername = new Dictionary<String, Cashier>();
             this.CashiersById = new Dictionary<int, Cashier>();
@@ -40,15 +46,21 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
         private Cashier Parse(JToken? cashier)
         {
             var location = _locationRepository.GetById((int)cashier["id"]);
-            return new Cashier((int)cashier["id"],
+            var account = _accountRepository.GetById((int)cashier["account"]);
+            var tollGate = _tollGateRepository.GetById((int)cashier["tollGate"]);
+            var loadedCashier = new Cashier((int)cashier["id"],
                                       (string)cashier["firstName"],
                                       (string)cashier["lastName"],
                                       (int)cashier["tel"],
                                       (string)cashier["mail"],
                                       (string)cashier["address"],
                                       location,
-                                      null,
-                                      null);
+                                      account,
+                                      tollGate);
+            if (tollGate != null)
+                tollGate.CurrentCashier = loadedCashier;
+            account.User = loadedCashier;
+            return loadedCashier;
         }
 
         public void LoadFromFile()

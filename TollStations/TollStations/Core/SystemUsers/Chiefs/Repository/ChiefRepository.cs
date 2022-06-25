@@ -9,14 +9,18 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Model;
+using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.SystemUsers.Chiefs.Repository
 {
-    public class ChiefRepository
+    public class ChiefRepository : IChiefRepository
     {
         private int _maxId;
         private String _fileName = @"..\..\Data\chiefs.json";
+        private IAccountRepository _accountRepository;
         private ILocationRepository _locationRepository;
+        private ITollStationRepository _tollStationRepository;
         public List<Chief> Chiefs { get; set; }
         public Dictionary<int, Chief> ChiefsById { get; set; }
         public Dictionary<String, Chief> ChiefsByUsername { get; set; }
@@ -27,9 +31,11 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public ChiefRepository(ILocationRepository locationRepository)
+        public ChiefRepository(IAccountRepository accountRepository, ITollStationRepository tollStationRepository, ILocationRepository locationRepository)
         {
+            _accountRepository = accountRepository;
             _locationRepository = locationRepository;
+            _tollStationRepository = tollStationRepository;
             this.Chiefs = new List<Chief>();
             this.ChiefsByUsername = new Dictionary<String, Chief>();
             this.ChiefsById = new Dictionary<int, Chief>();
@@ -40,15 +46,21 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
         private Chief Parse(JToken? chief)
         {
             var location = _locationRepository.GetById((int)chief["id"]);
-            return new Chief((int)chief["id"],
+            var account = _accountRepository.GetById((int)chief["account"]);
+            var tollStation = _tollStationRepository.GetById((int)chief["tollStation"]);
+            var loadedChief = new Chief((int)chief["id"],
                                       (string)chief["firstName"],
                                       (string)chief["lastName"],
                                       (int)chief["tel"],
                                       (string)chief["mail"],
                                       (string)chief["address"],
                                       location,
-                                      null,
-                                      null);
+                                      account,
+                                      tollStation);
+            if (tollStation != null)
+                tollStation.Chief = loadedChief;
+            account.User = loadedChief;
+            return loadedChief;
         }
 
         public void LoadFromFile()

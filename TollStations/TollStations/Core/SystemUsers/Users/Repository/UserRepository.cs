@@ -17,6 +17,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         private int _maxId;
 
         private String _fileName = @"..\..\Data\users.json";
+        private IAccountRepository _accountRepository;
         private ILocationRepository _locationRepository;
         public List<User> Users { get; set; }
         public Dictionary<int, User> UsersById { get; set; }
@@ -28,8 +29,9 @@ namespace TollStations.Core.SystemUsers.Users.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public UserRepository(ILocationRepository locationRepository)
+        public UserRepository(IAccountRepository accountRepository, ILocationRepository locationRepository)
         {
+            _accountRepository = accountRepository;
             _locationRepository = locationRepository;
             this.Users = new List<User>();
             this.UsersByUsername = new Dictionary<String, User>();
@@ -40,14 +42,17 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         private User Parse(JToken? user)
         {
             var location = _locationRepository.GetById((int)user["id"]);
-            return new User((int)user["id"],
+            var account = _accountRepository.GetById((int)user["account"]);
+            var loadedUser = new User((int)user["id"],
                                       (string)user["firstName"],
                                       (string)user["lastName"],
                                       (int)user["tel"],
                                       (string)user["mail"],
                                       (string)user["address"],
                                       location,
-                                      null);
+                                      account);
+            account.User = loadedUser;
+            return loadedUser;
         }
 
         public void LoadFromFile()
@@ -81,7 +86,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
                     address = user.Address,
                     location = user.Location.Id,
                     account = user.Account.Id
-                }) ;
+                });
             }
             return reducedUsers;
         }

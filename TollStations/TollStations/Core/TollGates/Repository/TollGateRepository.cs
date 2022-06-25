@@ -8,7 +8,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.Devices;
+using TollStations.Core.Devices.Repository;
+using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.TollPayments.Model;
+using TollStations.Core.TollPayments.Repository;
 using TollStations.Core.TollStations.Model;
 using TollStations.Core.TollStations.Repository;
 
@@ -65,12 +68,12 @@ namespace TollStations.Core.TollGates.Repository
             TollGateType tollGateType;
             Enum.TryParse(tollGate["tollGateType"].ToString(), out tollGateType);
             TollStation tollStation = tollStationsById[(int)tollGate["tollStation"]];
-            TollGate preparedTollGate = new TollGate((int)tollGate["id"],
+            TollGate loadedTollGate = new TollGate((int)tollGate["id"],
                                     (int)tollGate["number"], paymentType, tollGateType,
                                     JToken2Devices(tollGate["devices"]), null,
                                     JToken2TollPayments(tollGate["tollPayments"]), tollStation);
-            _tollStationRepository.AddTollGate((int)tollGate["tollStation"], preparedTollGate);
-            return preparedTollGate;
+            tollStation.Gates.Add(loadedTollGate);
+            return loadedTollGate;
         }
 
         public void LoadFromFile()

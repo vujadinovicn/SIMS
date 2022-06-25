@@ -11,7 +11,7 @@ using TollStations.Core.SystemUsers.Users.Model;
 
 namespace TollStations.Core.SystemUsers.Users.Repository
 {
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private int _maxId;
         private String _fileName = @"..\..\Data\cashiers.json";
@@ -68,8 +68,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
                     id = account.Id,
                     username = account.Username,
                     password = account.Password,
-                    userType = account.UserType,
-                    user = account.User.Id
+                    userType = account.UserType
                 });
             }
             return reducedAccounts;

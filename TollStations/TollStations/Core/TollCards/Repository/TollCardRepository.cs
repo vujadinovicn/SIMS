@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.TollCards.Model;
+using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.TollCards.Repository
 {

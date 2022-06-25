@@ -8,6 +8,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         List<User> Users { get; set; }
         Dictionary<int, User> UsersById { get; set; }
         Dictionary<string, User> UsersByUsername { get; set; }
+
         List<User> GetAll();
         Dictionary<int, User> GetAllById();
         Dictionary<string, User> GetAllByUsername();
