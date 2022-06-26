@@ -15,13 +15,10 @@ namespace TollStations.Core.Devices.Model
 
     public class TrafficLight : Device
     {
-        TrafficLightColor color;
-
-        public TrafficLight(int id, bool isValid, TrafficLightColor color) : base(id, DeviceType.TrafficLight, isValid)
+        public TrafficLightColor Color { get; set; }
+        public TrafficLight(int id, bool isValid, TrafficLightColor color) : base(id, DeviceType.TRAFFIC_LIGHT, isValid)
         {
-            this.color = color;
+            this.Color = color;
         }
-
-        public TrafficLightColor Color { get => color; set => color = value; }
     }
 }

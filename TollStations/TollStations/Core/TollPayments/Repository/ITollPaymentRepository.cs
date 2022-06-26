@@ -3,7 +3,7 @@ using TollStations.Core.TollPayments.Model;
 
 namespace TollStations.Core.TollPayments.Repository
 {
-    interface ITollPaymentRepository
+    public interface ITollPaymentRepository
     {
         List<TollPayment> TollPayments { get; set; }
         Dictionary<int, TollPayment> TollPaymentsById { get; set; }

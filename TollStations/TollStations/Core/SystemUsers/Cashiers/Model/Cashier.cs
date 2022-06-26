@@ -12,7 +12,7 @@ namespace TollStations.Core.SystemUsers.Cashiers.Model
     public class Cashier : User
     {
         public TollGate? TollGate { get; set; }
-        public Cashier(string firstName, string lastName, int tel, string mail, string address, UserType userType, Location location, Account account, TollGate tollGate) : base(firstName, lastName, tel, mail, address, location, account)
+        public Cashier(int id, string firstName, string lastName, int tel, string mail, string address, Location location, Account account, TollGate tollGate) : base(id, firstName, lastName, tel, mail, address, location, account)
         {
             this.TollGate = tollGate;
         }
