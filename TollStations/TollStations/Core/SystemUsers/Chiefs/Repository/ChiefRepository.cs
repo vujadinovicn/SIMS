@@ -17,7 +17,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
     public class ChiefRepository : IChiefRepository
     {
         private int _maxId;
-        private String _fileName = @"..\..\Data\chiefs.json";
+        private String _fileName = @"..\..\..\Data\chiefs.json";
         private IAccountRepository _accountRepository;
         private ILocationRepository _locationRepository;
         private ITollStationRepository _tollStationRepository;

@@ -19,7 +19,6 @@ namespace TollStations.Core.TollStations.Repository
     public class TollStationRepository : ITollStationRepository
     {
         private String _fileName = @"..\..\..\Data\tollStations.json";
-        ICashierRepository _cashierRepository;
         ILocationRepository _locationRepository;
         public List<TollStation> TollStations { get; set; }
         public Dictionary<int, TollStation> TollStationsById { get; set; }
@@ -28,21 +27,12 @@ namespace TollStations.Core.TollStations.Repository
             Converters = { new JsonStringEnumConverter() },
             PropertyNameCaseInsensitive = true
         };
-        public TollStationRepository(ICashierRepository cashierRepository, ILocationRepository locationRepository)
+        public TollStationRepository(ILocationRepository locationRepository)
         {
-            _cashierRepository = cashierRepository;
             _locationRepository = locationRepository;
             TollStations = new List<TollStation>();
             TollStationsById = new Dictionary<int, TollStation>();
             this.LoadFromFile();
-        }
-        private List<Cashier> JToken2Cashiers(JToken tokens)
-        {
-            Dictionary<int, Cashier> cashiersById = _cashierRepository.GetAllById();
-            List<Cashier> items = new List<Cashier>();
-            foreach (int token in tokens)
-                items.Add(cashiersById[token]);
-            return items;
         }
 
         private TollStation Parse(JToken? tollStation)
@@ -50,7 +40,6 @@ namespace TollStations.Core.TollStations.Repository
             Dictionary<int, Location> locationsById = _locationRepository.GetAllById();
             return new TollStation((int)tollStation["id"],
                                    null, new List<TollGate>(),
-                                   JToken2Cashiers(tollStation["cashiers"]),
                                    locationsById[(int)tollStation["location"]]);
         }
 
@@ -71,15 +60,11 @@ namespace TollStations.Core.TollStations.Repository
             foreach (var tollStation in this.TollStations)
             {
                 List<int> gatesId = new List<int>();
-                List<int> cashiersId = new List<int>();
                 foreach (var i in tollStation.Gates)
                     gatesId.Add(i.Id);
-                foreach (var i in tollStation.Cashiers)
-                    cashiersId.Add(i.Id);
                 reducedTollStations.Add(new
                 {
                     id = tollStation.Id,
-                    cashiers = tollStation.Cashiers,
                     location = tollStation.Location
                 });
             }
@@ -120,8 +105,6 @@ namespace TollStations.Core.TollStations.Repository
         {
             TollStation tollStation = GetById(byTollStation.Id);
             tollStation.Location = byTollStation.Location;
-            tollStation.Chief = byTollStation.Chief;
-            tollStation.Cashiers = byTollStation.Cashiers;
             tollStation.Gates = byTollStation.Gates;
             Save();
         }
@@ -133,12 +116,6 @@ namespace TollStations.Core.TollStations.Repository
             Save();
         }
 
-        public void AddCashier(int id, Cashier cashier)
-        {
-            TollStation tollStation = GetById(id);
-            tollStation.Cashiers.Add(cashier);
-            Save();
-        }
 
         public void Delete(TollStation tollStation)
         {
@@ -154,11 +131,5 @@ namespace TollStations.Core.TollStations.Repository
             Save();
         }
 
-        public void DeleteCashier(int id, Cashier cashier)
-        {
-            TollStation tollStation = GetById(id);
-            tollStation.Cashiers.Remove(cashier);
-            Save();
-        }
     }
 }
