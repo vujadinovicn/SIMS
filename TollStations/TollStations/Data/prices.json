@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "priceInEUR": 5.0,
+    "priceInRSD": 500.0,
+    "vehicleType": "Car",
+    "roadSection": 1
+  },
+  {
+    "id": 2,
+    "priceInEUR": 4.0,
+    "priceInRSD": 400.0,
+    "vehicleType": "Motorcycle",
+    "roadSection": 1
+  },
+  {
+    "id": 3,
+    "priceInEUR": 7.0,
+    "priceInRSD": 700.0,
+    "vehicleType": "Van",
+    "roadSection": 1
+  },
+  {
+    "id": 4,
+    "priceInEUR": 10.0,
+    "priceInRSD": 1000.0,
+    "vehicleType": "Truck",
+    "roadSection": 1
+  },
+  {
+    "id": 5,
+    "priceInEUR": 9.0,
+    "priceInRSD": 900.0,
+    "vehicleType": "Bus",
+    "roadSection": 1
+  }
+]

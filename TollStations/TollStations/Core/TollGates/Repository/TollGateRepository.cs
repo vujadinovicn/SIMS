@@ -19,10 +19,8 @@ namespace TollStations.Core.TollGates.Repository
 {
     public class TollGateRepository : ITollGateRepository
     {
-        private String _fileName = @"..\..\..\Data\tollStations.json";
+        private String _fileName = @"..\..\..\Data\tollGates.json";
         IDeviceRepository _deviceRepository;
-        ICashierRepository _cashierRepository;
-        ITollPaymentRepository _tollPaymentRepository;
         ITollStationRepository _tollStationRepository;
         public List<TollGate> TollGates { get; set; }
         public Dictionary<int, TollGate> TollGatesById { get; set; }
@@ -31,12 +29,9 @@ namespace TollStations.Core.TollGates.Repository
             Converters = { new JsonStringEnumConverter() },
             PropertyNameCaseInsensitive = true
         };
-        public TollGateRepository(IDeviceRepository deviceRepository, ICashierRepository cashierRepository,
-            ITollPaymentRepository tollPaymentRepository, ITollStationRepository tollStationRepository)
+        public TollGateRepository(IDeviceRepository deviceRepository, ITollStationRepository tollStationRepository)
         {
             _deviceRepository = deviceRepository;
-            _cashierRepository = cashierRepository;
-            _tollPaymentRepository = tollPaymentRepository;
             _tollStationRepository = tollStationRepository;
             TollGates = new List<TollGate>();
             TollGatesById = new Dictionary<int, TollGate>();
@@ -51,27 +46,18 @@ namespace TollStations.Core.TollGates.Repository
                 items.Add(devicesById[token]);
             return items;
         }
-        private List<TollPayment> JToken2TollPayments(JToken tokens)
-        {
-            Dictionary<int, TollPayment> tollPaymentsById = _tollPaymentRepository.GetAllById();
-            List<TollPayment> items = new List<TollPayment>();
-            foreach (int token in tokens)
-                items.Add(tollPaymentsById[token]);
-            return items;
-        }
-
         private TollGate Parse(JToken? tollGate)
         {
             Dictionary<int, TollStation> tollStationsById = _tollStationRepository.GetAllById();
             PaymentType paymentType;
             Enum.TryParse(tollGate["paymentType"].ToString(), out paymentType);
             TollGateType tollGateType;
-            Enum.TryParse(tollGate["tollGateType"].ToString(), out tollGateType);
+            Enum.TryParse(tollGate["type"].ToString(), out tollGateType);
             TollStation tollStation = tollStationsById[(int)tollGate["tollStation"]];
             TollGate loadedTollGate = new TollGate((int)tollGate["id"],
                                     (int)tollGate["number"], paymentType, tollGateType,
                                     JToken2Devices(tollGate["devices"]), null,
-                                    JToken2TollPayments(tollGate["tollPayments"]), tollStation);
+                                    new List<TollPayment>(), tollStation);
             tollStation.Gates.Add(loadedTollGate);
             return loadedTollGate;
         }
@@ -93,11 +79,8 @@ namespace TollStations.Core.TollGates.Repository
             foreach (var tollGate in this.TollGates)
             {
                 List<int> devicesId = new List<int>();
-                List<int> tollPaymentsId = new List<int>();
                 foreach (var i in tollGate.Devices)
                     devicesId.Add(i.Id);
-                foreach (var i in tollGate.TollPayments)
-                    tollPaymentsId.Add(i.Id);
                 reducedTollGates.Add(new
                 {
                     id = tollGate.Id,
@@ -106,7 +89,6 @@ namespace TollStations.Core.TollGates.Repository
                     tollGateType = tollGate.Type,
                     devices = tollGate.Devices,
                     currentCashier = tollGate.CurrentCashier,
-                    tollPayments = tollGate.TollPayments,
                     tollStation = tollGate.TollStation
                 });
             }

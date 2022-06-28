@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "username": "pera",
+    "password": "pera",
+    "userType": "CASHIER"
+  },
+  {
+    "id": 2,
+    "username": "jovan",
+    "password": "jovan",
+    "userType": "CHIEF"
+  },
+  {
+    "id": 3,
+    "username": "simo",
+    "password": "simo",
+    "userType": "MANAGER"
+  },
+  {
+    "id": 4,
+    "username": "miroslav",
+    "password": "miroslav",
+    "userType": "ADMINISTRATOR"
+  },
+  {
+    "id": 5,
+    "username": "marko",
+    "password": "marko",
+    "userType": "CASHIER"
+  },
+  {
+    "id": 6,
+    "username": "milos",
+    "password": "milos",
+    "userType": "CHIEF"
+  }
+]

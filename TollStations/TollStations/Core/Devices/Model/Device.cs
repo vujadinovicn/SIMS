@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.Devices.Model;
 
@@ -13,6 +14,8 @@ namespace TollStations.Core.Devices
         public DeviceType Type { get; set; }
         public bool IsValid { get; set; }
 
+        
+        [JsonConstructor]
         public Device(int id, DeviceType type, bool isValid)
         {
             Id = id;

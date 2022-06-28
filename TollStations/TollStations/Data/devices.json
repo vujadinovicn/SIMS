@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "type": "RAMP",
+    "isValid": true
+  },
+  {
+    "id": 2,
+    "type": "PLATE_READER",
+    "isValid": true
+  },
+  {
+    "id": 3,
+    "type": "TAG_READER",
+    "isValid": true
+  },
+
+  {
+    "id": 4,
+    "type": "CAMERA",
+    "isValid": true
+  },
+
+  {
+    "id": 5,
+    "type": "MONITOR",
+    "isValid": true
+  },
+
+  {
+    "id": 6,
+    "type": "TRAFFIC_LIGHT",
+    "isValid": true
+  },
+  {
+    "id": 7,
+    "type": "RAMP",
+    "isValid": true
+  },
+  {
+    "id": 8,
+    "type": "PLATE_READER",
+    "isValid": true
+  },
+  {
+    "id": 9,
+    "type": "TAG_READER",
+    "isValid": true
+  },
+
+  {
+    "id": 10,
+    "type": "CAMERA",
+    "isValid": true
+  },
+
+  {
+    "id": 11,
+    "type": "MONITOR",
+    "isValid": true
+  },
+
+  {
+    "id": 12,
+    "type": "TRAFFIC_LIGHT",
+    "isValid": true
+  }
+]

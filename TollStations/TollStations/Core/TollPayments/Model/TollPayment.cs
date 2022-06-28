@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.TollCards.Model;
+using TollStations.Core.TollGates;
 
 namespace TollStations.Core.TollPayments.Model
 {
@@ -21,10 +22,10 @@ namespace TollStations.Core.TollPayments.Model
         public Currency Currency { get; set; }
         public double Amount { get; set; }
         public Cashier Cashier { get; set; }
-        internal TollCard TollCard { get; set; }
+        public TollCard TollCard { get; set; }
+        public TollGate TollGate { get; set; }
 
-
-        public TollPayment(int id, DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard)
+        public TollPayment(int id,DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard, TollGate tollGate)
         {
             Id = id;
             Time = time;
@@ -32,6 +33,7 @@ namespace TollStations.Core.TollPayments.Model
             Amount = amount;
             Cashier = cashier;
             TollCard = tollCard;
+            TollGate = tollGate;
         }
 
     }

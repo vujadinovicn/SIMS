@@ -11,16 +11,18 @@ using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.SystemUsers.Users.Repository;
 using TollStations.Core.TollGates.Repository;
+using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.SystemUsers.Cashiers.Repository
 {
     public class CashierRepository : ICashierRepository
     {
         private int _maxId;
-        private String _fileName = @"..\..\Data\cashiers.json";
+        private String _fileName = @"..\..\..\Data\cashiers.json";
         private ILocationRepository _locationRepository;
         private IAccountRepository _accountRepository;
         private ITollGateRepository _tollGateRepository;
+        private ITollStationRepository _tollStationRepository;
         public List<Cashier> Cashiers { get; set; }
         public Dictionary<int, Cashier> CashiersById { get; set; }
         public Dictionary<String, Cashier> CashiersByUsername { get; set; }
@@ -31,11 +33,12 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public CashierRepository(IAccountRepository accountRepository, ITollGateRepository tollGateRepository, ILocationRepository locationRepository)
+        public CashierRepository(IAccountRepository accountRepository, ITollGateRepository tollGateRepository, ILocationRepository locationRepository, ITollStationRepository tollStationRepository)
         {
             _accountRepository = accountRepository;
             _locationRepository = locationRepository;
             _tollGateRepository = tollGateRepository;
+            _tollStationRepository = tollStationRepository;
             this.Cashiers = new List<Cashier>();
             this.CashiersByUsername = new Dictionary<String, Cashier>();
             this.CashiersById = new Dictionary<int, Cashier>();
@@ -48,6 +51,7 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             var location = _locationRepository.GetById((int)cashier["id"]);
             var account = _accountRepository.GetById((int)cashier["account"]);
             var tollGate = _tollGateRepository.GetById((int)cashier["tollGate"]);
+            var tollStation = _tollStationRepository.GetById((int)cashier["tollStation"]);
             var loadedCashier = new Cashier((int)cashier["id"],
                                       (string)cashier["firstName"],
                                       (string)cashier["lastName"],
@@ -56,7 +60,8 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
                                       (string)cashier["address"],
                                       location,
                                       account,
-                                      tollGate);
+                                      tollGate,
+                                      tollStation);
             if (tollGate != null)
                 tollGate.CurrentCashier = loadedCashier;
             account.User = loadedCashier;
@@ -94,7 +99,8 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
                     address = cashier.Address,
                     location = cashier.Location.Id,
                     account = cashier.Account.Id,
-                    tollGate = cashier.TollGate.Id
+                    tollGate = cashier.TollGate.Id,
+                    tollStation = cashier.TollStation.Id
                 });
             }
             return reducedCashiers;

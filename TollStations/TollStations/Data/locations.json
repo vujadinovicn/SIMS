@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Beograd",
+    "pttNum": 11000
+  },
+  {
+    "id": 2,
+    "name": "Novi Sad",
+    "pttNum": 21000
+  }
+]

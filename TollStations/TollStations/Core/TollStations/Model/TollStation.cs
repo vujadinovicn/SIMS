@@ -13,15 +13,13 @@ namespace TollStations.Core.TollStations.Model
         public int Id { get; set; }
         public Chief Chief { get; set; }
         public List<TollGate> Gates { get; set; }
-        public List<Cashier> Cashiers { get; set; }
         public Location Location { get; set; }
 
-        public TollStation(int id, Chief chief, List<TollGate> gates, List<Cashier> cashiers, Location location)
+        public TollStation(int id, Chief chief, List<TollGate> gates, Location location)
         {
             Id = id;
             Chief = chief;
             Gates = gates;
-            Cashiers = cashiers;
             Location = location;
         }
     }

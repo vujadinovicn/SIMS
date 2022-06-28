@@ -10,19 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.ViewModels.CashierViewModels;
 
-namespace TollStations
+namespace TollStations.View.CashierView
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CashierInitialWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CashierInitialWindow : Window
     {
-        public MainWindow()
+        public CashierInitialWindow(Cashier cashier)
         {
             InitializeComponent();
+            DataContext = new CashierInitialWindowViewModel(cashier);
         }
     }
 }
