@@ -34,7 +34,21 @@ namespace TollStations.Core.Reports
                 paymentsByStation[station] = b;
                 b = 0;
             }
+            SortDict();
             return paymentsByStation;
+        }
+
+        private void SortDict()
+        {
+            Dictionary<TollStation, int> sortedDict = new Dictionary<TollStation, int>();
+            int b = 1;
+            foreach (var item in paymentsByStation.OrderByDescending(x => x.Value))
+            {
+                sortedDict[item.Key] = item.Value;
+                b += 1;
+                if (b > 5) break;
+            }
+            paymentsByStation = sortedDict;
         }
 
         private int addNumOfPayments(List<TollPayment> payments, DateTime start, DateTime end)
