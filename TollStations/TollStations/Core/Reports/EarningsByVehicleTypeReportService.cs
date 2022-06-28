@@ -13,12 +13,10 @@ namespace TollStations.Core.Reports
 {
     public class EarningsByVehicleTypeReportService : IEarningsByVehicleTypeReportService
     {
-        ITollStationService tollStationService;
         Dictionary<VehicleType, int> earningsByType;
 
-        public EarningsByVehicleTypeReportService(ITollStationService tollStationService)
+        public EarningsByVehicleTypeReportService()
         {
-            this.tollStationService = tollStationService;
             InitializeEarningsByType();
         }
 

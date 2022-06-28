@@ -22,10 +22,10 @@ namespace TollStations.View.ManagerView
     /// </summary>
     public partial class ManagerInitialWindow : Window
     {
-        public ManagerInitialWindow(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        public ManagerInitialWindow(IEarningsByVehicleTypeReportService earningReportService, IMostVisitedStationsReportService mostVisitedReportService, ITollStationService tollStationService)
         {
             InitializeComponent();
-            DataContext = new ManagerInitialWindowViewModel(reportService, tollStationService);
+            DataContext = new ManagerInitialWindowViewModel(mostVisitedReportService, earningReportService, tollStationService);
         }
     }
 }

@@ -12,10 +12,10 @@ namespace TollStations.ViewModels.ManagerViewModels
 {
     public class ManagerInitialWindowViewModel : ViewModelBase
     {
-        public ManagerInitialWindowViewModel(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        public ManagerInitialWindowViewModel(IMostVisitedStationsReportService mostVisitedReoportService, IEarningsByVehicleTypeReportService earningsReportService, ITollStationService tollStationService)
         {
-            EarningsByVehicleTypeCommand = new EarningsByVehicleTypceCommand(reportService, tollStationService);
-            MostVisitedStationsCommand = new MostVisitedStationsCommand();
+            EarningsByVehicleTypeCommand = new EarningsByVehicleTypceCommand(earningsReportService, tollStationService);
+            MostVisitedStationsCommand = new MostVisitedStationsCommand(mostVisitedReoportService);
         }
 
         public ICommand EarningsByVehicleTypeCommand { get; }

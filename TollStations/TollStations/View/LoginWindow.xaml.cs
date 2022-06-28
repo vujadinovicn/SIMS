@@ -45,10 +45,11 @@ namespace TollStations.View
             /*CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
             cashierWindow.ShowDialog();*/
             ITollStationService ss = new TollStationService(DIContainer.GetService<ITollStationRepository>());
-            IEarningsByVehicleTypeReportService rs = new EarningsByVehicleTypeReportService(ss);
+            IEarningsByVehicleTypeReportService rs = new EarningsByVehicleTypeReportService();
+            IMostVisitedStationsReportService ms = new MostVisitedStationsReportService(ss);
             
 
-            ManagerInitialWindow mw = new ManagerInitialWindow(rs, ss);
+            ManagerInitialWindow mw = new ManagerInitialWindow(rs, ms, ss);
             mw.ShowDialog();
         }
 

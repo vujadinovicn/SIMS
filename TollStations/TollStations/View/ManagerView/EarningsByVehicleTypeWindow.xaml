@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TollStations.View.ManagerView"
         mc:Ignorable="d"
-        Title="EarningsByVehicleTypeWindow" Height="450" Width="500">
+        Title="Earnings by vehicle type" Height="450" Width="500">
     <Window.Resources>
         <Style TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>

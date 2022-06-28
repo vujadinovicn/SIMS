@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TollStations.Core.Reports;
+using TollStations.ViewModels.ManagerViewModels;
 
 namespace TollStations.View.ManagerView
 {
@@ -19,9 +21,10 @@ namespace TollStations.View.ManagerView
     /// </summary>
     public partial class MostVisitedStationsWindow : Window
     {
-        public MostVisitedStationsWindow()
+        public MostVisitedStationsWindow(IMostVisitedStationsReportService reportService)
         {
             InitializeComponent();
+            DataContext = new MostVisitedStationsWindowViewModel(reportService);
         }
     }
 }
