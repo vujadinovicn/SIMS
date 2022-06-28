@@ -6,7 +6,6 @@
     "type": "Entry",
     "devices": [ 1, 2, 3, 4, 5, 6 ],
     "currentCashier": 1,
-    "tollPayments": [],
     "tollStation": 1
   },
   {
@@ -16,7 +15,6 @@
     "type": "Entry",
     "devices": [ 7, 8, 9, 10, 11, 12 ],
     "currentCashier": 5,
-    "tollPayments": [],
     "tollStation": 2
   }
 ]

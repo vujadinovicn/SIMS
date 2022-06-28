@@ -7,16 +7,14 @@ using TollStations.Core.TollStations.Model;
 
 namespace TollStations.Core.TollCards.Model
 {
-    public class TollCard
+    public class TollCardDTO
     {
-        public int Id { get; set; }
-        public DateTime Time { get ; set ; }
-        public string Plate { get ; set ; }
+        public DateTime Time { get; set; }
+        public string Plate { get; set; }
         public TollStation EntryStation { get; set; }
 
-        public TollCard(int id, DateTime time, string plate, TollStation tollStation)
+        public TollCardDTO(DateTime time, string plate, TollStation tollStation)
         {
-            Id = id;
             Time = time;
             Plate = plate;
             EntryStation = tollStation;

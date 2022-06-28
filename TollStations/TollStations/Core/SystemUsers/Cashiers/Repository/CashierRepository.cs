@@ -18,7 +18,7 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
     public class CashierRepository : ICashierRepository
     {
         private int _maxId;
-        private String _fileName = @"..\..\Data\cashiers.json";
+        private String _fileName = @"..\..\..\Data\cashiers.json";
         private ILocationRepository _locationRepository;
         private IAccountRepository _accountRepository;
         private ITollGateRepository _tollGateRepository;

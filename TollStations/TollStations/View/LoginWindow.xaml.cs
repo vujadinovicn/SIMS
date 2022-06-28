@@ -23,6 +23,7 @@ using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Repository;
 using TollStations.Core.TollStations.Repository;
+using TollStations.View.CashierView;
 
 namespace TollStations.View
 {
@@ -36,6 +37,10 @@ namespace TollStations.View
             InitializeComponent();
             var tt = DIContainer.GetService<IRoadSectionRepository>();
             lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
+            var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
+
+            CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
+            cashierWindow.ShowDialog();
         }
 
         [STAThread]

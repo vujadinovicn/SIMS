@@ -9,18 +9,21 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.TollCards.Repository;
+using TollStations.Core.TollGates;
+using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Model;
 
 namespace TollStations.Core.TollPayments.Repository
 {
     class TollPaymentRepository : ITollPaymentRepository
     {
-        private String _fileName = @"..\..\..\Data\tollpayments.json";
+        private String _fileName = @"..\..\..\Data\tollPayments.json";
 
         private int _maxId;
 
         private ITollCardRepository tollCardRepository;
         private ICashierRepository cashierRepository;
+        private ITollGateRepository tollGateRepository;
         public List<TollPayment> TollPayments { get; set; }
         public Dictionary<int, TollPayment> TollPaymentsById { get; set; }
 
@@ -30,13 +33,14 @@ namespace TollStations.Core.TollPayments.Repository
             PropertyNameCaseInsensitive = true
         };
 
-        public TollPaymentRepository(ITollCardRepository tollCardRepository, ICashierRepository cashierRepository)
+        public TollPaymentRepository(ITollCardRepository tollCardRepository, ICashierRepository cashierRepository, ITollGateRepository tollGateRepository)
         {
             this.TollPayments = new List<TollPayment>();
             this.TollPaymentsById = new Dictionary<int, TollPayment>();
             this._maxId = 0;
             this.tollCardRepository = tollCardRepository;
             this.cashierRepository = cashierRepository;
+            this.tollGateRepository = tollGateRepository;
             this.LoadFromFile();
         }
 
@@ -44,7 +48,10 @@ namespace TollStations.Core.TollPayments.Repository
         {
             Currency currency;
             Enum.TryParse<Currency>((string)tollPayment["state"], out currency);
-            return new TollPayment((int)tollPayment["id"], (DateTime)tollPayment["time"], currency, (double)tollPayment["amount"], cashierRepository.GetById((int)tollPayment["cashier"]), tollCardRepository.GetById((int)tollPayment["tollCard"]));
+            TollGate tollGate = tollGateRepository.GetById((int)tollPayment["tollGate"]);
+            TollPayment loadedTollPayment=new TollPayment((int)tollPayment["id"], (DateTime)tollPayment["time"], currency, (double)tollPayment["amount"], cashierRepository.GetById((int)tollPayment["cashier"]), tollCardRepository.GetById((int)tollPayment["tollCard"]), tollGate);
+            tollGate.TollPayments.Add(loadedTollPayment);
+            return loadedTollPayment;
         }
 
         public void LoadFromFile()
@@ -61,11 +68,28 @@ namespace TollStations.Core.TollPayments.Repository
                 this.TollPaymentsById[loadedPyment.Id] = loadedPyment;
             }
         }
-
+        private List<dynamic> PrepareForSerialization()
+        {
+            List<dynamic> reducedTollPayments = new List<dynamic>();
+            foreach (var tollPayment in this.TollPayments)
+            {
+                reducedTollPayments.Add(new
+                {
+                    id = tollPayment.Id,
+                    time= tollPayment.Time,
+                    currency= tollPayment.Currency,
+                    amount= tollPayment.Amount,
+                    cashier= tollPayment.Cashier.Id,
+                    tollCard=tollPayment.TollCard.Id,
+                    tollGate= tollPayment.TollGate.Id
+                });
+            }
+            return reducedTollPayments;
+        }
 
         public void Save()
         {
-            var allLocations = JsonSerializer.Serialize(this.TollPayments, _options);
+            var allLocations = JsonSerializer.Serialize(PrepareForSerialization(), _options);
             File.WriteAllText(this._fileName, allLocations);
         }
 
