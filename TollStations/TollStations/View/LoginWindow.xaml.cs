@@ -19,6 +19,7 @@ using TollStations.Core.RoadSections.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Repository;
 using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.SystemUsers.Users.Service;
 using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Repository;
@@ -63,6 +64,12 @@ namespace TollStations.View
             services.RegisterSingleton<ITollStationRepository, TollStationRepository>();
             services.RegisterSingleton<IAccountRepository, AccountRepository>();
 
+
+            services.RegisterSingleton<IUserService, UserService>();
+            services.RegisterSingleton<IAccountService, AccountService>();
+
+            services.RegisterTransient<UsersTable>();
+            services.RegisterTransient<AccountsTable>();
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();

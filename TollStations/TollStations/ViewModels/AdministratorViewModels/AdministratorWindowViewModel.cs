@@ -7,17 +7,15 @@ namespace TollStations.ViewModels.DoctorViewModels
     {
         public AdministratorWindowViewModel()
         {
-            CashiersTableCommand = new CashiersTableCommand();
-            ChiefsTableCommand = new ChiefsTableCommand();
-            ManagersTableCommand = new ManagersTableCommand();
+            UsersTableCommand = new UsersTableCommand();
             TollSectionsTableCommand = new TollSectionsTableCommand();
             TollGatesTableCommand = new TollGatesTableCommand();
+            AccountsTableCommand = new AccountsTableCommand();
         }
 
-        public ICommand CashiersTableCommand { get; }
-        public ICommand ChiefsTableCommand { get; }
-        public ICommand ManagersTableCommand { get; }
+        public ICommand UsersTableCommand { get; }
         public ICommand TollSectionsTableCommand { get; }
         public ICommand TollGatesTableCommand { get; }
+        public ICommand AccountsTableCommand { get; }
     }
 }

@@ -1,18 +1,22 @@
-﻿using System;
+﻿using HealthInstitution.Core.DIContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TollStations.View.AdministratorView;
 
 namespace TollStations.Commands.AdministratorCommands.AdministratorWindow
 {
-    public class ChiefsTableCommand : CommandBase
+    public class UsersTableCommand : CommandBase
     {
-        public ChiefsTableCommand()
+        public UsersTableCommand()
         {
         }
         public override void Execute(object? parameter)
         {
+            var window = DIContainer.GetService<UsersTable>();
+            window.ShowDialog();
         }
     }
 }

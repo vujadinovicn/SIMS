@@ -9,9 +9,8 @@
         Title="AdministratorWindow" Height="350" Width="600">
     <Grid>
         <Menu Margin="0,0,0,279">
-            <MenuItem Header="Cashiers" Command="{Binding CashiersTableCommand}" FontSize="14" Height="30" Width="111"/>
-            <MenuItem Header="Chiefs" Command="{Binding ChiefsTableCommand}" FontSize="14" Height="30" Width="111"/>
-            <MenuItem Header="Managers" Command="{Binding ManagersTableCommand}" FontSize="14" Height="30" Width="111"/>
+            <MenuItem Header="Users" Command="{Binding UsersTableCommand}" FontSize="14" Height="30" Width="111"/>
+            <MenuItem Header="Accounts" Command="{Binding AccountsTableCommand}" FontSize="14" Height="30" Width="111"/>
         </Menu>
         <Button Content="Toll stations" Command="{Binding TollStationsTableCommand}" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
         <Button Content="Toll gates" Command="{Binding TollGatesTableCommand}" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
