@@ -1,0 +1,21 @@
+﻿<Window x:Class="TollStations.View.AdministratorView.AdministratorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.AdministratorView"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="AdministratorWindow" Height="350" Width="600">
+    <Grid>
+        <Menu Margin="0,0,0,279">
+            <MenuItem Header="Cashiers" Command="{Binding CashiersTableCommand}" FontSize="14" Height="30" Width="111"/>
+            <MenuItem Header="Chiefs" Command="{Binding ChiefsTableCommand}" FontSize="14" Height="30" Width="111"/>
+            <MenuItem Header="Managers" Command="{Binding ManagersTableCommand}" FontSize="14" Height="30" Width="111"/>
+        </Menu>
+        <Button Content="Toll stations" Command="{Binding TollStationsTableCommand}" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
+        <Button Content="Toll gates" Command="{Binding TollGatesTableCommand}" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
+
+        <Button Content="Log out" Command="{Binding LogoutCommand}" HorizontalAlignment="Center" Margin="0,286,0,0" VerticalAlignment="Top" FontSize="14" Width="60" />
+    </Grid>
+</Window>
