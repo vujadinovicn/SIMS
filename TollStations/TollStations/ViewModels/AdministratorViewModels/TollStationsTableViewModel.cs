@@ -73,7 +73,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
             AddTollStationCommand = new AddTollStationCommand();
             EditTollStationCommand = new EditTollStationCommand();
             DeleteTollStationCommand = new DeleteTollStationCommand();
-            //TollGatesTableCommand = new TollGatesTableCommand();
+            TollGatesTableCommand = new TollGatesTableCommand(this);
             TollStations = new();
             _tollStationsVM = new();
             RefreshGrid();

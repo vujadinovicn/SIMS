@@ -30,6 +30,11 @@ namespace TollStations.Core.TollGates.Service
             return _tollGateRepository.GetAll();
         }
 
+        public List<TollGate> GetByStation(int id)
+        {
+            return _tollGateRepository.GetByStation(id);
+        }
+
         public Dictionary<int, TollGate> GetAllByUsername()
         {
             return _tollGateRepository.GetAllByUsername();

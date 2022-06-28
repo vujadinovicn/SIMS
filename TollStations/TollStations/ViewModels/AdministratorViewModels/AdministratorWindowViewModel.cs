@@ -9,13 +9,11 @@ namespace TollStations.ViewModels.DoctorViewModels
         {
             UsersTableCommand = new UsersTableCommand();
             TollStationsTableCommand = new TollStationsTableCommand();
-            TollGatesTableCommand = new TollGatesTableCommand();
             AccountsTableCommand = new AccountsTableCommand();
         }
 
         public ICommand UsersTableCommand { get; }
         public ICommand TollStationsTableCommand { get; }
-        public ICommand TollGatesTableCommand { get; }
         public ICommand AccountsTableCommand { get; }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TollStations.Core.TollGates;
 using TollStations.Core.TollGates.Service;
+using TollStations.Core.TollStations.Model;
 using TollStations.ViewModels.ModelViewModels;
 
 namespace TollStations.ViewModels.AdministratorViewModels
@@ -48,7 +49,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
         {
             _tollGatesVM.Clear();
             TollGates.Clear();
-            foreach (TollGate tollGate in _tollGateService.GetAll())
+            foreach (TollGate tollGate in _tollGateService.GetByStation(_tollStation.Id))
             {
                 TollGates.Add(tollGate);
                 _tollGatesVM.Add(new TollGateViewModel(tollGate));
@@ -65,8 +66,10 @@ namespace TollStations.ViewModels.AdministratorViewModels
         //public ICommand DeleteTollGateCommand { get; }
         //public ICommand TollGatesTableCommand { get; }
         ITollGateService _tollGateService;
-        public TollGatesTableViewModel(ITollGateService tollGateService)
+        TollStation _tollStation;
+        public TollGatesTableViewModel(TollStation tollStation, ITollGateService tollGateService)
         {
+            _tollStation = tollStation;
             _tollGateService = tollGateService;
             //AddTollGateCommand = new AddTollGateCommand();
             //EditTollGateCommand = new EditTollGateCommand();

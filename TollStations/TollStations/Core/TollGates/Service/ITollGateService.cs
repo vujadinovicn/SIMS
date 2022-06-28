@@ -14,6 +14,7 @@ namespace TollStations.Core.TollGates.Service
         void DeleteDevice(int id, DeviceDTO deviceDTO);
         void DeleteTollPayment(int id, TollPayment tollPayment);
         List<TollGate> GetAll();
+        List<TollGate> GetByStation(int id);
         Dictionary<int, TollGate> GetAllByUsername();
         TollGate GetById(int id);
         void Save();

@@ -118,6 +118,10 @@ namespace TollStations.Core.TollGates.Repository
             return null;
         }
 
+        public List<TollGate> GetByStation(int id)
+        {
+            return TollGates.FindAll(item => item.TollStation.Id == id);
+        }
         public void Add(TollGate tollGate)
         {
             this.TollGates.Add(tollGate);

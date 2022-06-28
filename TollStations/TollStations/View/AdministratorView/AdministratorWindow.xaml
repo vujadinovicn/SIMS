@@ -12,8 +12,7 @@
             <MenuItem Header="Users" Command="{Binding UsersTableCommand}" FontSize="14" Height="30" Width="111"/>
             <MenuItem Header="Accounts" Command="{Binding AccountsTableCommand}" FontSize="14" Height="30" Width="111"/>
         </Menu>
-        <Button Content="Toll stations" Command="{Binding TollStationsTableCommand}" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
-        <Button Content="Toll gates" Command="{Binding TollGatesTableCommand}" HorizontalAlignment="Center" Margin="0,239,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
+        <Button Content="Toll stations" Command="{Binding TollStationsTableCommand}" HorizontalAlignment="Center" Margin="0,227,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
 
         <Button Content="Log out" Command="{Binding LogoutCommand}" HorizontalAlignment="Center" Margin="0,286,0,0" VerticalAlignment="Top" FontSize="14" Width="60" />
     </Grid>

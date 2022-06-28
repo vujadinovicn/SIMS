@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TollStations.View.AdministratorView"
         mc:Ignorable="d"
-           WindowStartupLocation="CenterScreen"
+        
        Title="Toll gates" Height="450" Width="750">
     <Window.Resources>
         <Style TargetType="DataGridCell">
