@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using TollStations.Core.Devices.Repository;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.Prices.Repositor;
+using TollStations.Core.Reports;
 using TollStations.Core.RoadSections.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Repository;
@@ -22,8 +23,10 @@ using TollStations.Core.SystemUsers.Users.Repository;
 using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Repository;
+using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Repository;
 using TollStations.View.CashierView;
+using TollStations.View.ManagerView;
 
 namespace TollStations.View
 {
@@ -39,8 +42,14 @@ namespace TollStations.View
             lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
             var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
 
-            CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
-            cashierWindow.ShowDialog();
+            /*CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
+            cashierWindow.ShowDialog();*/
+            ITollStationService ss = new TollStationService(DIContainer.GetService<ITollStationRepository>());
+            IEarningsByVehicleTypeReportService rs = new EarningsByVehicleTypeReportService(ss);
+            
+
+            ManagerInitialWindow mw = new ManagerInitialWindow(rs, ss);
+            mw.ShowDialog();
         }
 
         [STAThread]

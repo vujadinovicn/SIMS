@@ -1,0 +1,36 @@
+﻿<Window x:Class="TollStations.View.ManagerView.EarningsByVehicleTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.ManagerView"
+        mc:Ignorable="d"
+        Title="EarningsByVehicleTypeWindow" Height="450" Width="500">
+    <Window.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,115,0,0">
+        <DataGrid  ItemsSource="{Binding EarningsVM}" AutoGenerateColumns="False" Name="dataGrid" Margin="0,-112,0,224" HorizontalAlignment="Center">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vehicle Type" Binding="{Binding VehicleType}"  FontSize="15" Width =" 145">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Earnings RSD" FontSize="15" Width ="110" Binding="{Binding Earning}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ComboBox HorizontalAlignment="Center" SelectedIndex="{Binding StationsComboBoxSelectedIndex}"  ItemsSource="{Binding StationsComboBoxItems}" Margin="0,138,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Choose Toll Station" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.405,0.283"/>
+        <DatePicker Name="datePickerStart" SelectedDate="{Binding SelectedStartDateTime, UpdateSourceTrigger=LostFocus, StringFormat='dd/MM/yyyy HH:mm:ss'}" Margin="105,201,105,0" Height="21" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <DatePicker Name="datePickerEnd" SelectedDate="{Binding SelectedEndDateTime, UpdateSourceTrigger=LostFocus, StringFormat='dd/MM/yyyy HH:mm:ss'}" Margin="105,201,105,0" Height="21" Width="100" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Label Content="Start" HorizontalAlignment="Left" Margin="138,175,0,0" VerticalAlignment="Top"/>
+        <Label Content="End" HorizontalAlignment="Left" Margin="330,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.281,-0.014"/>
+        <Button Content="Show" Command="{Binding ShowEarningsCommand}" HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+
+    </Grid>
+</Window>

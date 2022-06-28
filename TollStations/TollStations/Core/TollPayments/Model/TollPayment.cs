@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TollStations.Core.Prices.Model;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.TollCards.Model;
 using TollStations.Core.TollGates;
@@ -24,8 +25,9 @@ namespace TollStations.Core.TollPayments.Model
         public Cashier Cashier { get; set; }
         public TollCard TollCard { get; set; }
         public TollGate TollGate { get; set; }
+        public VehicleType VehicleType { get; set; }
 
-        public TollPayment(int id,DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard, TollGate tollGate)
+        public TollPayment(int id,DateTime time, Currency currency, double amount, Cashier cashier, TollCard tollCard, TollGate tollGate, VehicleType vehicleType)
         {
             Id = id;
             Time = time;
@@ -34,6 +36,7 @@ namespace TollStations.Core.TollPayments.Model
             Cashier = cashier;
             TollCard = tollCard;
             TollGate = tollGate;
+            VehicleType = vehicleType;
         }
 
     }

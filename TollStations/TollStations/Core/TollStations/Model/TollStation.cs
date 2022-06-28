@@ -22,5 +22,10 @@ namespace TollStations.Core.TollStations.Model
             Gates = gates;
             Location = location;
         }
+
+        public override string ToString()
+        {
+            return "ID: " + Id + "  |  Location: " + Location;
+        }
     }
 }
