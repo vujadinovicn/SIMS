@@ -8,13 +8,13 @@ namespace TollStations.ViewModels.DoctorViewModels
         public AdministratorWindowViewModel()
         {
             UsersTableCommand = new UsersTableCommand();
-            TollSectionsTableCommand = new TollSectionsTableCommand();
+            TollStationsTableCommand = new TollStationsTableCommand();
             TollGatesTableCommand = new TollGatesTableCommand();
             AccountsTableCommand = new AccountsTableCommand();
         }
 
         public ICommand UsersTableCommand { get; }
-        public ICommand TollSectionsTableCommand { get; }
+        public ICommand TollStationsTableCommand { get; }
         public ICommand TollGatesTableCommand { get; }
         public ICommand AccountsTableCommand { get; }
     }

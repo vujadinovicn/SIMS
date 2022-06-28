@@ -125,9 +125,9 @@ namespace TollStations.Core.TollGates.Repository
             Save();
         }
 
-        public void Update(TollGate byTollGate)
+        public void Update(int id, TollGate byTollGate)
         {
-            TollGate tollGate = GetById(byTollGate.Id);
+            TollGate tollGate = GetById(id);
             tollGate.TollStation = byTollGate.TollStation;
             tollGate.CurrentCashier = byTollGate.CurrentCashier;
             tollGate.Type = byTollGate.Type;
@@ -150,8 +150,9 @@ namespace TollStations.Core.TollGates.Repository
             Save();
         }
 
-        public void Delete(TollGate tollGate)
+        public void Delete(int id)
         {
+            var tollGate = GetById(id);
             this.TollGates.Remove(tollGate);
             this.TollGatesById.Remove(tollGate.Id);
             Save();

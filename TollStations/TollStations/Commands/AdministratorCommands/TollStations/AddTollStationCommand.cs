@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TollStations.Commands.AdministratorCommands.AdministratorWindow
+namespace TollStations.Commands.AdministratorCommands.TollStations
 {
-    public class TollSectionsTableCommand : CommandBase
+    public class AddTollStationCommand : CommandBase
     {
-        public TollSectionsTableCommand()
+        public AddTollStationCommand()
         {
         }
         public override void Execute(object? parameter)

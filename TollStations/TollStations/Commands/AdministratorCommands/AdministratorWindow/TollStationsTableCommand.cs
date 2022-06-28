@@ -8,14 +8,14 @@ using TollStations.View.AdministratorView;
 
 namespace TollStations.Commands.AdministratorCommands.AdministratorWindow
 {
-    public class TollGatesTableCommand : CommandBase
+    public class TollStationsTableCommand : CommandBase
     {
-        public TollGatesTableCommand()
+        public TollStationsTableCommand()
         {
         }
         public override void Execute(object? parameter)
         {
-            var window = DIContainer.GetService<TollGatesTable>();
+            var window = DIContainer.GetService<TollStationsTable>();
             window.ShowDialog();
         }
     }

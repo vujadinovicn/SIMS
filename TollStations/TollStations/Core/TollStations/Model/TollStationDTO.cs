@@ -8,26 +8,17 @@ using TollStations.Core.TollCards.Model;
 
 namespace TollStations.Core.TollStations.Model
 {
-    public class TollStation
+    public class TollStationDTO
     {
-        public int Id { get; set; }
         public Chief Chief { get; set; }
         public List<TollGate> Gates { get; set; }
         public Location Location { get; set; }
 
-        public TollStation(int id, Chief chief, List<TollGate> gates, Location location)
+        public TollStationDTO(Chief chief, List<TollGate> gates, Location location)
         {
-            Id = id;
             Chief = chief;
             Gates = gates;
             Location = location;
-        }
-
-        public TollStation(TollStationDTO tollStationDTO)
-        {
-            Chief = tollStationDTO.Chief;
-            Gates = tollStationDTO.Gates;
-            Location = tollStationDTO.Location;
         }
     }
 }

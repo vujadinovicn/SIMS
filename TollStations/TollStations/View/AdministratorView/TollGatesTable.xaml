@@ -1,0 +1,31 @@
+﻿<Window x:Class="TollStations.View.AdministratorView.TollGatesTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.AdministratorView"
+        mc:Ignorable="d"
+           WindowStartupLocation="CenterScreen"
+       Title="Toll gates" Height="450" Width="750">
+    <Window.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,115,0,0">
+        <DataGrid SelectedIndex="{Binding SelectedTollGateIndex, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding TollGatesVM}" AutoGenerateColumns="False" Name="dataGrid" Margin="0,-108,0,130">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}"  FontSize="15" Width ="*"/>
+                <DataGridTextColumn Header="Payment type" FontSize="15" Binding="{Binding PaymentType}" Width ="*"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"  FontSize="15" Width ="*"/>
+                <DataGridTextColumn Header="Cashier" FontSize="15" Binding="{Binding CurrentCashier}" Width ="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="addButton" Content="Add" Command="{Binding AddExaminationCommand}" HorizontalAlignment="Center" Height="30" Margin="0,200,350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="editButton" Content="Edit" Command="{Binding EditExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="deleteButton" Content="Delete" Command="{Binding DeleteExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,-350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+     </Grid>
+</Window>

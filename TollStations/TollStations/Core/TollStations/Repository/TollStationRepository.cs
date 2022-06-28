@@ -101,9 +101,10 @@ namespace TollStations.Core.TollStations.Repository
             Save();
         }
 
-        public void Update(TollStation byTollStation)
+        public void Update(int id, TollStation byTollStation)
         {
-            TollStation tollStation = GetById(byTollStation.Id);
+            var tollStation = TollStationsById[id];
+            tollStation.Chief = byTollStation.Chief;
             tollStation.Location = byTollStation.Location;
             tollStation.Gates = byTollStation.Gates;
             Save();
@@ -117,8 +118,9 @@ namespace TollStations.Core.TollStations.Repository
         }
 
 
-        public void Delete(TollStation tollStation)
+        public void Delete(int id)
         {
+            var tollStation = TollStationsById[(int)id];
             this.TollStations.Remove(tollStation);
             this.TollStationsById.Remove(tollStation.Id);
             Save();
@@ -130,6 +132,5 @@ namespace TollStations.Core.TollStations.Repository
             tollStation.Gates.Remove(tollGate);
             Save();
         }
-
     }
 }
