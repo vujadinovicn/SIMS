@@ -8,10 +8,8 @@ namespace TollStations.Core.TollStations.Repository
     public interface ITollStationRepository
     {
         void Add(TollStation tollStation);
-        void AddCashier(int id, Cashier cashier);
         void AddTollGate(int id, TollGate tollGate);
         void Delete(TollStation tollStation);
-        void DeleteCashier(int id, Cashier cashier);
         void DeleteTollGate(int id, TollGate tollGate);
         List<TollStation> GetAll();
         Dictionary<int, TollStation> GetAllById();

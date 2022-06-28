@@ -14,7 +14,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
     public class AccountRepository : IAccountRepository
     {
         private int _maxId;
-        private String _fileName = @"..\..\Data\cashiers.json";
+        private String _fileName = @"..\..\..\Data\accounts.json";
         public List<Account> Accounts { get; set; }
         public Dictionary<int, Account> AccountsById { get; set; }
 

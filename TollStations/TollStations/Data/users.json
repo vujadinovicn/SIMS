@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "firstName": "Petar",
+    "lastName": "Petrovic",
+    "tel": 5555555,
+    "mail": "piroman@gmail.com",
+    "address": "piroslava piromana",
+    "location": 1,
+    "account": 1
+  },
+  {
+    "id": 2,
+    "firstName": "Jovan",
+    "lastName": "Jovanovic",
+    "tel": 22222222,
+    "mail": "jorleone@gmail.com",
+    "address": "jovana jovce 2",
+    "location": 1,
+    "account": 2
+  },
+  {
+    "id": 3,
+    "firstName": "Simo",
+    "lastName": "Simovic",
+    "tel": 3333333,
+    "mail": "simeon@gmail.com",
+    "address": "simeona simeonovica 3",
+    "location": 1,
+    "account": 3
+  },
+  {
+    "id": 5,
+    "firstName": "Marko",
+    "lastName": "Markovic",
+    "tel": 5555555,
+    "mail": "markone@gmail.com",
+    "address": "bebebebe 3",
+    "location": 2,
+    "account": 5
+  },
+  {
+    "id": 6,
+    "firstName": "Milos",
+    "lastName": "Milinkovic",
+    "tel": 66666666,
+    "mail": "somiii@gmail.com",
+    "address": "aaaaaaa a 3",
+    "location": 2,
+    "account": 6
+  }
+]

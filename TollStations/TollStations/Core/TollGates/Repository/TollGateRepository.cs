@@ -21,7 +21,6 @@ namespace TollStations.Core.TollGates.Repository
     {
         private String _fileName = @"..\..\..\Data\tollStations.json";
         IDeviceRepository _deviceRepository;
-        ICashierRepository _cashierRepository;
         ITollPaymentRepository _tollPaymentRepository;
         ITollStationRepository _tollStationRepository;
         public List<TollGate> TollGates { get; set; }
@@ -31,11 +30,10 @@ namespace TollStations.Core.TollGates.Repository
             Converters = { new JsonStringEnumConverter() },
             PropertyNameCaseInsensitive = true
         };
-        public TollGateRepository(IDeviceRepository deviceRepository, ICashierRepository cashierRepository,
+        public TollGateRepository(IDeviceRepository deviceRepository,
             ITollPaymentRepository tollPaymentRepository, ITollStationRepository tollStationRepository)
         {
             _deviceRepository = deviceRepository;
-            _cashierRepository = cashierRepository;
             _tollPaymentRepository = tollPaymentRepository;
             _tollStationRepository = tollStationRepository;
             TollGates = new List<TollGate>();
