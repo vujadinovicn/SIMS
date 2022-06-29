@@ -41,6 +41,9 @@ namespace TollStations.Commands.CashierCommands
                     MessageBox.Show("Invalid card!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 else
                 {
+                    var hours = (DateTime.Now - scannedTollCard.Time).TotalHours;
+                    if (price.RoadSection.Distance/hours > 6000)
+                        MessageBox.Show("Volite pazljivo, neko Vas vozi!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
                     var window = new PaymentWindow(_loggedCashier, scannedTollCard, price);
                     window.ShowDialog();
                 }

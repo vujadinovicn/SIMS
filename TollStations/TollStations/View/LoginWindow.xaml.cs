@@ -106,8 +106,6 @@ namespace TollStations.View
             services.RegisterTransient<LoginWindow>();
             services.BuildContainer();
 
-            DIContainer.GetService<IAccountRepository>();
-            DIContainer.GetService<IUserRepository>();
             
             DIContainer.GetService<IChiefRepository>();
             DIContainer.GetService<ITollGateRepository>();

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\correct.png" />
     <None Remove="Images\image.png" />
   </ItemGroup>
 
@@ -23,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\correct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\image.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
