@@ -14,10 +14,12 @@ using TollStations.Core.TollGates;
 using TollStations.Core.TollGates.Service;
 using TollStations.Core.TollStations.Service;
 
+
 namespace TollStations.ViewModels.AdministratorViewModels
 {
-    public class AddTollGateDialogViewModel : ViewModelBase
+    public class EditTollGateDialogViewModel : ViewModelBase
     {
+        TollGate _selectedTollGate;
 
         private string _number;
 
@@ -112,10 +114,15 @@ namespace TollStations.ViewModels.AdministratorViewModels
         }
         private void LoadCashierComboBox()
         {
+            int i = 0;
+            int idx = 0;
             CashierComboBoxItems = new();
             foreach (Cashier cashier in _cashierService.GetAll())
             {
                 CashierComboBoxItems.Add(cashier);
+                if (cashier.Id == _selectedTollGate.CurrentCashier.Id)
+                    idx = i;
+                i++;
             }
         }
 
@@ -125,16 +132,22 @@ namespace TollStations.ViewModels.AdministratorViewModels
             LoadTypeComboBox();
         }
 
-        public ICommand AddTollGateDialogCommand { get; }
+        public TollGate GetSelectedTollGate()
+        {
+            return _selectedTollGate;
+        }
+
+        public ICommand EditTollGateDialogCommand { get; }
         ICashierService _cashierService;
         ITollGateService _tollGateService;
 
-        public AddTollGateDialogViewModel(ITollGateService tollGateService, ICashierService cashierService)
+        public EditTollGateDialogViewModel(TollGate tollGate, ITollGateService tollGateService, ICashierService cashierService)
         {
+            _selectedTollGate = tollGate;
             _cashierService = cashierService;
             _tollGateService = tollGateService;
             LoadComboBoxes();
-            AddTollGateDialogCommand = new AddTollGateDialogCommand(this, tollGateService);
+            EditTollGateDialogCommand = new EditTollGateDialogCommand(this, tollGateService, tollGate);
         }
     }
 }

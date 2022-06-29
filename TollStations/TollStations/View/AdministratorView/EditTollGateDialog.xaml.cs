@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TollStations.Core.SystemUsers.Cashiers.Service;
+using TollStations.Core.TollGates;
+using TollStations.Core.TollGates.Service;
+using TollStations.ViewModels.AdministratorViewModels;
 
 namespace TollStations.View.AdministratorView
 {
@@ -19,9 +23,18 @@ namespace TollStations.View.AdministratorView
     /// </summary>
     public partial class EditTollGateDialog : Window
     {
-        public EditTollGateDialog()
+        ITollGateService _tollGateService; 
+        ICashierService _cashierService;
+        public EditTollGateDialog(ITollGateService tollGateService, ICashierService cashierService)
         {
+            _tollGateService = tollGateService;
+            _cashierService = cashierService;
             InitializeComponent();
+        }
+
+        public void SetSelectedTollGate(TollGate tollGate)
+        {
+            DataContext = new EditTollGateDialogViewModel(tollGate, _tollGateService, _cashierService);
         }
     }
 }

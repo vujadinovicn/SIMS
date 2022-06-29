@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TollStations.Commands.AdministratorCommands.TollStations;
 using TollStations.Core.TollGates;
 using TollStations.Core.TollGates.Service;
 using TollStations.Core.TollStations.Model;
@@ -61,20 +63,19 @@ namespace TollStations.ViewModels.AdministratorViewModels
             return TollGates[_selectedTollGateIndex];
         }
 
-        //public ICommand AddTollGateCommand { get; }
-        //public ICommand EditTollGateCommand { get; }
-        //public ICommand DeleteTollGateCommand { get; }
-        //public ICommand TollGatesTableCommand { get; }
+        public ICommand AddTollGateCommand { get; }
+        public ICommand EditTollGateCommand { get; }
+        public ICommand DeleteTollGateCommand { get; }
+        public ICommand TollGatesTableCommand { get; }
         ITollGateService _tollGateService;
         TollStation _tollStation;
         public TollGatesTableViewModel(TollStation tollStation, ITollGateService tollGateService)
         {
             _tollStation = tollStation;
             _tollGateService = tollGateService;
-            //AddTollGateCommand = new AddTollGateCommand();
-            //EditTollGateCommand = new EditTollGateCommand();
+            AddTollGateCommand = new AddTollGateCommand(this);
+            EditTollGateCommand = new EditTollGateCommand(this);
             //DeleteTollGateCommand = new DeleteTollGateCommand();
-            //TollGatesTableCommand = new TollGatesTableCommand();
             TollGates = new();
             _tollGatesVM = new();
             RefreshGrid();

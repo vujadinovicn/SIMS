@@ -24,8 +24,8 @@
                 <DataGridTextColumn Header="Cashier" FontSize="15" Binding="{Binding CurrentCashier}" Width ="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="addButton" Content="Add" Command="{Binding AddExaminationCommand}" HorizontalAlignment="Center" Height="30" Margin="0,200,350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
-        <Button Name="editButton" Content="Edit" Command="{Binding EditExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
-        <Button Name="deleteButton" Content="Delete" Command="{Binding DeleteExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,-350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="addButton" Content="Add" Command="{Binding AddTollGateCommand}" HorizontalAlignment="Center" Height="30" Margin="0,200,350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="editButton" Content="Edit" Command="{Binding EditTollGateCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="deleteButton" Content="Delete" Command="{Binding DeleteTollGateCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,-350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
      </Grid>
 </Window>
