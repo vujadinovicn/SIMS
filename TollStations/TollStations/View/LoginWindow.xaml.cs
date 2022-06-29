@@ -84,6 +84,8 @@ namespace TollStations.View
             services.RegisterTransient<TollGatesTable>();
             services.RegisterTransient<AddTollStationDialog>();
             services.RegisterTransient<EditTollStationDialog>();
+            services.RegisterTransient<AddTollGateDialog>();
+            services.RegisterTransient<EditTollGateDialog>();
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();
