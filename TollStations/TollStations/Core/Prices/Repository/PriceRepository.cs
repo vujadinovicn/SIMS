@@ -142,5 +142,6 @@ namespace TollStations.Core.Prices.Repositor
             this.PriceById.Remove(id);
             Save();
         }
+
     }
 }

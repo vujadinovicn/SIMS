@@ -23,6 +23,11 @@ namespace TollStations.Core.TollStations.Model
             Location = location;
         }
 
+        public override string ToString()
+        {
+            return "ID: " + Id + "  |  Location: " + Location;
+        }
+
         public TollStation(TollStationDTO tollStationDTO)
         {
             Chief = tollStationDTO.Chief;

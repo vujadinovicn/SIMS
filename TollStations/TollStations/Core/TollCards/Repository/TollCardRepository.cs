@@ -14,7 +14,7 @@ namespace TollStations.Core.TollCards.Repository
 {
     class TollCardRepository : ITollCardRepository
     {
-        private String _fileName = @"..\..\..\Data\tollcards.json";
+        private String _fileName = @"..\..\..\Data\tollCards.json";
 
         private int _maxId;
 
@@ -39,7 +39,7 @@ namespace TollStations.Core.TollCards.Repository
 
         private TollCard Parse(JToken? tollCard)
         {
-            return new TollCard((int)tollCard["id"], (DateTime)tollCard["time"], (string)tollCard["plate"], tollStationRepository.GetById((int)tollCard["entryStation"]));
+            return new TollCard((int)tollCard["id"], (DateTime)tollCard["time"], (string)tollCard["plate"], tollStationRepository.GetById((int)tollCard["entryStation"]), (bool)tollCard["valid"]);
         }
 
         public void LoadFromFile()
@@ -56,11 +56,26 @@ namespace TollStations.Core.TollCards.Repository
                 this.TollCardsById[loadedCard.Id] = loadedCard;
             }
         }
-
+        private List<dynamic> PrepareForSerialization()
+        {
+            List<dynamic> reducedTollCards = new List<dynamic>();
+            foreach (var tollCard in this.TollCards)
+            {
+                reducedTollCards.Add(new
+                {
+                    id = tollCard.Id,
+                    time = tollCard.Time,
+                    plate = tollCard.Plate,
+                    entryStation = tollCard.EntryStation.Id,
+                    valid= tollCard.Valid
+                });
+            }
+            return reducedTollCards;
+        }
 
         public void Save()
         {
-            var allLocations = JsonSerializer.Serialize(this.TollCards, _options);
+            var allLocations = JsonSerializer.Serialize(PrepareForSerialization(), _options);
             File.WriteAllText(this._fileName, allLocations);
         }
 

@@ -28,9 +28,9 @@ namespace TollStations.Core.Locations
             PttNum = locationDTO.PttNum;
         }
 
-        public override string? ToString()
+        public override string ToString()
         {
-            return Name + " " + PttNum;
+            return Name + "  :  " + PttNum;
         }
     }
 }

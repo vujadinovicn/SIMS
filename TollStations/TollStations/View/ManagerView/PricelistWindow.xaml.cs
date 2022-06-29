@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInstitution.Core.DIContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TollStations.ViewModels.DoctorViewModels;
+using TollStations.Core.Prices;
+using TollStations.ViewModels.ManagerViewModels;
 
-namespace TollStations.View.AdministratorView
+namespace TollStations.View.ManagerView
 {
     /// <summary>
-    /// Interaction logic for AdministratorWindow.xaml
+    /// Interaction logic for PricelistWindow.xaml
     /// </summary>
-    public partial class AdministratorWindow : Window
+    public partial class PricelistWindow : Window
     {
-        public AdministratorWindow()
+        public PricelistWindow()
         {
             InitializeComponent();
-            DataContext = new AdministratorWindowViewModel();
+            DataContext = DIContainer.GetService<PricelistWindowViewModel>();
         }
     }
 }

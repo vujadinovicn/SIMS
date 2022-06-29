@@ -128,6 +128,7 @@ namespace TollStations.Core.TollGates.Repository
         {
             return TollGates.FindAll(item => item.TollStation.Id == id);
         }
+
         public void Add(TollGate tollGate)
         {
             tollGate.Id = ++_maxId;

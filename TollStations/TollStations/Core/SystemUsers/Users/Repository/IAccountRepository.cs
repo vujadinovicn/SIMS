@@ -13,5 +13,8 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         Account GetById(int id);
         void LoadFromFile();
         void Save();
+        public Account GetByUsername(string username);
+
+        public Dictionary<string, Account> GetAllByUsername();
     }
 }

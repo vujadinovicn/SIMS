@@ -12,12 +12,13 @@ namespace TollStations.Core.TollCards.Model
         public DateTime Time { get; set; }
         public string Plate { get; set; }
         public TollStation EntryStation { get; set; }
-
-        public TollCardDTO(DateTime time, string plate, TollStation tollStation)
+        public bool Valid { get; set; }
+        public TollCardDTO(DateTime time, string plate, TollStation tollStation, bool valid)
         {
             Time = time;
             Plate = plate;
             EntryStation = tollStation;
+            Valid = valid;
         }
     }
 }

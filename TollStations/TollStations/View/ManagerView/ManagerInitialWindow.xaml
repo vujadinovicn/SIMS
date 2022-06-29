@@ -1,0 +1,21 @@
+﻿<Window x:Class="TollStations.View.ManagerView.ManagerInitialWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.ManagerView"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Manager Window" Height="550" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Image HorizontalAlignment="Center" Height="100" Margin="0,31,0,0" VerticalAlignment="Top" Width="100" Source="/Images/image.png" />
+
+        <Button Content="Most visited stations" Command="{Binding MostVisitedStationsCommand}" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Button Content="Earnings by vehicle type" Command="{Binding EarningsByVehicleTypeCommand}" HorizontalAlignment="Center" Margin="0,430,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Button Content="Pricelist" Command="{Binding PricelistCommand}" HorizontalAlignment="Center" Margin="0,232,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Label Content="REPORTS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="ExtraBold" FontStyle="Italic"  FontSize="20" HorizontalAlignment="Left" Height="35" Margin="120,130,0,0" VerticalAlignment="Top" Width="145" />
+        <ComboBox HorizontalAlignment="Center" FontSize="18" SelectedIndex="{Binding TollStationComboBoxSelectedIndex}"  ItemsSource="{Binding TollStationComboBoxItems}" Margin="0,330,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
+        <Button Content="Device validation for station" Command="{Binding ManagerDeviceValidationCommand}" HorizontalAlignment="Center" Margin="0,380,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+
+    </Grid>
+</Window>
