@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Model;
 using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.TollStations.Model;
 using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.SystemUsers.Chiefs.Repository
@@ -45,9 +46,14 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
 
         private Chief Parse(JToken? chief)
         {
-            var location = _locationRepository.GetById((int)chief["id"]);
+            var location = _locationRepository.GetById((int)chief["location"]);
             var account = _accountRepository.GetById((int)chief["account"]);
-            var tollStation = _tollStationRepository.GetById((int)chief["tollStation"]);
+            TollStation tollStation;
+            try
+            {
+                tollStation = _tollStationRepository.GetById((int)chief["tollStation"]);
+            }
+            catch { tollStation = null; }
             var loadedChief = new Chief((int)chief["id"],
                                       (string)chief["firstName"],
                                       (string)chief["lastName"],
@@ -94,7 +100,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
                     address = chief.Address,
                     location = chief.Location.Id,
                     account = chief.Account.Id,
-                    tollStation = chief.TollStation.Id
+                    tollStation = (chief.TollStation == null) ? null : chief.TollStation.Id.ToString()
                 });
             }
             return reducedChiefs;
@@ -102,7 +108,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
 
         public void Save()
         {
-            var allUsers = JsonSerializer.Serialize(this.Chiefs, _options);
+            var allUsers = JsonSerializer.Serialize(PrepareForSerialization(), _options);
             File.WriteAllText(this._fileName, allUsers);
         }
 
@@ -133,6 +139,11 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
             if (this.ChiefsById.ContainsKey(id))
                 return this.ChiefsById[id]; ;
             return null;
+        }
+
+        public List<Chief> GetAllWithoutStations()
+        {
+            return GetAll().FindAll(item => item.TollStation == null).ToList();
         }
     }
 }

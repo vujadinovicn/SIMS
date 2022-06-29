@@ -16,5 +16,9 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
         Cashier GetByUsername(string username);
         void LoadFromFile();
         void Save();
+        List<Cashier> GetAllWithoutStations();
+        List<Cashier> GetByStation(int stationId);
+        List<Cashier> GetByStationWithoutGate(int stationId);
+        List<Cashier> GetAllWithoutGates(List<Cashier> cashiers);
     }
 }

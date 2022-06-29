@@ -28,6 +28,7 @@ namespace TollStations.View.CashierView
             InitializeComponent();
             var dc = DIContainer.GetService<CashierInitialWindowViewModel>();
             dc.SetLoggedCashier(cashier);
+            dc.SetWindow(this);
             DataContext = dc;
         }
     }

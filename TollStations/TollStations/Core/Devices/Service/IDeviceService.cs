@@ -11,5 +11,6 @@ namespace TollStations.Core.Devices.Service
         void Repair(Device device);
         void ReportFault(Device device);
         void Update(int id, DeviceDTO deviceDTO);
+        public List<Device> AddForTollGate();
     }
 }

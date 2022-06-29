@@ -10,6 +10,7 @@ using TollStations.Core.Prices.Model;
 using TollStations.Core.Reports;
 using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Service;
 
 namespace TollStations.ViewModels
 {

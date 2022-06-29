@@ -34,5 +34,17 @@
     "username": "milos",
     "password": "milos",
     "userType": "CHIEF"
+  },
+  {
+    "id": 7,
+    "username": "mitar",
+    "password": "mitar",
+    "userType": "CHIEF"
+  },
+  {
+    "id": 8,
+    "username": "majmunko",
+    "password": "majmunko",
+    "userType": "CASHIER"
   }
 ]

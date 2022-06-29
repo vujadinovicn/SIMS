@@ -47,5 +47,17 @@ namespace TollStations.Core.Devices.Service
         {
             _deviceRepository.ReportFault(device);
         }
+
+        public List<Device> AddForTollGate()
+        {
+            List<Device> devices = new List<Device>();
+            Device device;
+            foreach (DeviceType type in Enum.GetValues(typeof(DeviceType)))
+            {
+                device = Add(new DeviceDTO(type, true));
+                devices.Add(device);
+            }
+            return devices;
+        }
     }
 }

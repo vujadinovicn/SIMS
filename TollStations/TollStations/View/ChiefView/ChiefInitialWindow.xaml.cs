@@ -29,6 +29,7 @@ namespace TollStations.View.ChiefView
             InitializeComponent();
             var dc = DIContainer.GetService<ChiefInitialWindowViewModel>();
             dc.SetChief(chief);
+            dc.SetWindow(this);
             DataContext = dc;
         }
     }

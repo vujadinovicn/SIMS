@@ -1,6 +1,7 @@
 ﻿using TollStations.Core.Reports;
 using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Service;
 using TollStations.ViewModels.ChiefViewModels;
 
 namespace TollStations.Commands.ChiefCommands

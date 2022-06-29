@@ -7,6 +7,7 @@ using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.SystemUsers.Chiefs.Model;
 using TollStations.Core.SystemUsers.Users.Model;
 using TollStations.Core.SystemUsers.Users.Service;
+using TollStations.View.AdministratorView;
 using TollStations.View.CashierView;
 using TollStations.View.ChiefView;
 using TollStations.View.ManagerView;
@@ -89,9 +90,9 @@ namespace TollStations.Commands
 
         private void RedirectAdministrator()
         {
-           // var window = new AdministratorInitialWindow(chief);
-            //_loginViewModel.ThisWindow.Close();
-            //window.ShowDialog();
+           var window = new AdministratorInitialWindow();
+           _loginViewModel.ThisWindow.Close();
+            window.ShowDialog();
         }
     }
 }

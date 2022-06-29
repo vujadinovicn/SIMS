@@ -9,13 +9,13 @@ namespace TollStations.Core.TollStations.Repository
     {
         void Add(TollStation tollStation);
         void AddTollGate(int id, TollGate tollGate);
-        void Delete(TollStation tollStation);
+        void Delete(int id);
         void DeleteTollGate(int id, TollGate tollGate);
         List<TollStation> GetAll();
         Dictionary<int, TollStation> GetAllById();
         TollStation GetById(int id);
         void LoadFromFile();
         void Save();
-        void Update(TollStation byTollStation);
+        void Update(int id, TollStation byTollStation);
     }
 }

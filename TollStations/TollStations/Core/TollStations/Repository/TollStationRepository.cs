@@ -19,6 +19,7 @@ namespace TollStations.Core.TollStations.Repository
     public class TollStationRepository : ITollStationRepository
     {
         private String _fileName = @"..\..\..\Data\tollStations.json";
+        private int _maxId;
         ILocationRepository _locationRepository;
         public List<TollStation> TollStations { get; set; }
         public Dictionary<int, TollStation> TollStationsById { get; set; }
@@ -29,6 +30,7 @@ namespace TollStations.Core.TollStations.Repository
         };
         public TollStationRepository(ILocationRepository locationRepository)
         {
+            _maxId = 0;
             _locationRepository = locationRepository;
             TollStations = new List<TollStation>();
             TollStationsById = new Dictionary<int, TollStation>();
@@ -49,6 +51,10 @@ namespace TollStations.Core.TollStations.Repository
             foreach (var tollStation in tollStations)
             {
                 TollStation loadedTollStation = Parse(tollStation);
+                if (loadedTollStation.Id > _maxId)
+                {
+                    _maxId = loadedTollStation.Id;
+                }
                 this.TollStations.Add(loadedTollStation);
                 this.TollStationsById[loadedTollStation.Id] = loadedTollStation;
             }
@@ -65,7 +71,7 @@ namespace TollStations.Core.TollStations.Repository
                 reducedTollStations.Add(new
                 {
                     id = tollStation.Id,
-                    location = tollStation.Location
+                    location = tollStation.Location.Id
                 });
             }
             return reducedTollStations;
@@ -96,14 +102,16 @@ namespace TollStations.Core.TollStations.Repository
 
         public void Add(TollStation tollStation)
         {
+            tollStation.Id = ++_maxId;
             this.TollStations.Add(tollStation);
             this.TollStationsById[tollStation.Id] = tollStation;
             Save();
         }
 
-        public void Update(TollStation byTollStation)
+        public void Update(int id, TollStation byTollStation)
         {
-            TollStation tollStation = GetById(byTollStation.Id);
+            var tollStation = TollStationsById[id];
+            tollStation.Chief = byTollStation.Chief;
             tollStation.Location = byTollStation.Location;
             tollStation.Gates = byTollStation.Gates;
             Save();
@@ -117,8 +125,9 @@ namespace TollStations.Core.TollStations.Repository
         }
 
 
-        public void Delete(TollStation tollStation)
+        public void Delete(int id)
         {
+            var tollStation = TollStationsById[(int)id];
             this.TollStations.Remove(tollStation);
             this.TollStationsById.Remove(tollStation.Id);
             Save();
@@ -130,6 +139,5 @@ namespace TollStations.Core.TollStations.Repository
             tollStation.Gates.Remove(tollGate);
             Save();
         }
-
     }
 }

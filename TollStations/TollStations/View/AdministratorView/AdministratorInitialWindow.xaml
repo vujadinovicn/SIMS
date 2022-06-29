@@ -1,0 +1,20 @@
+﻿<Window x:Class="TollStations.View.AdministratorView.AdministratorInitialWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.AdministratorView"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Administrator window" Height="350" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Image HorizontalAlignment="Center" Height="100" Margin="0,84,0,0" VerticalAlignment="Top" Width="100" Source="/Images/image.png" />
+        <Menu Margin="0,0,0,279">
+            <MenuItem Header="Users" Command="{Binding UsersTableCommand}" FontSize="14" Height="30" Width="111"/>
+            <MenuItem Header="Accounts" Command="{Binding AccountsTableCommand}" FontSize="14" Height="30" Width="111"/>
+        </Menu>
+        <Button Content="Toll stations" Command="{Binding TollStationsTableCommand}" HorizontalAlignment="Center" Margin="0,227,0,0" VerticalAlignment="Top" FontSize="18" Width="152" />
+
+        <Button Content="Log out" Command="{Binding LogoutCommand}" HorizontalAlignment="Center" Margin="0,286,0,0" VerticalAlignment="Top" FontSize="14" Width="60" />
+    </Grid>
+</Window>

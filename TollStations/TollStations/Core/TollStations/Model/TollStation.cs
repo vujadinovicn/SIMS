@@ -27,5 +27,12 @@ namespace TollStations.Core.TollStations.Model
         {
             return "ID: " + Id + "  |  Location: " + Location;
         }
+
+        public TollStation(TollStationDTO tollStationDTO)
+        {
+            Chief = tollStationDTO.Chief;
+            Gates = tollStationDTO.Gates;
+            Location = tollStationDTO.Location;
+        }
     }
 }

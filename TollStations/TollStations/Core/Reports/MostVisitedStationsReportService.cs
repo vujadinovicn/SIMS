@@ -7,6 +7,7 @@ using TollStations.Core.TollGates;
 using TollStations.Core.TollPayments.Model;
 using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Service;
 
 namespace TollStations.Core.Reports
 {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TollStations.Core.Reports;
 using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Service;
 using TollStations.View.ManagerView;
 using TollStations.ViewModels.ManagerViewModels;
 

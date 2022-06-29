@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using TollStations.Commands;
 using TollStations.Commands.ChiefCommands;
 using TollStations.Commands.ManagerCommands;
 using TollStations.Core.Reports;
 using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Model;
+using TollStations.Core.TollStations.Service;
 
 namespace TollStations.ViewModels.ManagerViewModels
 {
@@ -25,6 +28,11 @@ namespace TollStations.ViewModels.ManagerViewModels
             _stationService = tollStationService;
             LoadTollStationComboBox();
         }
+        public void SetWindow(Window window)
+        {
+            LogoutCommand = new LogoutCommand(window);
+        }
+        public ICommand LogoutCommand { get; set; }
 
         public ICommand EarningsByVehicleTypeCommand { get; }
         public ICommand MostVisitedStationsCommand { get; }

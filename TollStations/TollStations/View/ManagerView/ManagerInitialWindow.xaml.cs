@@ -26,8 +26,9 @@ namespace TollStations.View.ManagerView
         public ManagerInitialWindow()
         {
             InitializeComponent();
-            DataContext = DIContainer.GetService<ManagerInitialWindowViewModel>();
-            
+            var dc = DIContainer.GetService<ManagerInitialWindowViewModel>();
+            dc.SetWindow(this);
+            DataContext = dc;
         }
     }
 }
