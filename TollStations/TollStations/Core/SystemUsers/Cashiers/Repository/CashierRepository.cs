@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.TollGates;
 using TollStations.Core.TollGates.Repository;
+using TollStations.Core.TollStations.Model;
 using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.SystemUsers.Cashiers.Repository
@@ -48,10 +50,24 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
 
         private Cashier Parse(JToken? cashier)
         {
-            var location = _locationRepository.GetById((int)cashier["id"]);
+            var location = _locationRepository.GetById((int)cashier["location"]);
             var account = _accountRepository.GetById((int)cashier["account"]);
-            var tollGate = _tollGateRepository.GetById((int)cashier["tollGate"]);
-            var tollStation = _tollStationRepository.GetById((int)cashier["tollStation"]);
+            TollGate tollGate;
+            try { 
+                tollGate = _tollGateRepository.GetById((int)cashier["tollGate"]);
+            } 
+            catch { 
+                tollGate = null; 
+            }
+            TollStation tollStation;
+            try
+            {
+                tollStation = _tollStationRepository.GetById((int)cashier["tollStation"]);
+            }
+            catch
+            {
+                tollStation = null;
+            }
             var loadedCashier = new Cashier((int)cashier["id"],
                                       (string)cashier["firstName"],
                                       (string)cashier["lastName"],
@@ -99,8 +115,8 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
                     address = cashier.Address,
                     location = cashier.Location.Id,
                     account = cashier.Account.Id,
-                    tollGate = cashier.TollGate.Id,
-                    tollStation = cashier.TollStation.Id
+                    tollGate = (cashier.TollGate == null) ? null : cashier.TollGate.Id.ToString(),
+                    tollStation = (cashier.TollStation == null) ? null : cashier.TollStation.Id.ToString()
                 });
             }
             return reducedCashiers;
@@ -108,7 +124,7 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
 
         public void Save()
         {
-            var allUsers = JsonSerializer.Serialize(this.Cashiers, _options);
+            var allUsers = JsonSerializer.Serialize(PrepareForSerialization(), _options);
             File.WriteAllText(this._fileName, allUsers);
         }
 
@@ -139,6 +155,24 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             if (this.CashiersById.ContainsKey(id))
                 return this.CashiersById[id]; ;
             return null;
+        }
+
+        public List<Cashier> GetAllWithoutStations()
+        {
+            return GetAll().FindAll(item => item.TollStation == null).ToList();
+        }
+
+        public List<Cashier> GetByStation(int stationId)
+        {
+            List<Cashier> cashiers = new List<Cashier>();
+            foreach (var cashier in GetAll())
+            {
+                if (cashier.TollStation == null)
+                    continue;
+                if (cashier.TollStation.Id == stationId)
+                    cashiers.Add(cashier);
+            }
+            return cashiers;
         }
     }
 }

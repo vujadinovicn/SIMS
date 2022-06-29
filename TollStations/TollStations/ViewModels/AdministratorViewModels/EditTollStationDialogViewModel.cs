@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TollStations.Commands.AdministratorCommands.TollStations;
 using TollStations.Core.Locations;
@@ -16,6 +17,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
 {
     public class EditTollStationDialogViewModel : ViewModelBase
     {
+        public Window ThisWindow {get; set;}
         TollStation _selectedTollStation;
 
         private ObservableCollection<Location> _locationComboBoxItems;
@@ -54,16 +56,12 @@ namespace TollStations.ViewModels.AdministratorViewModels
         private void LoadLocationComboBox()
         {
             LocationComboBoxItems = new();
-            int idx = 0;
-            int i = 0;
+            LocationComboBoxItems.Add(_selectedTollStation.Location);
             foreach (var location in _tollStationService.GetLocationsWithoutStations())
             {
                 LocationComboBoxItems.Add(location);
-                if (location.Id == _selectedTollStation.Location.Id)
-                    idx = i;
-                i++;
             }
-            LocationComboBoxSelectedIndex = idx;
+            LocationComboBoxSelectedIndex = 0;
         }
         private ObservableCollection<Chief> _chiefComboBoxItems;
 
@@ -99,17 +97,13 @@ namespace TollStations.ViewModels.AdministratorViewModels
         }
         private void LoadChiefComboBox()
         {
-            int idx = 0;
-            int i = 0;
             ChiefComboBoxItems = new();
+            ChiefComboBoxItems.Add(_selectedTollStation.Chief);
             foreach (Chief chief in _chiefService.GetAllWithoutStations())
             {
                 ChiefComboBoxItems.Add(chief);
-                if (chief.Id == _selectedTollStation.Chief.Id)
-                    idx = i;
-                i++;
             }
-            ChiefComboBoxSelectedIndex = idx;
+            ChiefComboBoxSelectedIndex = 0;
         }
 
         public void LoadComboBoxes()
@@ -127,8 +121,9 @@ namespace TollStations.ViewModels.AdministratorViewModels
         IChiefService _chiefService;
         ITollStationService _tollStationService;
 
-        public EditTollStationDialogViewModel(TollStation tollStation, ITollStationService tollStationService, IChiefService chiefService)
+        public EditTollStationDialogViewModel(Window window, TollStation tollStation, ITollStationService tollStationService, IChiefService chiefService)
         {
+            ThisWindow = window;
             _selectedTollStation = tollStation;
             _chiefService = chiefService;
             _tollStationService = tollStationService;

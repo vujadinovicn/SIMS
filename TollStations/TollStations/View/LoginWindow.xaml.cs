@@ -30,6 +30,7 @@ using TollStations.Core.TollPayments.Repository;
 using TollStations.Core.TollStations.Repository;
 using TollStations.Core.TollStations.Service;
 using TollStations.View.AdministratorView;
+using TollStations.View.AdministratorView.TollStations;
 using TollStations.View.CashierView;
 
 namespace TollStations.View
@@ -86,6 +87,7 @@ namespace TollStations.View
             services.RegisterTransient<EditTollStationDialog>();
             services.RegisterTransient<AddTollGateDialog>();
             services.RegisterTransient<EditTollGateDialog>();
+            services.RegisterTransient<TollStationsCashiersTable>();
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();

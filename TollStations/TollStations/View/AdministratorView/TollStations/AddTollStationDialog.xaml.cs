@@ -25,7 +25,7 @@ namespace TollStations.View.AdministratorView
         public AddTollStationDialog(ITollStationService tollStationService, IChiefService chiefService)
         {
             InitializeComponent();
-            DataContext = new AddTollStationDialogViewModel(tollStationService, chiefService);
+            DataContext = new AddTollStationDialogViewModel(this, tollStationService, chiefService);
         }
     }
 }

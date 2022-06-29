@@ -28,16 +28,16 @@ namespace TollStations.View.AdministratorView
         TollStation _tollStation;
 
         public EditTollStationDialog(ITollStationService tollStationService, IChiefService chiefService)
-        {
-            _chiefService = chiefService;
-            _tollStationService = tollStationService;   
+        {   
             InitializeComponent();
+            _chiefService = chiefService;
+            _tollStationService = tollStationService;
         }
 
         public void SetSelectedTollStation(TollStation tollStation)
         {
             _tollStation = tollStation;
-            DataContext = new EditTollStationDialogViewModel(tollStation, _tollStationService, _chiefService);
+            DataContext = new EditTollStationDialogViewModel(this, tollStation, _tollStationService, _chiefService);
         }
     }
 }

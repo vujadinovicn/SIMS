@@ -40,5 +40,11 @@
     "username": "mitar",
     "password": "mitar",
     "userType": "CHIEF"
+  },
+  {
+    "id": 8,
+    "username": "majmunko",
+    "password": "majmunko",
+    "userType": "CASHIER"
   }
 ]

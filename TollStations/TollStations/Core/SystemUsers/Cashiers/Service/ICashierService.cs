@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.TollStations.Model;
 
 namespace TollStations.Core.SystemUsers.Cashiers.Service
 {
@@ -11,5 +12,8 @@ namespace TollStations.Core.SystemUsers.Cashiers.Service
         Cashier GetById(int id);
         Cashier GetByUsername(string username);
         void Save();
+        List<Cashier> GetAllWithoutStations();
+        List<Cashier> GetByStation(int stationId);
+        void AddStation(Cashier cashier, TollStation tollStation);
     }
 }

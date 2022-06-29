@@ -34,7 +34,8 @@ namespace TollStations.Commands.AdministratorCommands.TollStations
                 Chief chief = _editTollStationDialogViewModel.GetChief();
                 TollStationDTO tollStationDTO = new TollStationDTO(chief, tollStation.Gates, location);
                 _tollStationService.Update(tollStation.Id, tollStationDTO);
-                System.Windows.MessageBox.Show("You have succesfully added new tollStation!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("You have succesfully edited new tollStation!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _editTollStationDialogViewModel.ThisWindow.Close();
             }
             catch (Exception ex)
             {

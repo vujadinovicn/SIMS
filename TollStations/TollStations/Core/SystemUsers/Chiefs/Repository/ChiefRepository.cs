@@ -46,7 +46,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
 
         private Chief Parse(JToken? chief)
         {
-            var location = _locationRepository.GetById((int)chief["id"]);
+            var location = _locationRepository.GetById((int)chief["location"]);
             var account = _accountRepository.GetById((int)chief["account"]);
             TollStation tollStation;
             try
@@ -100,7 +100,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
                     address = chief.Address,
                     location = chief.Location.Id,
                     account = chief.Account.Id,
-                    tollStation = chief.TollStation.Id
+                    tollStation = (chief.TollStation == null) ? null : chief.TollStation.Id.ToString()
                 });
             }
             return reducedChiefs;
@@ -108,7 +108,7 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
 
         public void Save()
         {
-            var allUsers = JsonSerializer.Serialize(this.Chiefs, _options);
+            var allUsers = JsonSerializer.Serialize(PrepareForSerialization(), _options);
             File.WriteAllText(this._fileName, allUsers);
         }
 

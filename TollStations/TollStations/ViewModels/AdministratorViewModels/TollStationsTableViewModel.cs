@@ -66,6 +66,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
         public ICommand EditTollStationCommand { get; }
         public ICommand DeleteTollStationCommand { get; }
         public ICommand TollGatesTableCommand { get;  }
+        public ICommand TollStationsCashiersTableCommand { get; }
         ITollStationService _tollStationService;
         public TollStationsTableViewModel(ITollStationService tollStationService)
         {
@@ -74,6 +75,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
             EditTollStationCommand = new EditTollStationCommand(this);
             DeleteTollStationCommand = new DeleteTollStationCommand(this, tollStationService);
             TollGatesTableCommand = new TollGatesTableCommand(this);
+            TollStationsCashiersTableCommand = new TollStationsCashiersTableCommand(this);
             TollStations = new();
             _tollStationsVM = new();
             RefreshGrid();

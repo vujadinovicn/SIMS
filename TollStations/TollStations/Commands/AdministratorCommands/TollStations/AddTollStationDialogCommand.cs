@@ -34,6 +34,7 @@ namespace TollStations.Commands.AdministratorCommands.TollStations
                 TollStationDTO tollStationDTO = new TollStationDTO(chief, new List<TollGate>(), location);
                 _tollStationService.Add(tollStationDTO);
                 System.Windows.MessageBox.Show("You have succesfully added new tollStation!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                _addTollStationDialogViewModel.ThisWindow.Close();
             }
             catch (Exception ex)
             {

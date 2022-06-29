@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TollStations.Commands.AdministratorCommands.TollStations;
 using TollStations.Core.Locations;
@@ -15,6 +16,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
 {
     public class AddTollStationDialogViewModel : ViewModelBase
     {
+        public Window ThisWindow { get; set; }
 
         private ObservableCollection<Location> _locationComboBoxItems;
 
@@ -107,8 +109,9 @@ namespace TollStations.ViewModels.AdministratorViewModels
         IChiefService _chiefService;
         ITollStationService _tollStationService;
 
-        public AddTollStationDialogViewModel(ITollStationService tollStationService, IChiefService chiefService)
+        public AddTollStationDialogViewModel(Window window, ITollStationService tollStationService, IChiefService chiefService)
         {
+            ThisWindow = window;
             _chiefService = chiefService;
             _tollStationService = tollStationService;
             LoadComboBoxes();
