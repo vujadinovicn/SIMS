@@ -21,8 +21,7 @@ namespace TollStations.Commands.ManagerCommands
         {
             DateTime start = earningsTableViewModel.SelectedStartDateTime;
             DateTime end = earningsTableViewModel.SelectedEndDateTime;
-            TollStation tollStation = earningsTableViewModel.GetTollStation();
-            earningsTableViewModel.RefreshGrid(tollStation, start, end);
+            earningsTableViewModel.RefreshGrid(start, end);
         }
     }
 }

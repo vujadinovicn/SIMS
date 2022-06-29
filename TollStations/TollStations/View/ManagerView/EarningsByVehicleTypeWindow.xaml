@@ -24,8 +24,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <ComboBox HorizontalAlignment="Center" SelectedIndex="{Binding StationsComboBoxSelectedIndex}"  ItemsSource="{Binding StationsComboBoxItems}" Margin="0,138,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Choose Toll Station" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.405,0.283"/>
+        <Label Content="Earnings by vehicle type" FontSize="20" FontWeight="Bold" FontStyle="Italic" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.405,0.283"/>
         <DatePicker Name="datePickerStart" SelectedDate="{Binding SelectedStartDateTime, UpdateSourceTrigger=LostFocus, StringFormat='dd/MM/yyyy HH:mm:ss'}" Margin="105,201,105,0" Height="21" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <DatePicker Name="datePickerEnd" SelectedDate="{Binding SelectedEndDateTime, UpdateSourceTrigger=LostFocus, StringFormat='dd/MM/yyyy HH:mm:ss'}" Margin="105,201,105,0" Height="21" Width="100" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         <Label Content="Start" HorizontalAlignment="Left" Margin="138,175,0,0" VerticalAlignment="Top"/>
