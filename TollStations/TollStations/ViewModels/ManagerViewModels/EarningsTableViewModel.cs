@@ -19,17 +19,18 @@ namespace TollStations.ViewModels
         private ObservableCollection<EarningViewModel> _earningsVM;
         IEarningsByVehicleTypeReportService _reportService;
         ITollStationService _tollStationService;
+        TollStation _station;
         public ICommand ShowEarningsCommand { get; }
 
 
-        public EarningsTableViewModel(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        public EarningsTableViewModel(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService, TollStation station)
         {
             _reportService = reportService;
             _tollStationService = tollStationService;
             earningsByType = new();
             _earningsVM = new();
-            LoadStationsComboBox();
             ShowEarningsCommand = new ShowEarningsCommand(this);
+            _station = station;
             //RefreshGrid();
         }
 
@@ -49,61 +50,16 @@ namespace TollStations.ViewModels
             }
         }
 
-        public void RefreshGrid(TollStation tollStation, DateTime start, DateTime end)
+        public void RefreshGrid(DateTime start, DateTime end)
         {
             _earningsVM.Clear();
             earningsByType.Clear();
-            earningsByType = _reportService.GetAll(tollStation, start, end);
+            earningsByType = _reportService.GetAll(_station, start, end);
 
             foreach (KeyValuePair<VehicleType, double> pair in earningsByType)
             {
                 _earningsVM.Add(new EarningViewModel(pair.Key, pair.Value));
             }
-        }
-        #endregion
-
-
-        #region stationsComboBox
-        private ObservableCollection<TollStation> _stationsComboBoxItems;
-        public ObservableCollection<TollStation> StationsComboBoxItems
-        {
-            get
-            {
-                return _stationsComboBoxItems;
-            }
-            set
-            {
-                _stationsComboBoxItems = value;
-                OnPropertyChanged(nameof(StationsComboBoxItems));
-            }
-        }
-
-        private int _stationsCombBoxSelectedIndex;
-        public int StationsComboBoxSelectedIndex
-        {
-            get
-            {
-                return _stationsCombBoxSelectedIndex;
-            }
-            set
-            {
-                _stationsCombBoxSelectedIndex = value;
-                OnPropertyChanged(nameof(StationsComboBoxSelectedIndex));
-            }
-        }
-
-        private void LoadStationsComboBox()
-        {
-            StationsComboBoxItems = new();
-            foreach (TollStation tollStation in _tollStationService.GetAll())
-            {
-                StationsComboBoxItems.Add(tollStation);
-            }
-        }
-
-        public TollStation GetTollStation()
-        {
-            return StationsComboBoxItems[StationsComboBoxSelectedIndex];
         }
         #endregion
 
