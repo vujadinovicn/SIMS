@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TollStations.Commands.CashierCommands;
 using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.TollCards;
 
 namespace TollStations.ViewModels.CashierViewModels
 {
     public class CashierInitialWindowViewModel : ViewModelBase
     {
-        public CashierInitialWindowViewModel(Cashier cashier)
+        ITollCardService _tollCardService;
+
+        public CashierInitialWindowViewModel(ITollCardService tollCardService)
         {
-            VehicleEntryCommand = new VehicleEntryCommand(cashier);
+            _tollCardService = tollCardService;
+        }
+        public void SetLoggedCashier(Cashier cashier)
+        {
+            VehicleEntryCommand = new VehicleEntryCommand(cashier, _tollCardService);
             VehicleExitCommand = new VehicleExitCommand(cashier);
         }
-
-        public ICommand VehicleEntryCommand { get; }
-        public ICommand VehicleExitCommand { get; }
+        public ICommand VehicleEntryCommand { get; set; }
+        public ICommand VehicleExitCommand { get; set; }
     }
 }

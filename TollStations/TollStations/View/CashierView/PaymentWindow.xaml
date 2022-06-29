@@ -3,10 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TollStations.View.CashierView"
+        xmlns:local="clr-namespace:TollStations.View.CashierView" xmlns:local1="clr-namespace:TollStations.ViewModels"
         mc:Ignorable="d"
-        Title="PaymentWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Payment window" Height="350" Width="400">
+    <Window.Resources>
+        <local1:GradeConverter x:Key="typeConverterKey" />
+    </Window.Resources>
     <Grid>
-        
+        <Rectangle  Width="80" Height="150" Fill="Gray" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="300,0,0,0" />
+        <Ellipse Name="elipsa1" Width="50" Height="50" Fill="Red"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="315,-60,0,0" Stroke="White" StrokeThickness="2"/>
+        <Ellipse Name="elipsa2" Width="50" Height="50" Fill="Gray"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="315,60,0,0" Stroke="White" StrokeThickness="2"/>
+
+        <RadioButton Name="rsdRadioButton" IsChecked="{Binding Choice, Converter={StaticResource ResourceKey=typeConverterKey}, ConverterParameter=0}" Content="RSD" HorizontalAlignment="Left" Height="17" Margin="50,50,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.4,0.402"/>
+        <RadioButton Name="eurRadionButton" IsChecked="{Binding Choice, Converter={StaticResource ResourceKey=typeConverterKey}, ConverterParameter=1}" Content="EUR" HorizontalAlignment="Left" Height="17" Margin="150,50,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label Name="rsdLabel" Content="" HorizontalAlignment="Left" Margin="65,70,0,0" VerticalAlignment="Top"/>
+        <Label Name="eurLabel" Content="" HorizontalAlignment="Left" Margin="165,70,0,0" VerticalAlignment="Top"/>
+        <Label Name="inputLabel" Content="Paid money :" HorizontalAlignment="Left" Margin="30,150,0,0" VerticalAlignment="Top"/>
+        <Label Name="outputLabel" Content="Change [RSD] :" HorizontalAlignment="Left" Margin="30,250,0,0" VerticalAlignment="Top"/>
+
+        <TextBox Name="paidTextBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="150,150,0,0" TextWrapping="Wrap" Text="{Binding Paid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50" Height="25"/>
+        <TextBox Name="changeTextBox" HorizontalAlignment="Left" Margin="150,250,0,0" TextWrapping="Wrap" Text="{Binding Change, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50" Height="25" IsEnabled="False"/>
+
+        <Button Content="Return change" Command="{Binding ReturnChangeCommand}" HorizontalAlignment="Left" Height="30" Margin="30,200,0,0" VerticalAlignment="Top" Width="170" FontSize="15"/>
+
     </Grid>
 </Window>

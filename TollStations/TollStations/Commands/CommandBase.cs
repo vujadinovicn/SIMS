@@ -17,7 +17,6 @@ namespace TollStations.Commands
         }
 
         public abstract void Execute(object? parameter);
-
         public void OnCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
