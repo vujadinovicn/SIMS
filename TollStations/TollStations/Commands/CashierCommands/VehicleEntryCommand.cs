@@ -22,7 +22,7 @@ namespace TollStations.Commands.CashierCommands
         public override void Execute(object? parameter)
         {
             string plate = RandomString(2) + "-" + RandomInteger(4) + "-" + RandomString(2);
-            TollCardDTO tollCardDTO = new TollCardDTO(DateTime.Now, plate, _loggedCashier.TollStation);
+            TollCardDTO tollCardDTO = new TollCardDTO(DateTime.Now, plate, _loggedCashier.TollStation,true);
             _tollCardService.Add(tollCardDTO);
             MessageBox.Show("Toll card has created successfully!\nLicence plate : "+plate+"\tToll station : " + _loggedCashier.TollStation.Location.Name, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }

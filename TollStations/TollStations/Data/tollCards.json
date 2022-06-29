@@ -1,1 +1,31 @@
-[{"id":1,"time":"2022-06-28T20:30:32.0089915+02:00","plate":"TN-8565-QA","entryStation":1},{"id":2,"time":"2022-06-28T20:30:55.2043285+02:00","plate":"MR-3523-PC","entryStation":1},{"id":3,"time":"2022-06-28T22:30:03.492919+02:00","plate":"MP-5602-PL","entryStation":1},{"id":4,"time":"2022-06-29T02:55:12.4229119+02:00","plate":"FR-0201-NM","entryStation":2}]
+[
+  
+  {
+    "id": 1,
+    "time": "2022-06-28T20:30:32.0089915+02:00",
+    "plate": "TN-8565-QA",
+    "entryStation": 1,
+    "valid": true
+  },
+  {
+    "id": 2,
+    "time": "2022-06-28T20:30:55.2043285+02:00",
+    "plate": "MR-3523-PC",
+    "entryStation": 1,
+    "valid": true
+  },
+  {
+    "id": 3,
+    "time": "2022-06-28T22:30:03.492919+02:00",
+    "plate": "MP-5602-PL",
+    "entryStation": 1,
+    "valid": true
+  },
+  {
+    "id": 4,
+    "time": "2022-06-29T02:55:12.4229119+02:00",
+    "plate": "FR-0201-NM",
+    "entryStation": 2,
+    "valid": true
+  }
+]

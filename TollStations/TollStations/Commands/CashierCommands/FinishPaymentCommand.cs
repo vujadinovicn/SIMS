@@ -55,7 +55,7 @@ namespace TollStations.Commands.CashierCommands
             int milliseconds = rnd.Next(3, 7) * 1000;
             //System.Threading.Thread.Sleep(milliseconds);
             _paymentWindowViewModel.SetChange(milliseconds);
-            await Task.Delay(milliseconds);
+            /*await Task.Delay(milliseconds);
 
             elipsa1.Fill = Brushes.Red;
             elipsa2.Fill = Brushes.Gray;

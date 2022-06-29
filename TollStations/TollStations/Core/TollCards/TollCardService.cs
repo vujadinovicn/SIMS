@@ -33,5 +33,10 @@ namespace TollStations.Core.TollCards
             TollCard tollCard = new TollCard(tollCardDTO);
             return _tollCardRepository.Add(tollCard);
         }
+        public void ChangeStatus(TollCard tollCard)
+        {
+            tollCard.Valid = false;
+            _tollCardRepository.Save();
+        }
     }
 }

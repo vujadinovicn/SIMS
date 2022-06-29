@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TollStations.Core.TollPayments.Model;
 using TollStations.Core.TollPayments.Repository;
+using TollStations.Core.TollCards;
 
 namespace TollStations.Core.TollPayments
 {
     public class TollPaymentService : ITollPaymentService
     {
         ITollPaymentRepository _tollPaymentRepository;
-        public TollPaymentService(ITollPaymentRepository tollPaymentRepository)
+        ITollCardService _tollCardService;
+        public TollPaymentService(ITollPaymentRepository tollPaymentRepository, ITollCardService tollCardService)
         {
             _tollPaymentRepository = tollPaymentRepository;
+            _tollCardService = tollCardService;
         }
         public List<TollPayment> GetAll()
         {
@@ -33,6 +36,7 @@ namespace TollStations.Core.TollPayments
         public TollPayment Add(TollPaymentDTO tollPaymentDTO)
         {
             TollPayment tollPayment = new TollPayment(tollPaymentDTO);
+            _tollCardService.ChangeStatus(tollPayment.TollCard);
             return _tollPaymentRepository.Add(tollPayment);
         }
     }

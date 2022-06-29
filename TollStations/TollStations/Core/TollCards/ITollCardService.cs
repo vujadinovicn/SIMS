@@ -9,5 +9,6 @@ namespace TollStations.Core.TollCards
         List<TollCard> GetAll();
         Dictionary<int, TollCard> GetAllById();
         TollCard GetById(int id);
+        void ChangeStatus(TollCard tollCard);
     }
 }

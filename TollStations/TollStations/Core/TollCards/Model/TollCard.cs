@@ -14,14 +14,16 @@ namespace TollStations.Core.TollCards.Model
         public DateTime Time { get ; set ; }
         public string Plate { get ; set ; }
         public TollStation EntryStation { get; set; }
+        public bool Valid { get; set; }
 
         [JsonConstructor]
-        public TollCard(int id, DateTime time, string plate, TollStation tollStation)
+        public TollCard(int id, DateTime time, string plate, TollStation tollStation, bool valid)
         {
             Id = id;
             Time = time;
             Plate = plate;
             EntryStation = tollStation;
+            Valid = valid;
         }
 
         public TollCard(TollCardDTO tollCardDTO)
@@ -29,6 +31,7 @@ namespace TollStations.Core.TollCards.Model
             Time = tollCardDTO.Time;
             Plate = tollCardDTO.Plate;
             EntryStation = tollCardDTO.EntryStation;
+            Valid = tollCardDTO.Valid;
         }
     }
 }

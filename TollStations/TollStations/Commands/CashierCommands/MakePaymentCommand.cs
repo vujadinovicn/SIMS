@@ -37,7 +37,7 @@ namespace TollStations.Commands.CashierCommands
             else
             {
                 Price? price = _priceService.GetByAllAttributes(type, scannedTollCard.EntryStation, _loggedCashier.TollStation);
-                if (price == null)
+                if (price == null || scannedTollCard.Valid==false)
                     MessageBox.Show("Invalid card!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 else
                 {

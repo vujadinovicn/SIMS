@@ -39,7 +39,7 @@ namespace TollStations.Core.TollCards.Repository
 
         private TollCard Parse(JToken? tollCard)
         {
-            return new TollCard((int)tollCard["id"], (DateTime)tollCard["time"], (string)tollCard["plate"], tollStationRepository.GetById((int)tollCard["entryStation"]));
+            return new TollCard((int)tollCard["id"], (DateTime)tollCard["time"], (string)tollCard["plate"], tollStationRepository.GetById((int)tollCard["entryStation"]), (bool)tollCard["valid"]);
         }
 
         public void LoadFromFile()
@@ -66,7 +66,8 @@ namespace TollStations.Core.TollCards.Repository
                     id = tollCard.Id,
                     time = tollCard.Time,
                     plate = tollCard.Plate,
-                    entryStation = tollCard.EntryStation.Id
+                    entryStation = tollCard.EntryStation.Id,
+                    valid= tollCard.Valid
                 });
             }
             return reducedTollCards;
