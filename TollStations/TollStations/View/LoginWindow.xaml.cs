@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TollStations.Core.Devices.Repository;
+using TollStations.Core.Devices.Service;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.Prices;
 using TollStations.Core.Prices.Repositor;
@@ -33,6 +34,8 @@ using TollStations.View.ManagerView;
 using TollStations.ViewModels;
 using TollStations.ViewModels.CashierViewModels;
 using TollStations.ViewModels.ManagerViewModels;
+using TollStations.View.ChiefView;
+using TollStations.ViewModels.ChiefViewModels;
 
 namespace TollStations.View
 {
@@ -45,19 +48,16 @@ namespace TollStations.View
         public LoginWindow()
         {
             InitializeComponent();
-            var tt = DIContainer.GetService<IRoadSectionRepository>();
-            lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
-            var cashier = DIContainer.GetService<ICashierRepository>().GetById(5);
+           // var tt = DIContainer.GetService<IRoadSectionRepository>();
+            //lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
+            //var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
 
-            /*CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
-            cashierWindow.ShowDialog();*/
-            ITollStationService ss = new TollStationService(DIContainer.GetService<ITollStationRepository>());
-            IEarningsByVehicleTypeReportService rs = new EarningsByVehicleTypeReportService();
-            IMostVisitedStationsReportService ms = new MostVisitedStationsReportService(ss);
-            
+            //CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
+            //cashierWindow.ShowDialog();
 
-            ManagerInitialWindow mw = new ManagerInitialWindow(rs, ms, ss);
-            mw.ShowDialog();
+            var chief = DIContainer.GetService<IChiefRepository>().GetById(2);
+            ChiefInitialWindow chiefInitialWindow = new ChiefInitialWindow(chief);
+            chiefInitialWindow.ShowDialog();
         }
 
         [STAThread]
@@ -83,6 +83,7 @@ namespace TollStations.View
             services.RegisterSingleton<IEarningsByVehicleTypeReportService, EarningsByVehicleTypeReportService>();
             services.RegisterSingleton<IMostVisitedStationsReportService, MostVisitedStationsReportService>();
             services.RegisterSingleton<ITollStationService, TollStationService>();
+            services.RegisterSingleton<IDeviceService, DeviceService>();
 
             services.RegisterTransient<LoginWindowViewModel>();
             services.RegisterTransient<CashierInitialWindowViewModel>();
@@ -91,9 +92,15 @@ namespace TollStations.View
             services.RegisterTransient<EarningsTableViewModel>();
             services.RegisterTransient<ManagerInitialWindowViewModel>();
             services.RegisterTransient<MostVisitedStationsWindowViewModel>();
+            services.RegisterTransient<PricelistWindowViewModel>();
+            services.RegisterTransient<CashierDeviceValidationWindowViewModel>();
+            services.RegisterTransient<ChiefInitialWindowViewModel>();
+            services.RegisterTransient<DeviceValidationWindowViewModel>();
+
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();
+            DIContainer.GetService<ITollGateRepository>();
             DIContainer.GetService<ITollPaymentRepository>();
             Window l = new LoginWindow();
             l.ShowDialog();

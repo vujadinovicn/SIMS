@@ -6,12 +6,16 @@
         xmlns:local="clr-namespace:TollStations.View.ManagerView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Manager Window" Height="350" Width="400" ResizeMode="NoResize">
+        Title="Manager Window" Height="500" Width="400" ResizeMode="NoResize">
     <Grid>
         <Image HorizontalAlignment="Center" Height="100" Margin="0,31,0,0" VerticalAlignment="Top" Width="100" Source="/Images/image.png" />
 
-        <Button Content="Most visited stations" Command="{Binding MostVisitedStationsCommand}" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
-        <Button Content="Earnings by vehicle type" Command="{Binding EarningsByVehicleTypeCommand}" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
-        <Label Content="REPORTS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="ExtraBold" FontStyle="Italic"  FontSize="20" HorizontalAlignment="Left" Height="35" Margin="120,0,0,0" VerticalAlignment="Center" Width="145" />
+        <Button Content="Most visited stations" Command="{Binding MostVisitedStationsCommand}" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Button Content="Earnings by vehicle type" Command="{Binding EarningsByVehicleTypeCommand}" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Button Content="Pricelist" Command="{Binding PricelistCommand}" HorizontalAlignment="Center" Margin="0,280,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Label Content="REPORTS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="ExtraBold" FontStyle="Italic"  FontSize="20" HorizontalAlignment="Left" Height="35" Margin="120,130,0,0" VerticalAlignment="Top" Width="145" />
+        <ComboBox HorizontalAlignment="Center" SelectedIndex="{Binding StationsComboBoxSelectedIndex}"  ItemsSource="{Binding StationsComboBoxItems}" Margin="0,380,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
+        <Button Content="Device validation for station" Command="{Binding MostVisitedStationsCommand}" HorizontalAlignment="Center" Margin="0,430,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+
     </Grid>
 </Window>
