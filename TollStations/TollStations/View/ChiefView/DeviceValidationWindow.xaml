@@ -9,6 +9,20 @@
         Title="Device validation" Height="450" Width="700">
     <Grid>
         <DataGrid SelectedIndex="{Binding SelectedDeviceIndex, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DevicesVM}" AutoGenerateColumns="False" Name="pollDataGrid" Grid.ColumnSpan="3" Margin="0,90,0,100">
+
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Correct}" Value="correct">
+                            <Setter Property="Foreground" Value="Blue" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Correct}" Value="faulty">
+                            <Setter Property="Foreground" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Toll Gate Number" FontSize="18" Binding="{Binding TollGateNumber}" Width ="180"/>
                 <DataGridTextColumn Header="Toll Gate Type" FontSize="18" Binding="{Binding TollGateType}" Width ="180"/>

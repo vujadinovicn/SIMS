@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TollStations.Core.Devices;
 using TollStations.Core.Devices.Service;
 using TollStations.ViewModels.ChiefViewModels;
@@ -27,6 +28,7 @@ namespace TollStations.Commands.ChiefCommands
             _deviceValidationWindowViewModel.CanReportFault = false;
             _deviceValidationWindowViewModel.SelectedDeviceIndex = -1;
             _deviceValidationWindowViewModel.Refresh();
+            MessageBox.Show("Device error reported successfully", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
