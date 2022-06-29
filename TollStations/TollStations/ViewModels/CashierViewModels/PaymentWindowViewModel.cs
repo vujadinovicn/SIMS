@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using TollStations.Commands;
 using TollStations.Commands.CashierCommands;
 using TollStations.Core.Prices.Model;
@@ -40,10 +42,6 @@ namespace TollStations.ViewModels.CashierViewModels
         {
             try
             {
-                IsBusy = true;
-                /*var coffeeService = new CoffeeService();
-                await coffeeService.PrepareCoffeeAsync();
-                */
                 int option = GetChosenType();
                 double paidAmount = GetPaidAmount();
                 double change;
@@ -57,48 +55,80 @@ namespace TollStations.ViewModels.CashierViewModels
                 }
                 else
                     change = paidAmount - _price.PriceInRSD;
-                SetChange(change);
-                TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount, _loggedCashier, _tollCard, _loggedCashier.TollGate);
-                _tollPaymentService.Add(tollPaymentDTO);
+                if(change<0)
+                    MessageBox.Show("Not enough money!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else
+                {
+                    SetChange(change);
+                    TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount, _loggedCashier, _tollCard, _loggedCashier.TollGate);
+                    _tollPaymentService.Add(tollPaymentDTO);
+                    Enabled = false;
+                    await Task.Delay(5000);
 
-                /*elipsa1.Fill = Brushes.Gray;
-                elipsa2.Fill = Brushes.Green;
-                */
+                    RedLight =Brushes.Gray;
+                    GreenLight = Brushes.Green;
 
-                Random rnd = new Random();
-                int milliseconds = rnd.Next(3, 7) * 1000;
-                //System.Threading.Thread.Sleep(milliseconds);
-                SetChange(milliseconds);
-                await Task.Delay(milliseconds);
+                    Random rnd = new Random();
+                    int milliseconds = rnd.Next(5, 10) * 1000;
+                    await Task.Delay(milliseconds);
 
-                /*elipsa1.Fill = Brushes.Red;
-                elipsa2.Fill = Brushes.Gray;
-                */
+                    RedLight = Brushes.Red;
+                    GreenLight = Brushes.Gray;
+
+                }
             }
-            finally
+            catch
             {
-                IsBusy = false;
+                MessageBox.Show("Something went wrong!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private bool CanExecuteSubmit()
         {
-            return !IsBusy;
+            return Enabled;
         }
-        private bool _isBusy;
-        public bool IsBusy
+        private bool _enabled=true;
+        public bool Enabled
         {
             get
             {
-                return _isBusy;
+                return _enabled;
             }
             set
             {
-                _isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
+                _enabled = value;
+                OnPropertyChanged(nameof(Enabled));
             }
         }
-        
+        private object _redLight = Brushes.Red;
+
+        public object RedLight
+        {
+            get
+            {
+                return _redLight;
+            }
+            set
+            {
+                _redLight = value;
+                OnPropertyChanged(nameof(RedLight));
+            }
+        }
+        private object _greenLight = Brushes.Gray;
+
+        public object GreenLight
+        {
+            get
+            {
+                return _greenLight;
+            }
+            set
+            {
+                _greenLight = value;
+                OnPropertyChanged(nameof(GreenLight));
+            }
+        }
+
         private object _choice = "0";
 
         public object Choice
@@ -156,6 +186,5 @@ namespace TollStations.ViewModels.CashierViewModels
         {
             Change = val;
         }
-
     }
 }

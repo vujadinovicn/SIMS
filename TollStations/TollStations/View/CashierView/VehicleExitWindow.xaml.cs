@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TollStations.Core.SystemUsers.Cashiers.Model;
 using TollStations.ViewModels.CashierViewModels;
 
+
 namespace TollStations.View.CashierView
 {
     /// <summary>
