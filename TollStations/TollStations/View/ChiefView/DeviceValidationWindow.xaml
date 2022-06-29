@@ -1,0 +1,29 @@
+﻿<Window x:Class="TollStations.View.ChiefView.DeviceValidationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.ChiefView"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Device validation" Height="450" Width="700">
+    <Grid>
+        <DataGrid SelectedIndex="{Binding SelectedDeviceIndex, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DevicesVM}" AutoGenerateColumns="False" Name="pollDataGrid" Grid.ColumnSpan="3" Margin="0,90,0,100">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Toll Gate Number" FontSize="18" Binding="{Binding TollGateNumber}" Width ="180"/>
+                <DataGridTextColumn Header="Toll Gate Type" FontSize="18" Binding="{Binding TollGateType}" Width ="180"/>
+                <DataGridTextColumn Header="Device Type" FontSize="18" Binding="{Binding DeviceType}" Width ="180"/>
+                <DataGridTextColumn Header="Correct" FontSize="18" Binding="{Binding Correct}" Width ="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Devices" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Toll gate" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top"/>
+        <ComboBox SelectedIndex="{Binding TollGateComboBoxSelectedIndex}"  ItemsSource="{Binding TollGateComboBoxItems}" HorizontalAlignment="Left" Margin="111,20,0,0" VerticalAlignment="Top" Width="138" Height="26"/>
+        <Button IsEnabled="{Binding CanShow}" Content="Show for toll gate" Command="{Binding ShowForTollGateCommand}" HorizontalAlignment="Left" Margin="299,20,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
+        <Button IsEnabled="{Binding CanRepair}" Content="Repair" Command="{Binding RepairCommand}" HorizontalAlignment="Left" Margin="111,364,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
+        <Button IsEnabled="{Binding CanReportFault}" Content="Report fault" Command="{Binding ReportFaultCommand}" HorizontalAlignment="Left" Margin="299,364,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
+        <Button Content="Show faulty devices" Command="{Binding ShowFaultyDevicesCommand}" HorizontalAlignment="Left" Margin="497,364,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
+        <Button Content="Show for all gates" Command="{Binding ShowForAllGatesCommand}" HorizontalAlignment="Left" Margin="497,20,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
+    </Grid>
+</Window>

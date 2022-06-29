@@ -97,5 +97,17 @@ namespace TollStations.Core.Devices.Repository
             this.DeviceById.Remove(id);
             Save();
         }
+
+        public void Repair(Device device)
+        {
+            device.IsValid = true;
+            Save();
+        }
+
+        public void ReportFault(Device device)
+        {
+            device.IsValid = false;
+            Save();
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TollStations.Core.Devices.Repository;
+using TollStations.Core.Devices.Service;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.Prices.Repositor;
 using TollStations.Core.RoadSections.Repository;
@@ -24,6 +25,7 @@ using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Repository;
 using TollStations.Core.TollStations.Repository;
 using TollStations.View.CashierView;
+using TollStations.View.ChiefView;
 
 namespace TollStations.View
 {
@@ -35,12 +37,16 @@ namespace TollStations.View
         public LoginWindow()
         {
             InitializeComponent();
-            var tt = DIContainer.GetService<IRoadSectionRepository>();
-            lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
-            var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
+           // var tt = DIContainer.GetService<IRoadSectionRepository>();
+            //lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
+            //var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
 
-            CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
-            cashierWindow.ShowDialog();
+            //CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
+            //cashierWindow.ShowDialog();
+
+            var chief = DIContainer.GetService<IChiefRepository>().GetById(2);
+            ChiefInitialWindow chiefInitialWindow = new ChiefInitialWindow(chief);
+            chiefInitialWindow.ShowDialog();
         }
 
         [STAThread]
@@ -61,9 +67,12 @@ namespace TollStations.View
             services.RegisterSingleton<ITollStationRepository, TollStationRepository>();
             services.RegisterSingleton<IAccountRepository, AccountRepository>();
 
+            services.RegisterSingleton<IDeviceService, DeviceService>();
+
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();
+            DIContainer.GetService<ITollGateRepository>();
             Window l = new LoginWindow();
             l.ShowDialog();
         }
