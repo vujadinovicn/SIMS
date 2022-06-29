@@ -1,17 +1,7 @@
 ﻿using HealthInstitution.Core.DIContainer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TollStations.Core.Devices.Repository;
 using TollStations.Core.Devices.Service;
 using TollStations.Core.Locations.Repository;
@@ -37,14 +27,13 @@ using TollStations.Core.TollStations.Repository;
 using TollStations.Core.TollStations.Service;
 using TollStations.View.AdministratorView;
 using TollStations.View.AdministratorView.TollStations;
-using TollStations.View.CashierView;
-using TollStations.View.ManagerView;
 using TollStations.ViewModels;
 using TollStations.ViewModels.CashierViewModels;
 using TollStations.ViewModels.ManagerViewModels;
 using TollStations.View.ChiefView;
 using TollStations.ViewModels.ChiefViewModels;
 using TollStations.Core.SystemUsers.Users.Service;
+using TollStations.Core;
 
 namespace TollStations.View
 {
@@ -99,6 +88,8 @@ namespace TollStations.View
             services.RegisterSingleton<ITollStationService, TollStationService>();
             services.RegisterSingleton<IDeviceService, DeviceService>();
             services.RegisterSingleton<IAccountService, AccountService>();
+            services.RegisterSingleton<IRemovingService, RemovingService>();
+
 
 
             services.RegisterSingleton<IUserService, UserService>();
