@@ -3,9 +3,10 @@ using TollStations.Core.TollStations.Model;
 
 namespace TollStations.Core
 {
-    interface IRemovingService
+    public interface IRemovingService
     {
         bool ContainsPayments(TollGate tollGate);
-        void DeleteTollStation(TollStation station);
+        bool DeleteTollStation(TollStation station);
+        void DeleteTollGate(TollGate tollGate);
     }
 }

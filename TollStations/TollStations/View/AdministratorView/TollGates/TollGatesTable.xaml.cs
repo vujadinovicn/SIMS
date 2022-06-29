@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TollStations.Core;
 using TollStations.Core.TollGates.Service;
 using TollStations.Core.TollStations.Model;
 using TollStations.ViewModels.AdministratorViewModels;
@@ -24,16 +25,18 @@ namespace TollStations.View.AdministratorView
     {
         TollStation _tollStation;
         ITollGateService _gateService;
-        public TollGatesTable(ITollGateService tollGateService)
+        IRemovingService _removingService;
+        public TollGatesTable(ITollGateService tollGateService, IRemovingService removingService)
         {
             InitializeComponent();
             _gateService = tollGateService;
+            _removingService = removingService;
         }
 
         public void SetTollStation(TollStation tollStation)
         {
             _tollStation = tollStation;
-            DataContext = new TollGatesTableViewModel(_tollStation, _gateService);
+            DataContext = new TollGatesTableViewModel(_tollStation, _gateService, _removingService);
         }
     }
 }

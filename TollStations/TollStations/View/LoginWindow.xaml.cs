@@ -34,6 +34,7 @@ using TollStations.View.ChiefView;
 using TollStations.ViewModels.ChiefViewModels;
 using TollStations.Core.SystemUsers.Users.Service;
 using TollStations.Core;
+using TollStations.Core.RoadSections;
 
 namespace TollStations.View
 {
@@ -97,6 +98,7 @@ namespace TollStations.View
             services.RegisterSingleton<ICashierService, CashierService>();
             services.RegisterSingleton<ITollGateService, TollGateService>();
             services.RegisterSingleton<ILocationService, LocationService>();
+            services.RegisterSingleton<IRoadSectionService, RoadSectionService>();
 
             services.RegisterTransient<UsersTable>();
             services.RegisterTransient<AccountsTable>();

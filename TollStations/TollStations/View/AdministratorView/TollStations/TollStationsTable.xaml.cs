@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TollStations.Core;
 using TollStations.Core.TollStations.Service;
 using TollStations.ViewModels.AdministratorViewModels;
 
@@ -21,10 +22,10 @@ namespace TollStations.View.AdministratorView
     /// </summary>
     public partial class TollStationsTable : Window
     {
-        public TollStationsTable(ITollStationService tollStationService)
+        public TollStationsTable(ITollStationService tollStationService, IRemovingService removingService)
         {
             InitializeComponent();
-            DataContext = new TollStationsTableViewModel(tollStationService);
+            DataContext = new TollStationsTableViewModel(tollStationService, removingService);
         }
     }
 }

@@ -1,1 +1,20 @@
-[{"id":1,"number":12,"paymentType":"Physical","tollGateType":"Entry","devices":[1,2,3,4,5,6],"currentCashier":8,"tollStation":1},{"id":2,"number":1,"paymentType":"Physical","tollGateType":"Entry","devices":[7,8,9,10,11,12],"currentCashier":5,"tollStation":2}]
+[
+  {
+    "id": 1,
+    "number": 12,
+    "paymentType": "Physical",
+    "tollGateType": "Entry",
+    "devices": [ 1, 2, 3, 4, 5, 6 ],
+    "currentCashier": 8,
+    "tollStation": 1
+  },
+  {
+    "id": 2,
+    "number": 1,
+    "paymentType": "Physical",
+    "tollGateType": "Entry",
+    "devices": [ 7, 8, 9, 10, 11, 12 ],
+    "currentCashier": 5,
+    "tollStation": 2
+  }
+]

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TollStations.Commands.AdministratorCommands.TollStations;
+using TollStations.Core;
 using TollStations.Core.TollStations.Model;
 using TollStations.Core.TollStations.Service;
 using TollStations.ViewModels.ModelViewModels;
@@ -68,12 +69,12 @@ namespace TollStations.ViewModels.AdministratorViewModels
         public ICommand TollGatesTableCommand { get;  }
         public ICommand TollStationsCashiersTableCommand { get; }
         ITollStationService _tollStationService;
-        public TollStationsTableViewModel(ITollStationService tollStationService)
+        public TollStationsTableViewModel(ITollStationService tollStationService, IRemovingService removingService)
         {
             _tollStationService = tollStationService;
             AddTollStationCommand = new AddTollStationCommand(this);
             EditTollStationCommand = new EditTollStationCommand(this);
-            DeleteTollStationCommand = new DeleteTollStationCommand(this, tollStationService);
+            DeleteTollStationCommand = new DeleteTollStationCommand(this, removingService);
             TollGatesTableCommand = new TollGatesTableCommand(this);
             TollStationsCashiersTableCommand = new TollStationsCashiersTableCommand(this);
             TollStations = new();
