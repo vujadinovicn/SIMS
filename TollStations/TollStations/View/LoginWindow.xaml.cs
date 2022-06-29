@@ -16,6 +16,7 @@ using TollStations.Core.Devices.Repository;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.Prices;
 using TollStations.Core.Prices.Repositor;
+using TollStations.Core.Reports;
 using TollStations.Core.RoadSections.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Repository;
@@ -25,9 +26,13 @@ using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments;
 using TollStations.Core.TollPayments.Repository;
+using TollStations.Core.TollStations;
 using TollStations.Core.TollStations.Repository;
 using TollStations.View.CashierView;
+using TollStations.View.ManagerView;
+using TollStations.ViewModels;
 using TollStations.ViewModels.CashierViewModels;
+using TollStations.ViewModels.ManagerViewModels;
 
 namespace TollStations.View
 {
@@ -44,8 +49,15 @@ namespace TollStations.View
             lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
             var cashier = DIContainer.GetService<ICashierRepository>().GetById(5);
 
-            CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
-            cashierWindow.ShowDialog();
+            /*CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
+            cashierWindow.ShowDialog();*/
+            ITollStationService ss = new TollStationService(DIContainer.GetService<ITollStationRepository>());
+            IEarningsByVehicleTypeReportService rs = new EarningsByVehicleTypeReportService();
+            IMostVisitedStationsReportService ms = new MostVisitedStationsReportService(ss);
+            
+
+            ManagerInitialWindow mw = new ManagerInitialWindow(rs, ms, ss);
+            mw.ShowDialog();
         }
 
         [STAThread]
@@ -68,13 +80,21 @@ namespace TollStations.View
             services.RegisterSingleton<ITollCardService, TollCardService>();
             services.RegisterSingleton<IPriceService, PriceService>();
             services.RegisterSingleton<ITollPaymentService, TollPaymentService>();
+            services.RegisterSingleton<IEarningsByVehicleTypeReportService, EarningsByVehicleTypeReportService>();
+            services.RegisterSingleton<IMostVisitedStationsReportService, MostVisitedStationsReportService>();
+            services.RegisterSingleton<ITollStationService, TollStationService>();
 
+            services.RegisterTransient<LoginWindowViewModel>();
             services.RegisterTransient<CashierInitialWindowViewModel>();
             services.RegisterTransient<VehicleExitWindowViewModel>();
             services.RegisterTransient<PaymentWindowViewModel>();
+            services.RegisterTransient<EarningsTableViewModel>();
+            services.RegisterTransient<ManagerInitialWindowViewModel>();
+            services.RegisterTransient<MostVisitedStationsWindowViewModel>();
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();
+            DIContainer.GetService<ITollPaymentRepository>();
             Window l = new LoginWindow();
             l.ShowDialog();
         }

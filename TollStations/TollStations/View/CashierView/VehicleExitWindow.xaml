@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TollStations.View.CashierView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Vehicle exit" Height="350" Width="400">
+        Title="Vehicle exit" Height="350" Width="400" ResizeMode="NoResize">
+
     <Grid>
         <Label Content="Card id" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top"/>
         <Label Content="Vehicle category: " HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TollStations.View.CashierView" xmlns:local1="clr-namespace:TollStations.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Payment window" Height="350" Width="400">
+        Title="Payment window" Height="350" Width="400" ResizeMode="NoResize">
     <Window.Resources>
         <local1:GradeConverter x:Key="typeConverterKey" />
     </Window.Resources>

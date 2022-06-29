@@ -60,7 +60,7 @@ namespace TollStations.ViewModels.CashierViewModels
                 else
                 {
                     SetChange(change);
-                    TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount, _loggedCashier, _tollCard, _loggedCashier.TollGate);
+                    TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount, _loggedCashier, _tollCard, _loggedCashier.TollGate,_price.VehicleType);
                     _tollPaymentService.Add(tollPaymentDTO);
                     Enabled = false;
                     await Task.Delay(5000);

@@ -44,8 +44,8 @@ namespace TollStations.Commands.CashierCommands
             else
                 change = paidAmount - _price.PriceInRSD;
             _paymentWindowViewModel.SetChange(change);
-            TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount,_cashier, _tollCard, _cashier.TollGate);
-            _tollPaymentService.Add(tollPaymentDTO);
+            //TollPaymentDTO tollPaymentDTO = new TollPaymentDTO(DateTime.Now, currency, neededAmount,_cashier, _tollCard, _cashier.TollGate);
+            //_tollPaymentService.Add(tollPaymentDTO);
 
             /*elipsa1.Fill = Brushes.Gray;
             elipsa2.Fill = Brushes.Green;

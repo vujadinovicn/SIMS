@@ -37,6 +37,7 @@ namespace TollStations.Core.TollPayments
         {
             TollPayment tollPayment = new TollPayment(tollPaymentDTO);
             _tollCardService.ChangeStatus(tollPayment.TollCard);
+            //_tollGateService.AddPayment(tollPayment);
             return _tollPaymentRepository.Add(tollPayment);
         }
     }
