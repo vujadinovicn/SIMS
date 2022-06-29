@@ -27,14 +27,16 @@ namespace TollStations.Commands.AdministratorCommands.TollStations
 
         public override void Execute(object? parameter)
         {
-            try
-            {
+            try {
+                var tollGate = _editTollGateDialogViewModel.GetSelectedTollGate();
                 var type = _editTollGateDialogViewModel.GetType();
-                Cashier cahier = _editTollGateDialogViewModel.GetCashier();
+                Cashier cashier = _editTollGateDialogViewModel.GetCashier();
                 var number = _editTollGateDialogViewModel.GetNumber();
-                //TollGateDTO tollGateDTO = new TollGateDTO();
-                //_tollGateService.Add(tollGateDTO);
-                System.Windows.MessageBox.Show("You have succesfully added new tollStation!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                TollGateDTO tollGateDTO = new TollGateDTO(number, tollGate.PaymentType, type, tollGate.Devices, cashier, tollGate.TollPayments, tollGate.TollStation);
+                _tollGateService.Update(tollGate.Id, tollGateDTO);
+                System.Windows.MessageBox.Show("You have succesfully updated new tollStation!", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                
+                _editTollGateDialogViewModel.ThisWindow.Close();
             }
             catch (Exception ex)
             {

@@ -162,6 +162,11 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
             return GetAll().FindAll(item => item.TollStation == null).ToList();
         }
 
+        public List<Cashier> GetAllWithoutGates(List<Cashier> cashiers)
+        {
+            return cashiers.FindAll(item => item.TollGate == null).ToList();
+        }
+
         public List<Cashier> GetByStation(int stationId)
         {
             List<Cashier> cashiers = new List<Cashier>();
@@ -173,6 +178,11 @@ namespace TollStations.Core.SystemUsers.Cashiers.Repository
                     cashiers.Add(cashier);
             }
             return cashiers;
+        }
+
+        public List<Cashier> GetByStationWithoutGate(int stationId)
+        {
+            return GetAllWithoutGates(GetByStation(stationId));
         }
     }
 }

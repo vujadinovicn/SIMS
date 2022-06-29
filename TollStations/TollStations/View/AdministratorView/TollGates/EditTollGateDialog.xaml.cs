@@ -34,7 +34,7 @@ namespace TollStations.View.AdministratorView
 
         public void SetSelectedTollGate(TollGate tollGate)
         {
-            DataContext = new EditTollGateDialogViewModel(tollGate, _tollGateService, _cashierService);
+            DataContext = new EditTollGateDialogViewModel(this, tollGate, _tollGateService, _cashierService);
         }
     }
 }

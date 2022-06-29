@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TollStations.Commands.AdministratorCommands.TollStations;
 using TollStations.Core.SystemUsers.Cashiers.Model;
@@ -14,10 +15,12 @@ using TollStations.Core.TollGates;
 using TollStations.Core.TollGates.Service;
 using TollStations.Core.TollStations.Service;
 
+
 namespace TollStations.ViewModels.AdministratorViewModels
 {
-    public class AddTollGateDialogViewModel : ViewModelBase
+    public class EditTollGateDialogViewModel : ViewModelBase
     {
+        TollGate _tollGate;
 
         private string _number;
 
@@ -113,7 +116,8 @@ namespace TollStations.ViewModels.AdministratorViewModels
         private void LoadCashierComboBox()
         {
             CashierComboBoxItems = new();
-            foreach (Cashier cashier in _cashierService.GetAll())
+            CashierComboBoxItems.Add(_tollGate.CurrentCashier);
+            foreach (Cashier cashier in _cashierService.GetByStationWithoutGate(_tollGate.TollStation.Id))
             {
                 CashierComboBoxItems.Add(cashier);
             }
@@ -125,16 +129,24 @@ namespace TollStations.ViewModels.AdministratorViewModels
             LoadTypeComboBox();
         }
 
-        public ICommand AddTollGateDialogCommand { get; }
+        public TollGate GetSelectedTollGate()
+        {
+            return _tollGate;
+        }
+
+        public ICommand EditTollGateDialogCommand { get; }
         ICashierService _cashierService;
         ITollGateService _tollGateService;
-
-        public AddTollGateDialogViewModel(ITollGateService tollGateService, ICashierService cashierService)
+        public Window ThisWindow { get; set; }
+        public EditTollGateDialogViewModel(Window window, TollGate tollGate, ITollGateService tollGateService, ICashierService cashierService)
         {
+            ThisWindow = window;
+            _tollGate = tollGate;
             _cashierService = cashierService;
             _tollGateService = tollGateService;
+            _number = _tollGate.Number.ToString();
             LoadComboBoxes();
-            AddTollGateDialogCommand = new AddTollGateDialogCommand(this, tollGateService);
+            EditTollGateDialogCommand = new EditTollGateDialogCommand(this, tollGateService, tollGate);
         }
     }
 }

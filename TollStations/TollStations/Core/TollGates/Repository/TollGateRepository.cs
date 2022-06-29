@@ -20,6 +20,7 @@ namespace TollStations.Core.TollGates.Repository
     public class TollGateRepository : ITollGateRepository
     {
         private String _fileName = @"..\..\..\Data\tollGates.json";
+        private int _maxId;
         IDeviceRepository _deviceRepository;
         ITollStationRepository _tollStationRepository;
         public List<TollGate> TollGates { get; set; }
@@ -35,6 +36,7 @@ namespace TollStations.Core.TollGates.Repository
             _tollStationRepository = tollStationRepository;
             TollGates = new List<TollGate>();
             TollGatesById = new Dictionary<int, TollGate>();
+            _maxId = 0;
             this.LoadFromFile();
         }
 
@@ -52,7 +54,7 @@ namespace TollStations.Core.TollGates.Repository
             PaymentType paymentType;
             Enum.TryParse(tollGate["paymentType"].ToString(), out paymentType);
             TollGateType tollGateType;
-            Enum.TryParse(tollGate["type"].ToString(), out tollGateType);
+            Enum.TryParse(tollGate["tollGateType"].ToString(), out tollGateType);
             TollStation tollStation = tollStationsById[(int)tollGate["tollStation"]];
             TollGate loadedTollGate = new TollGate((int)tollGate["id"],
                                     (int)tollGate["number"], paymentType, tollGateType,
@@ -68,6 +70,10 @@ namespace TollStations.Core.TollGates.Repository
             foreach (var tollGate in tollGates)
             {
                 TollGate loadedTollGate = Parse(tollGate);
+                if (loadedTollGate.Id > _maxId)
+                {
+                    _maxId = loadedTollGate.Id;
+                }
                 this.TollGates.Add(loadedTollGate);
                 this.TollGatesById[loadedTollGate.Id] = loadedTollGate;
             }
@@ -87,9 +93,9 @@ namespace TollStations.Core.TollGates.Repository
                     number = tollGate.Number,
                     paymentType = tollGate.PaymentType,
                     tollGateType = tollGate.Type,
-                    devices = tollGate.Devices,
-                    currentCashier = tollGate.CurrentCashier,
-                    tollStation = tollGate.TollStation
+                    devices = devicesId,
+                    currentCashier = tollGate.CurrentCashier.Id,
+                    tollStation = tollGate.TollStation.Id
                 });
             }
             return reducedTollGates;
@@ -124,6 +130,7 @@ namespace TollStations.Core.TollGates.Repository
         }
         public void Add(TollGate tollGate)
         {
+            tollGate.Id = ++_maxId;
             this.TollGates.Add(tollGate);
             this.TollGatesById[tollGate.Id] = tollGate;
             Save();
@@ -132,6 +139,7 @@ namespace TollStations.Core.TollGates.Repository
         public void Update(int id, TollGate byTollGate)
         {
             TollGate tollGate = GetById(id);
+            tollGate.Number = byTollGate.Number;
             tollGate.TollStation = byTollGate.TollStation;
             tollGate.CurrentCashier = byTollGate.CurrentCashier;
             tollGate.Type = byTollGate.Type;

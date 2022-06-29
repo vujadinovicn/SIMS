@@ -55,6 +55,16 @@ namespace TollStations.Core.SystemUsers.Cashiers.Service
             return _cashierRepository.GetByStation(stationId);
         }
 
+        public List<Cashier> GetAllWithoutGates(List<Cashier> cashiers)
+        {
+            return _cashierRepository.GetAllWithoutGates(cashiers);
+        }
+
+        public List<Cashier> GetByStationWithoutGate(int stationId)
+        {
+            return _cashierRepository.GetByStationWithoutGate(stationId);
+        }
+
         public void AddStation(Cashier cashier, TollStation tollStation)
         {
             cashier.TollStation = tollStation;

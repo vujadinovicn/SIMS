@@ -15,5 +15,8 @@ namespace TollStations.Core.SystemUsers.Cashiers.Service
         List<Cashier> GetAllWithoutStations();
         List<Cashier> GetByStation(int stationId);
         void AddStation(Cashier cashier, TollStation tollStation);
+        public List<Cashier> GetAllWithoutGates(List<Cashier> cashiers);
+
+        public List<Cashier> GetByStationWithoutGate(int stationId);
     }
 }

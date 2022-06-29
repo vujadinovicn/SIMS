@@ -73,7 +73,7 @@ namespace TollStations.ViewModels.AdministratorViewModels
         {
             _tollStation = tollStation;
             _tollGateService = tollGateService;
-            AddTollGateCommand = new AddTollGateCommand(this);
+            AddTollGateCommand = new AddTollGateCommand(this, tollStation);
             EditTollGateCommand = new EditTollGateCommand(this);
             //DeleteTollGateCommand = new DeleteTollGateCommand();
             TollGates = new();
