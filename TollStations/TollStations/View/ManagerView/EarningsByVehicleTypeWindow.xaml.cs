@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TollStations.Core.Reports;
 using TollStations.Core.TollStations;
+using TollStations.Core.TollStations.Model;
 using TollStations.ViewModels;
 
 namespace TollStations.View.ManagerView
@@ -22,10 +23,10 @@ namespace TollStations.View.ManagerView
     /// </summary>
     public partial class EarningsByVehicleTypeWindow : Window
     {
-        public EarningsByVehicleTypeWindow(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        public EarningsByVehicleTypeWindow(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService, TollStation station)
         {
             InitializeComponent();
-            DataContext = new EarningsTableViewModel(reportService, tollStationService);
+            DataContext = new EarningsTableViewModel(reportService, tollStationService, station);
         }
     }
 }

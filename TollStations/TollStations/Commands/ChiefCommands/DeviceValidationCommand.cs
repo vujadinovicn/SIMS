@@ -18,6 +18,7 @@ namespace TollStations.Commands.ChiefCommands
         }
         public override void Execute(object? parameter)
         {
+
             var window = new DeviceValidationWindow(_station);
             window.ShowDialog();
         }

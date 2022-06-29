@@ -48,7 +48,7 @@ namespace TollStations.View
         public LoginWindow()
         {
             InitializeComponent();
-           // var tt = DIContainer.GetService<IRoadSectionRepository>();
+            // var tt = DIContainer.GetService<IRoadSectionRepository>();
             //lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
             //var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
 
@@ -56,8 +56,11 @@ namespace TollStations.View
             //cashierWindow.ShowDialog();
 
             var chief = DIContainer.GetService<IChiefRepository>().GetById(2);
-            ChiefInitialWindow chiefInitialWindow = new ChiefInitialWindow(chief);
+            ChiefInitialWindow chiefInitialWindow = new ChiefInitialWindow(chief, DIContainer.GetService<IEarningsByVehicleTypeReportService>(), DIContainer.GetService<ITollStationService>());
             chiefInitialWindow.ShowDialog();
+
+            /*ManagerInitialWindow mw = new ManagerInitialWindow(DIContainer.GetService<IEarningsByVehicleTypeReportService>(), DIContainer.GetService<IMostVisitedStationsReportService>(), DIContainer.GetService<ITollStationService>());
+            mw.ShowDialog();*/
         }
 
         [STAThread]

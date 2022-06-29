@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TollStations.Core.Reports;
 using TollStations.Core.SystemUsers.Chiefs.Model;
+using TollStations.Core.TollStations;
 using TollStations.ViewModels.ChiefViewModels;
 
 namespace TollStations.View.ChiefView
@@ -21,10 +23,10 @@ namespace TollStations.View.ChiefView
     /// </summary>
     public partial class ChiefInitialWindow : Window
     {
-        public ChiefInitialWindow(Chief chief)
+        public ChiefInitialWindow(Chief chief, IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
         {
             InitializeComponent();
-            DataContext = new ChiefInitialWindowViewModel(chief);
+            DataContext = new ChiefInitialWindowViewModel(chief, reportService, tollStationService);
         }
     }
 }

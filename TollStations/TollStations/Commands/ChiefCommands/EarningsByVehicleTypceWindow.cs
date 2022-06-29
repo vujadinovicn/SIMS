@@ -1,0 +1,20 @@
+﻿using TollStations.Core.TollStations;
+using TollStations.Core.TollStations.Model;
+using TollStations.ViewModels.ChiefViewModels;
+
+namespace TollStations.Commands.ChiefCommands
+{
+    internal class EarningsByVehicleTypceWindow
+    {
+        private IEarningsByVehicleTypeReportServie reportService;
+        private ITollStationService tollStationService;
+        private TollStation tollStation;
+
+        public EarningsByVehicleTypceWindow(IEarningsByVehicleTypeReportServie reportService, ITollStationService tollStationService, TollStation tollStation)
+        {
+            this.reportService = reportService;
+            this.tollStationService = tollStationService;
+            this.tollStation = tollStation;
+        }
+    }
+}
