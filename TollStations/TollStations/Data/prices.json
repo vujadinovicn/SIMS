@@ -33,5 +33,40 @@
     "priceInRSD": 900.0,
     "vehicleType": "Bus",
     "roadSection": 1
+  },
+  {
+    "id": 6,
+    "priceInEUR": 6.0,
+    "priceInRSD": 600.0,
+    "vehicleType": "Car",
+    "roadSection": 2
+  },
+  {
+    "id": 7,
+    "priceInEUR": 5.0,
+    "priceInRSD": 500.0,
+    "vehicleType": "Motorcycle",
+    "roadSection": 2
+  },
+  {
+    "id": 8,
+    "priceInEUR": 8.0,
+    "priceInRSD": 800.0,
+    "vehicleType": "Van",
+    "roadSection": 2
+  },
+  {
+    "id": 9,
+    "priceInEUR": 11.0,
+    "priceInRSD": 1100.0,
+    "vehicleType": "Truck",
+    "roadSection": 2
+  },
+  {
+    "id": 10,
+    "priceInEUR": 10.0,
+    "priceInRSD": 1000.0,
+    "vehicleType": "Bus",
+    "roadSection": 2
   }
 ]

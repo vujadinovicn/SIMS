@@ -84,7 +84,8 @@ namespace TollStations.Core.TollPayments.Repository
                     amount = tollPayment.Amount,
                     cashier = tollPayment.Cashier.Id,
                     tollCard = tollPayment.TollCard.Id,
-                    tollGate = tollPayment.TollGate.Id
+                    tollGate = tollPayment.TollGate.Id,
+                    vehicleType = tollPayment.VehicleType.ToString()
                 });
             }
             return reducedTollPayments;
