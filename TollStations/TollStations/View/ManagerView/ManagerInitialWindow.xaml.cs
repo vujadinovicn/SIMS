@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInstitution.Core.DIContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,11 @@ namespace TollStations.View.ManagerView
     /// </summary>
     public partial class ManagerInitialWindow : Window
     {
-        public ManagerInitialWindow(IEarningsByVehicleTypeReportService earningReportService, IMostVisitedStationsReportService mostVisitedReportService, ITollStationService tollStationService)
+        public ManagerInitialWindow()
         {
             InitializeComponent();
-            DataContext = new ManagerInitialWindowViewModel(mostVisitedReportService, earningReportService, tollStationService);
+            DataContext = DIContainer.GetService<ManagerInitialWindowViewModel>();
+            
         }
     }
 }

@@ -15,7 +15,7 @@
         <Button Content="Pricelist" Command="{Binding PricelistCommand}" HorizontalAlignment="Center" Margin="0,232,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
         <Label Content="REPORTS" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="ExtraBold" FontStyle="Italic"  FontSize="20" HorizontalAlignment="Left" Height="35" Margin="120,130,0,0" VerticalAlignment="Top" Width="145" />
         <ComboBox HorizontalAlignment="Center" FontSize="18" SelectedIndex="{Binding TollStationComboBoxSelectedIndex}"  ItemsSource="{Binding TollStationComboBoxItems}" Margin="0,330,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
-        <Button Content="Device validation for station" Command="{Binding MostVisitedStationsCommand}" HorizontalAlignment="Center" Margin="0,380,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
+        <Button Content="Device validation for station" Command="{Binding ManagerDeviceValidationCommand}" HorizontalAlignment="Center" Margin="0,380,0,0" VerticalAlignment="Top" FontSize="20" Width="250" Height="35" />
 
     </Grid>
 </Window>

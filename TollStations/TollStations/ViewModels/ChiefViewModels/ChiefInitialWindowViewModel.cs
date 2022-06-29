@@ -13,13 +13,21 @@ namespace TollStations.ViewModels.ChiefViewModels
 {
     public class ChiefInitialWindowViewModel : ViewModelBase
     {
-        public ChiefInitialWindowViewModel(Chief chief, IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        IEarningsByVehicleTypeReportService _earningsByVehicleTypeReportService;
+        ITollStationService _tollStationService;
+        public ChiefInitialWindowViewModel(IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
         {
-            DeviceValidationCommand = new DeviceValidationCommand(chief.TollStation);
-            EarningsReportCommand = new EarningsReportCommand(chief, reportService, tollStationService);
+            _earningsByVehicleTypeReportService = reportService;
+            _tollStationService = tollStationService;
         }
 
-        public ICommand DeviceValidationCommand { get; }
-        public ICommand EarningsReportCommand { get; }
+        public void SetChief(Chief chief)
+        {
+            DeviceValidationCommand = new DeviceValidationCommand(chief.TollStation);
+            EarningsReportCommand = new EarningsReportCommand(chief, _earningsByVehicleTypeReportService, _tollStationService);
+        }
+
+        public ICommand DeviceValidationCommand { get; set; }
+        public ICommand EarningsReportCommand { get; set; }
     }
 }

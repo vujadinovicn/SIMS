@@ -22,7 +22,7 @@ namespace TollStations.ViewModels.CashierViewModels
         {
             VehicleEntryCommand = new VehicleEntryCommand(cashier, _tollCardService);
             VehicleExitCommand = new VehicleExitCommand(cashier);
-            ReportFaultCommand = new ReportFaultCommand();
+            ReportFaultCommand = new ReportFaultCommand(cashier);
         }
         public ICommand VehicleEntryCommand { get; set; }
         public ICommand VehicleExitCommand { get; set; }

@@ -36,6 +36,7 @@ using TollStations.ViewModels.CashierViewModels;
 using TollStations.ViewModels.ManagerViewModels;
 using TollStations.View.ChiefView;
 using TollStations.ViewModels.ChiefViewModels;
+using TollStations.Core.SystemUsers.Users.Service;
 
 namespace TollStations.View
 {
@@ -45,22 +46,24 @@ namespace TollStations.View
     public partial class LoginWindow : Window
     {
         public static double euroExchangeRate = 117.98;
-        public LoginWindow()
+        private String _usernameInput;
+        private String _passwordInput;
+
+        private IAccountService _accountService;
+        public LoginWindow(IAccountService accountService)
         {
             InitializeComponent();
-            // var tt = DIContainer.GetService<IRoadSectionRepository>();
-            //lbl.Content = tt.GetAll()[0].ExitStation.Chief.FirstName;
-            //var cashier = DIContainer.GetService<ICashierRepository>().GetById(1);
+            this.DataContext = new LoginWindowViewModel(this, accountService);
 
-            //CashierInitialWindow cashierWindow = new CashierInitialWindow(cashier);
-            //cashierWindow.ShowDialog();
+            _accountService = accountService;
+        }
 
-            var chief = DIContainer.GetService<IChiefRepository>().GetById(2);
-            ChiefInitialWindow chiefInitialWindow = new ChiefInitialWindow(chief, DIContainer.GetService<IEarningsByVehicleTypeReportService>(), DIContainer.GetService<ITollStationService>());
-            chiefInitialWindow.ShowDialog();
-
-            /*ManagerInitialWindow mw = new ManagerInitialWindow(DIContainer.GetService<IEarningsByVehicleTypeReportService>(), DIContainer.GetService<IMostVisitedStationsReportService>(), DIContainer.GetService<ITollStationService>());
-            mw.ShowDialog();*/
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword;
+            }
         }
 
         [STAThread]
@@ -87,6 +90,7 @@ namespace TollStations.View
             services.RegisterSingleton<IMostVisitedStationsReportService, MostVisitedStationsReportService>();
             services.RegisterSingleton<ITollStationService, TollStationService>();
             services.RegisterSingleton<IDeviceService, DeviceService>();
+            services.RegisterSingleton<IAccountService, AccountService>();
 
             services.RegisterTransient<LoginWindowViewModel>();
             services.RegisterTransient<CashierInitialWindowViewModel>();
@@ -99,14 +103,19 @@ namespace TollStations.View
             services.RegisterTransient<CashierDeviceValidationWindowViewModel>();
             services.RegisterTransient<ChiefInitialWindowViewModel>();
             services.RegisterTransient<DeviceValidationWindowViewModel>();
-
+            services.RegisterTransient<LoginWindow>();
             services.BuildContainer();
 
+            DIContainer.GetService<IAccountRepository>();
+            DIContainer.GetService<IUserRepository>();
+            
             DIContainer.GetService<IChiefRepository>();
             DIContainer.GetService<ITollGateRepository>();
             DIContainer.GetService<ITollPaymentRepository>();
-            Window l = new LoginWindow();
-            l.ShowDialog();
+            
+
+            var loginWindow = DIContainer.GetService<LoginWindow>();
+            loginWindow.ShowDialog();
         }
     }
 }

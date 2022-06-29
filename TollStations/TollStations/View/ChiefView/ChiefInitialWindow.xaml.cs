@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInstitution.Core.DIContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,12 @@ namespace TollStations.View.ChiefView
     /// </summary>
     public partial class ChiefInitialWindow : Window
     {
-        public ChiefInitialWindow(Chief chief, IEarningsByVehicleTypeReportService reportService, ITollStationService tollStationService)
+        public ChiefInitialWindow(Chief chief)
         {
             InitializeComponent();
-            DataContext = new ChiefInitialWindowViewModel(chief, reportService, tollStationService);
+            var dc = DIContainer.GetService<ChiefInitialWindowViewModel>();
+            dc.SetChief(chief);
+            DataContext = dc;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         private String _fileName = @"..\..\..\Data\accounts.json";
         public List<Account> Accounts { get; set; }
         public Dictionary<int, Account> AccountsById { get; set; }
+        public Dictionary<string, Account> AccountsByUsername { get; set; }
 
         private JsonSerializerOptions _options = new JsonSerializerOptions
         {
@@ -28,6 +29,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
         {
             this.Accounts = new List<Account>();
             this.AccountsById = new Dictionary<int, Account>();
+            this.AccountsByUsername = new Dictionary<string, Account>();
             this._maxId = 0;
             this.LoadFromFile();
         }
@@ -55,6 +57,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
                 }
                 this.Accounts.Add(loadedAccount);
                 this.AccountsById[loadedAccount.Id] = loadedAccount;
+                this.AccountsByUsername[loadedAccount.Username] = loadedAccount;
             }
         }
 
@@ -90,11 +93,24 @@ namespace TollStations.Core.SystemUsers.Users.Repository
             return AccountsById;
         }
 
+        public Dictionary<string, Account> GetAllByUsername()
+        {
+            return AccountsByUsername;
+        }
+
         public Account GetById(int id)
         {
             if (this.AccountsById.ContainsKey(id))
-                return this.AccountsById[id]; ;
+                return this.AccountsById[id]; 
             return null;
         }
+
+        public Account GetByUsername(string username)
+        {
+            if (this.AccountsByUsername.ContainsKey(username))
+                return this.AccountsByUsername[username]; 
+            return null;
+        }
+        
     }
 }

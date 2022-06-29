@@ -6,9 +6,14 @@
         xmlns:local="clr-namespace:TollStations.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="LoginWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Background="AliceBlue"
+        Title="LoginWindow" Height="350" Width="600" ResizeMode="NoResize">
     <Grid>
-        <Label Name="lbl" Content="" HorizontalAlignment="Left" Margin="164,168,0,0" VerticalAlignment="Top"/>
-
+        <Button Name="loginButton" Content="Log in" Command="{Binding Login}" HorizontalAlignment="Center" Height="30" Margin="0,269,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" />
+        <TextBox Name="usernameBox" HorizontalAlignment="Left" Margin="260,0,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Center" Width="249" Height="38" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="Username" HorizontalAlignment="Left" Margin="102,0,0,0" VerticalAlignment="Center" Width="134" FontSize="20" />
+        <Label Content="Password" HorizontalAlignment="Left" Margin="102,207,0,0" VerticalAlignment="Top" Width="134" FontSize="20" />
+        <Label Content="WELCOME" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" FontSize="36" />
+        <PasswordBox Name="passwordBox" HorizontalAlignment="Left" Margin="260,207,0,0" VerticalAlignment="Top" Width="249" Height="38" PasswordChanged="PasswordBox_PasswordChanged" />
     </Grid>
 </Window>

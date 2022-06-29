@@ -16,7 +16,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
     {
         private int _maxId;
 
-        private String _fileName = @"..\..\Data\users.json";
+        private String _fileName = @"..\..\..\Data\users.json";
         private IAccountRepository _accountRepository;
         private ILocationRepository _locationRepository;
         public List<User> Users { get; set; }
