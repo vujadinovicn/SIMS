@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using TollStations.Core.SystemUsers.Cashiers.Model;
+
+namespace TollStations.Core.SystemUsers.Cashiers.Service
+{
+    public interface ICashierService
+    {
+        List<Cashier> GetAll();
+        Dictionary<int, Cashier> GetAllById();
+        Dictionary<string, Cashier> GetAllByUsername();
+        Cashier GetById(int id);
+        Cashier GetByUsername(string username);
+        void Save();
+    }
+}

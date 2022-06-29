@@ -73,6 +73,13 @@ namespace TollStations.Core.TollGates.Service
             _tollGateRepository.Delete(id);
         }
 
+        public void DeleteByStation(int stationId)
+        {
+            List<TollGate> tollGates = GetAll().FindAll(item => item.Id == stationId).ToList();
+            foreach (var tollGate in tollGates)
+                Delete(tollGate.Id);
+        }
+
         public void DeleteTollPayment(int id, TollPayment tollPayment)
         {
             _tollGateRepository.DeleteTollPayment(id, tollPayment);

@@ -8,7 +8,6 @@
     "address": "jovana jovce 2",
     "location": 1,
     "account": 2,
-    "roadSection": 1,
     "tollStation": 1
   },
   {
@@ -20,7 +19,17 @@
     "address": "aaaaaaa a 3",
     "location": 2,
     "account": 6,
-    "roadSection": 2,
     "tollStation": 2
+  },
+  {
+    "id": 7,
+    "firstName": "Mitar",
+    "lastName": "Milinkovic",
+    "tel": 66666666,
+    "mail": "somiii@gmail.com",
+    "address": "aaaaaaa a 3",
+    "location": 2,
+    "account": 7,
+    "tollStation": null
   }
 ]

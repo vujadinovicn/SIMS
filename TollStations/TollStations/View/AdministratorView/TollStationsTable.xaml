@@ -21,9 +21,9 @@
                 <DataGridTextColumn Header="Location" FontSize="15" Binding="{Binding Location}" Width ="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="addButton" Content="Add" Command="{Binding AddExaminationCommand}" HorizontalAlignment="Center" Height="30" Margin="0,200,350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
-        <Button Name="editButton" Content="Edit" Command="{Binding EditExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
-        <Button Name="deleteButton" Content="Delete" Command="{Binding DeleteExaminationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,-350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="addButton" Content="Add" Command="{Binding AddTollStationCommand}" HorizontalAlignment="Center" Height="30" Margin="0,200,350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="editButton" Content="Edit" Command="{Binding EditTollStationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,0,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
+        <Button Name="deleteButton" Content="Delete" Command="{Binding DeleteTollStationCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,200,-350,0" VerticalAlignment="Top" Width="111" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
         <Button Name="tollGatesButton" Content="Toll gates" Command="{Binding TollGatesTableCommand}" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItems.Count}" HorizontalAlignment="Center" Height="30" Margin="0,245,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.243,0.514" Cursor="Arrow" FontSize="18" Visibility="Visible"/>
     </Grid>
 </Window>

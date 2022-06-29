@@ -70,9 +70,9 @@ namespace TollStations.ViewModels.AdministratorViewModels
         public TollStationsTableViewModel(ITollStationService tollStationService)
         {
             _tollStationService = tollStationService;
-            AddTollStationCommand = new AddTollStationCommand();
-            EditTollStationCommand = new EditTollStationCommand();
-            DeleteTollStationCommand = new DeleteTollStationCommand();
+            AddTollStationCommand = new AddTollStationCommand(this);
+            EditTollStationCommand = new EditTollStationCommand(this);
+            DeleteTollStationCommand = new DeleteTollStationCommand(this, tollStationService);
             TollGatesTableCommand = new TollGatesTableCommand(this);
             TollStations = new();
             _tollStationsVM = new();

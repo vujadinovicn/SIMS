@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TollStations.Core.Locations.Repository;
 using TollStations.Core.SystemUsers.Chiefs.Model;
 using TollStations.Core.SystemUsers.Users.Repository;
+using TollStations.Core.TollStations.Model;
 using TollStations.Core.TollStations.Repository;
 
 namespace TollStations.Core.SystemUsers.Chiefs.Repository
@@ -47,7 +48,12 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
         {
             var location = _locationRepository.GetById((int)chief["id"]);
             var account = _accountRepository.GetById((int)chief["account"]);
-            var tollStation = _tollStationRepository.GetById((int)chief["tollStation"]);
+            TollStation tollStation;
+            try
+            {
+                tollStation = _tollStationRepository.GetById((int)chief["tollStation"]);
+            }
+            catch { tollStation = null; }
             var loadedChief = new Chief((int)chief["id"],
                                       (string)chief["firstName"],
                                       (string)chief["lastName"],
@@ -133,6 +139,11 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
             if (this.ChiefsById.ContainsKey(id))
                 return this.ChiefsById[id]; ;
             return null;
+        }
+
+        public List<Chief> GetAllWithoutStations()
+        {
+            return GetAll().FindAll(item => item.TollStation == null).ToList();
         }
     }
 }

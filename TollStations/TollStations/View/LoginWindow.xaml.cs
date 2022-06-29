@@ -14,10 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TollStations.Core.Devices.Repository;
 using TollStations.Core.Locations.Repository;
+using TollStations.Core.Locations.Service;
 using TollStations.Core.Prices.Repositor;
 using TollStations.Core.RoadSections.Repository;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
+using TollStations.Core.SystemUsers.Cashiers.Service;
 using TollStations.Core.SystemUsers.Chiefs.Repository;
+using TollStations.Core.SystemUsers.Chiefs.Service;
 using TollStations.Core.SystemUsers.Users.Repository;
 using TollStations.Core.SystemUsers.Users.Service;
 using TollStations.Core.TollCards.Repository;
@@ -68,14 +71,19 @@ namespace TollStations.View
 
 
             services.RegisterSingleton<IUserService, UserService>();
+            services.RegisterSingleton<IChiefService, ChiefService>();
+            services.RegisterSingleton<ICashierService, CashierService>();
             services.RegisterSingleton<IAccountService, AccountService>();
             services.RegisterSingleton<ITollStationService, TollStationService>();
             services.RegisterSingleton<ITollGateService, TollGateService>();
+            services.RegisterSingleton<ILocationService, LocationService>();
 
             services.RegisterTransient<UsersTable>();
             services.RegisterTransient<AccountsTable>();
             services.RegisterTransient<TollStationsTable>();
             services.RegisterTransient<TollGatesTable>();
+            services.RegisterTransient<AddTollStationDialog>();
+            services.RegisterTransient<EditTollStationDialog>();
             services.BuildContainer();
 
             DIContainer.GetService<IChiefRepository>();

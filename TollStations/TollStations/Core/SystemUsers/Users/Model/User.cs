@@ -29,5 +29,10 @@ namespace TollStations.Core.SystemUsers.Users.Model
             Location = location;
             Account = account;
         }
+
+        public override string? ToString()
+        {
+            return FirstName + " " +LastName;
+        }
     }
 }

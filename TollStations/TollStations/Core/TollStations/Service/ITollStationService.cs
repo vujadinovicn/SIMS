@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TollStations.Core.Locations;
 using TollStations.Core.TollGates;
 using TollStations.Core.TollStations.Model;
 
@@ -15,5 +16,6 @@ namespace TollStations.Core.TollStations.Service
         TollStation GetById(int id);
         void Save();
         void Update(int id, TollStationDTO tollStationDTO);
+        List<Location> GetLocationsWithoutStations();
     }
 }
