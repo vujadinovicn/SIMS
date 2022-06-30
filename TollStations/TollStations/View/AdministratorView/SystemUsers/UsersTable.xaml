@@ -7,7 +7,7 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Users" Height="450" Width="950">
+        Title="Users" Height="450" Width="1050">
     <Window.Resources>
         <Style TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
@@ -19,12 +19,12 @@
     <Grid Margin="0,115,0,0">
         <DataGrid ItemsSource="{Binding UsersVM}" AutoGenerateColumns="False" Name="dataGrid" Grid.ColumnSpan="3" Margin="0,-108,0,108">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"  FontSize="15" Width ="*"/>
-                <DataGridTextColumn Header="Last name" FontSize="15" Binding="{Binding LastName}" Width ="*"/>
-                <DataGridTextColumn Header="Telephone" FontSize="15" Binding="{Binding Tel}" Width ="*"/>
-                <DataGridTextColumn Header="Mail" FontSize="15" Binding="{Binding Mail}" Width ="*"/>
-                <DataGridTextColumn Header="Address" FontSize="15" Binding="{Binding Address}" Width ="*"/>
-                <DataGridTextColumn Header="Type" FontSize="15" Binding="{Binding Type}" Width ="*"/>
+                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"  FontSize="15" Width ="140"/>
+                <DataGridTextColumn Header="Last name" FontSize="15" Binding="{Binding LastName}" Width ="140"/>
+                <DataGridTextColumn Header="Telephone" FontSize="15" Binding="{Binding Tel}" Width ="80"/>
+                <DataGridTextColumn Header="Mail" FontSize="15" Binding="{Binding Mail}" Width ="180"/>
+                <DataGridTextColumn Header="Address" FontSize="15" Binding="{Binding Address}" Width ="240"/>
+                <DataGridTextColumn Header="Type" FontSize="15" Binding="{Binding Type}" Width ="100"/>
                 <DataGridTextColumn Header="Username" FontSize="15" Binding="{Binding Username}" Width ="*"/>
             </DataGrid.Columns>
         </DataGrid>

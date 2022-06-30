@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TollStations.Core.Devices;
 using TollStations.Core.Devices.Model;
 using TollStations.Core.Devices.Service;
+using TollStations.Core.SystemUsers.Cashiers.Service;
 using TollStations.Core.TollGates.Model;
 using TollStations.Core.TollGates.Repository;
 using TollStations.Core.TollPayments.Model;
@@ -15,12 +16,14 @@ namespace TollStations.Core.TollGates.Service
     public class TollGateService : ITollGateService
     {
         ITollGateRepository _tollGateRepository;
+        ICashierService _cashierService;
         IDeviceService _deviceService;
 
-        public TollGateService(ITollGateRepository tollGateRepository, IDeviceService deviceService)
+        public TollGateService(ITollGateRepository tollGateRepository, IDeviceService deviceService, ICashierService cashierService)
         {
             _tollGateRepository = tollGateRepository;
             _deviceService = deviceService;
+            _cashierService = cashierService;
         }
 
         public void Save()
@@ -54,6 +57,9 @@ namespace TollStations.Core.TollGates.Service
             TollGate tollGate = new TollGate(tollGateDTO);
             tollGate.Devices = devices;
             _tollGateRepository.Add(tollGate);
+            var cashier = tollGate.CurrentCashier;
+            cashier.TollGate = tollGate;
+            _cashierService.Save();
         }
 
         public void Update(int id, TollGateDTO tollGateDTO)

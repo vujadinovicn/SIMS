@@ -91,8 +91,9 @@ namespace TollStations.Core
                 chief.TollStation = null;
                 _chiefService.Save();
                 _tollStationService.Delete(station.Id);
+                return true;
             }
-            return true;
+            return false;
         }
 
 

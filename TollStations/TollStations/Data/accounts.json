@@ -43,8 +43,20 @@
   },
   {
     "id": 8,
-    "username": "majmunko",
-    "password": "majmunko",
+    "username": "lazar",
+    "password": "lazar",
+    "userType": "CASHIER"
+  },
+  {
+    "id": 9,
+    "username": "srdzan",
+    "password": "srdzan",
+    "userType": "CASHIER"
+  },
+  {
+    "id": 10,
+    "username": "miodrag",
+    "password": "miodrag",
     "userType": "CASHIER"
   }
 ]
