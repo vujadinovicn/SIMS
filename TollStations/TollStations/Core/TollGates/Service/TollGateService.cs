@@ -64,8 +64,14 @@ namespace TollStations.Core.TollGates.Service
 
         public void Update(int id, TollGateDTO tollGateDTO)
         {
+            var oldCashier = GetById(id).CurrentCashier;
+            oldCashier.TollGate = null;
             TollGate tollGate = new TollGate(tollGateDTO);
+            tollGate.Id = id;
+            var newCashier = tollGate.CurrentCashier;
+            newCashier.TollGate = tollGate;
             _tollGateRepository.Update(id, tollGate);
+            _cashierService.Save();
         }
 
         public void AddTollPayment(int id, TollPayment tollPayment)
