@@ -59,6 +59,7 @@ namespace TollStations.Core.TollStations.Service
             var oldChief = GetById(id).Chief;
             oldChief.TollStation = null;
             TollStation tollStation = new TollStation(tollStationDTO);
+            tollStation.Id = id;
             var newChief = tollStation.Chief;
             newChief.TollStation = tollStation;
             _tollStationRepository.Update(id, tollStation);
