@@ -25,15 +25,14 @@ namespace TollStations.Core.Reports
         public Dictionary<TollStation, int> GetAll(DateTime start, DateTime end)
         {
             InitializePaymentsByStation();
-            int b = 0;
             foreach (TollStation station in tollStationService.GetAll())
             {
+                int b = 0;
                 foreach (TollGate gate in station.Gates)
                 {
-                    b += addNumOfPayments(gate.TollPayments, start, end);
+                    b += AddNumOfPayments(gate.TollPayments, start, end);
                 }
                 paymentsByStation[station] = b;
-                b = 0;
             }
             SortDict();
             return paymentsByStation;
@@ -52,7 +51,7 @@ namespace TollStations.Core.Reports
             paymentsByStation = sortedDict;
         }
 
-        private int addNumOfPayments(List<TollPayment> payments, DateTime start, DateTime end)
+        private int AddNumOfPayments(List<TollPayment> payments, DateTime start, DateTime end)
         {
             int b = 0;
             foreach (TollPayment payment in payments)
