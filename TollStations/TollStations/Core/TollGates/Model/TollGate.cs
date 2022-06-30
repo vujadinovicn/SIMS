@@ -44,6 +44,11 @@ namespace TollStations.Core.TollGates
             TollPayments = tollGateDTO.TollPayments;
             TollStation = tollGateDTO.TollStation;
         }
+
+        public override string? ToString()
+        {
+            return "Gate number "+Number;
+        }
     }
 
     public enum TollGateType

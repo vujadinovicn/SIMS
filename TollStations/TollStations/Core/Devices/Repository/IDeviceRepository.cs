@@ -15,5 +15,7 @@ namespace TollStations.Core.Devices.Repository
         void LoadFromFile();
         void Save();
         void Update(int id, Device byDevice);
+        public void Repair(Device device);
+        public void ReportFault(Device device);
     }
 }

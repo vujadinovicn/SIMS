@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:TollStations.View.CashierView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Cashier window" Height="350" Width="400">
+        Title="Cashier window" Height="400" Width="400" ResizeMode="NoResize">
     <Grid>
-        <Image HorizontalAlignment="Center" Height="100" Margin="0,65,0,0" VerticalAlignment="Top" Width="100" Source="/Images/image.png" />
-        <Button Content="Vehicle entry" Command="{Binding VehicleEntryCommand}" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" FontSize="20" Width="200" Height="30" />
-        <Button Content="Vehicle exit" Command="{Binding VehicleExitCommand}" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontSize="20" Width="200" Height="30" />
+        <Image HorizontalAlignment="Center" Height="100" Margin="0,30,0,0" VerticalAlignment="Top" Width="100" Source="/Images/image.png" />
+        <Button Content="Vehicle entry" Command="{Binding VehicleEntryCommand}" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" FontSize="20" Width="200" Height="30" />
+        <Button Content="Vehicle exit" Command="{Binding VehicleExitCommand}" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" FontSize="20" Width="200" Height="30" />
+        <Button Content="Report fault" Command="{Binding ReportFaultCommand}" HorizontalAlignment="Center" Margin="0,260,0,0" VerticalAlignment="Top" FontSize="20" Width="200" Height="30" />
+        <Button Content="Log out" Command="{Binding LogoutCommand}" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" FontSize="14" Width="60" />
     </Grid>
 </Window>

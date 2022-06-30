@@ -1,0 +1,32 @@
+﻿<Window x:Class="TollStations.View.AdministratorView.UsersTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TollStations.View.AdministratorView"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Users" Height="450" Width="1050">
+    <Window.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,115,0,0">
+        <DataGrid ItemsSource="{Binding UsersVM}" AutoGenerateColumns="False" Name="dataGrid" Grid.ColumnSpan="3" Margin="0,-108,0,108">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"  FontSize="15" Width ="140"/>
+                <DataGridTextColumn Header="Last name" FontSize="15" Binding="{Binding LastName}" Width ="140"/>
+                <DataGridTextColumn Header="Telephone" FontSize="15" Binding="{Binding Tel}" Width ="80"/>
+                <DataGridTextColumn Header="Mail" FontSize="15" Binding="{Binding Mail}" Width ="180"/>
+                <DataGridTextColumn Header="Address" FontSize="15" Binding="{Binding Address}" Width ="240"/>
+                <DataGridTextColumn Header="Type" FontSize="15" Binding="{Binding Type}" Width ="100"/>
+                <DataGridTextColumn Header="Username" FontSize="15" Binding="{Binding Username}" Width ="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

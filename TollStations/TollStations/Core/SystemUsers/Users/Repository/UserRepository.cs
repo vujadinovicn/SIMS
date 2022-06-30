@@ -16,7 +16,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
     {
         private int _maxId;
 
-        private String _fileName = @"..\..\Data\users.json";
+        private String _fileName = @"..\..\..\Data\users.json";
         private IAccountRepository _accountRepository;
         private ILocationRepository _locationRepository;
         public List<User> Users { get; set; }
@@ -41,7 +41,7 @@ namespace TollStations.Core.SystemUsers.Users.Repository
 
         private User Parse(JToken? user)
         {
-            var location = _locationRepository.GetById((int)user["id"]);
+            var location = _locationRepository.GetById((int)user["location"]);
             var account = _accountRepository.GetById((int)user["account"]);
             var loadedUser = new User((int)user["id"],
                                       (string)user["firstName"],

@@ -2,6 +2,13 @@
   {
     "id": 1,
     "entryStation": 1,
-    "exitStation": 2
+    "exitStation": 2,
+    "distance": 100
+  },
+  {
+    "id": 2,
+    "entryStation": 2,
+    "exitStation": 1,
+    "distance": 100
   }
 ]

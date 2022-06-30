@@ -46,8 +46,8 @@ namespace TollStations.Core.RoadSections.Repository
             TollStation entryStation = tollStationById[entryStationId];
             int exitStationId = (int)roadSection["exitStation"];
             TollStation exitStation = tollStationById[exitStationId];
-
-            return new RoadSection(id, entryStation, exitStation);
+            double distance = (double)roadSection["distance"];
+            return new RoadSection(id, entryStation, exitStation, distance);
         }
 
         public void LoadFromFile()
@@ -79,6 +79,7 @@ namespace TollStations.Core.RoadSections.Repository
                     id = roadSection.Id,
                     entryStation = roadSection.EntryStation.Id,
                     exitStation = roadSection.ExitStation.Id,
+                    distance = roadSection.Distance
                 });
             }
             return reducedRoadSections;

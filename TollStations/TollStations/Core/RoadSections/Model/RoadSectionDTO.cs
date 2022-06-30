@@ -11,11 +11,13 @@ namespace TollStations.Core.RoadSections.Model
     {
         public TollStation EntryStation { get; set; }
         public TollStation ExitStation { get; set; }
+        public double Distance { get; set; }
 
-        public RoadSectionDTO(TollStation entryStation, TollStation exitStation)
+        public RoadSectionDTO(TollStation entryStation, TollStation exitStation, double distance)
         {
             EntryStation = entryStation;
             ExitStation = exitStation;
+            Distance = distance;
         }
     }
 }

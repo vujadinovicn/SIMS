@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TollStations.Core.Prices.Model;
 using TollStations.Core.SystemUsers.Cashiers.Repository;
 using TollStations.Core.TollCards.Repository;
 using TollStations.Core.TollGates;
@@ -47,9 +48,11 @@ namespace TollStations.Core.TollPayments.Repository
         private TollPayment Parse(JToken? tollPayment)
         {
             Currency currency;
-            Enum.TryParse<Currency>((string)tollPayment["state"], out currency);
+            Enum.TryParse<Currency>((string)tollPayment["currency"], out currency);
+            VehicleType vehicleType;
+            Enum.TryParse<VehicleType>((string)tollPayment["vehicleType"], out vehicleType);
             TollGate tollGate = tollGateRepository.GetById((int)tollPayment["tollGate"]);
-            TollPayment loadedTollPayment=new TollPayment((int)tollPayment["id"], (DateTime)tollPayment["time"], currency, (double)tollPayment["amount"], cashierRepository.GetById((int)tollPayment["cashier"]), tollCardRepository.GetById((int)tollPayment["tollCard"]), tollGate);
+            TollPayment loadedTollPayment = new TollPayment((int)tollPayment["id"], (DateTime)tollPayment["time"], currency, (double)tollPayment["amount"], cashierRepository.GetById((int)tollPayment["cashier"]), tollCardRepository.GetById((int)tollPayment["tollCard"]), tollGate, vehicleType);
             tollGate.TollPayments.Add(loadedTollPayment);
             return loadedTollPayment;
         }
@@ -76,12 +79,13 @@ namespace TollStations.Core.TollPayments.Repository
                 reducedTollPayments.Add(new
                 {
                     id = tollPayment.Id,
-                    time= tollPayment.Time,
-                    currency= tollPayment.Currency,
-                    amount= tollPayment.Amount,
-                    cashier= tollPayment.Cashier.Id,
-                    tollCard=tollPayment.TollCard.Id,
-                    tollGate= tollPayment.TollGate.Id
+                    time = tollPayment.Time,
+                    currency = tollPayment.Currency,
+                    amount = tollPayment.Amount,
+                    cashier = tollPayment.Cashier.Id,
+                    tollCard = tollPayment.TollCard.Id,
+                    tollGate = tollPayment.TollGate.Id,
+                    vehicleType = tollPayment.VehicleType.ToString()
                 });
             }
             return reducedTollPayments;

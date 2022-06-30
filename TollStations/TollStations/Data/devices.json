@@ -1,68 +1,63 @@
 [
+  
   {
-    "id": 1,
-    "type": "RAMP",
-    "isValid": true
+    "Id": 1,
+    "Type": "RAMP",
+    "IsValid": true
   },
   {
-    "id": 2,
-    "type": "PLATE_READER",
-    "isValid": true
+    "Id": 2,
+    "Type": "PLATE_READER",
+    "IsValid": true
   },
   {
-    "id": 3,
-    "type": "TAG_READER",
-    "isValid": true
-  },
-
-  {
-    "id": 4,
-    "type": "CAMERA",
-    "isValid": true
-  },
-
-  {
-    "id": 5,
-    "type": "MONITOR",
-    "isValid": true
-  },
-
-  {
-    "id": 6,
-    "type": "TRAFFIC_LIGHT",
-    "isValid": true
+    "Id": 3,
+    "Type": "TAG_READER",
+    "IsValid": false
   },
   {
-    "id": 7,
-    "type": "RAMP",
-    "isValid": true
+    "Id": 4,
+    "Type": "CAMERA",
+    "IsValid": true
   },
   {
-    "id": 8,
-    "type": "PLATE_READER",
-    "isValid": true
+    "Id": 5,
+    "Type": "MONITOR",
+    "IsValid": true
   },
   {
-    "id": 9,
-    "type": "TAG_READER",
-    "isValid": true
+    "Id": 6,
+    "Type": "TRAFFIC_LIGHT",
+    "IsValid": true
   },
-
   {
-    "id": 10,
-    "type": "CAMERA",
-    "isValid": true
+    "Id": 7,
+    "Type": "RAMP",
+    "IsValid": true
   },
-
   {
-    "id": 11,
-    "type": "MONITOR",
-    "isValid": true
+    "Id": 8,
+    "Type": "PLATE_READER",
+    "IsValid": false
   },
-
   {
-    "id": 12,
-    "type": "TRAFFIC_LIGHT",
-    "isValid": true
+    "Id": 9,
+    "Type": "TAG_READER",
+    "IsValid": false
+  },
+  {
+    "Id": 10,
+    "Type": "CAMERA",
+    "IsValid": true
+  },
+  {
+    "Id": 11,
+    "Type": "MONITOR",
+    "IsValid": true
+  },
+  {
+    "Id": 12,
+    "Type": "TRAFFIC_LIGHT",
+    "IsValid": true
   }
 ]

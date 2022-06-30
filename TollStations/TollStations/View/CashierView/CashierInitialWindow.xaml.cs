@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthInstitution.Core.DIContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TollStations.Core.SystemUsers.Cashiers.Model;
+using TollStations.Core.TollCards;
 using TollStations.ViewModels.CashierViewModels;
 
 namespace TollStations.View.CashierView
@@ -24,7 +26,10 @@ namespace TollStations.View.CashierView
         public CashierInitialWindow(Cashier cashier)
         {
             InitializeComponent();
-            DataContext = new CashierInitialWindowViewModel(cashier);
+            var dc = DIContainer.GetService<CashierInitialWindowViewModel>();
+            dc.SetLoggedCashier(cashier);
+            dc.SetWindow(this);
+            DataContext = dc;
         }
     }
 }

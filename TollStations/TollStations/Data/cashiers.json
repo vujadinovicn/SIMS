@@ -1,26 +1,51 @@
 [
+  
   {
     "id": 1,
     "firstName": "Petar",
     "lastName": "Petrovic",
-    "tel": 5555555,
+    "tel": 1220391,
     "mail": "piroman@gmail.com",
-    "address": "piroslava piromana",
+    "address": "piroslava 2",
     "location": 1,
     "account": 1,
-    "tollGate": 1,
-    "tollStation": 1
+    "tollGate": "1",
+    "tollStation": "1"
   },
   {
     "id": 5,
     "firstName": "Marko",
     "lastName": "Markovic",
-    "tel": 5555555,
+    "tel": 4219452,
     "mail": "markone@gmail.com",
-    "address": "bebebebe 3",
+    "address": "kraljevica marka 1371",
     "location": 2,
     "account": 5,
-    "tollGate": 2,
-    "tollStation": 2
+    "tollGate": "2",
+    "tollStation": "2"
+  },
+  {
+    "id": 8,
+    "firstName": "Lazar",
+    "lastName": "Lazarovic",
+    "tel": 1840242,
+    "mail": "lazakamikaza@1.com",
+    "address": "cara lazara 1389",
+    "location": 2,
+    "account": 8,
+    "tollGate": null,
+    "tollStation": null
+  },
+  {
+    "id": 9,
+    "firstName": "Srdjan",
+    "lastName": "Stjepanovic",
+    "tel": 3879219,
+    "mail": "dinarzasrdzana@gmail.com",
+    "address": "ulica branitelja 3",
+    "location": 4,
+    "account": 9,
+    "tollGate": null,
+    "tollStation": null
   }
 ]

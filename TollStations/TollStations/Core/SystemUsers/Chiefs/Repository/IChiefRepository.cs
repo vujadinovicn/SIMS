@@ -16,5 +16,6 @@ namespace TollStations.Core.SystemUsers.Chiefs.Repository
         Chief GetByUsername(string username);
         void LoadFromFile();
         void Save();
+        List<Chief> GetAllWithoutStations();
     }
 }

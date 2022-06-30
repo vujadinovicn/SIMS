@@ -1,26 +1,47 @@
 [
+  
   {
     "id": 2,
     "firstName": "Jovan",
     "lastName": "Jovanovic",
-    "tel": 22222222,
+    "tel": 2391045,
     "mail": "jorleone@gmail.com",
     "address": "jovana jovce 2",
     "location": 1,
     "account": 2,
-    "roadSection": 1,
-    "tollStation": 1
+    "tollStation": "1"
   },
   {
     "id": 6,
     "firstName": "Milos",
     "lastName": "Milinkovic",
-    "tel": 66666666,
+    "tel": 8080808,
     "mail": "somiii@gmail.com",
-    "address": "aaaaaaa a 3",
+    "address": "bajka",
     "location": 2,
     "account": 6,
-    "roadSection": 2,
-    "tollStation": 2
+    "tollStation": "2"
+  },
+  {
+    "id": 7,
+    "firstName": "Mitar",
+    "lastName": "Milinkovic",
+    "tel": 2740283,
+    "mail": "somiii@gmail.com",
+    "address": "CZ",
+    "location": 1,
+    "account": 7,
+    "tollStation": null
+  },
+  {
+    "id": 10,
+    "firstName": "Miodrag",
+    "lastName": "Vujadinovic",
+    "tel": 381637717,
+    "mail": "gugi@gmail.com",
+    "address": "vl. rolovica 3",
+    "location": 4,
+    "account": 10,
+    "tollStation": null
   }
 ]
